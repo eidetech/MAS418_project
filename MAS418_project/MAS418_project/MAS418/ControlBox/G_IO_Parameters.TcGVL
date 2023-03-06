@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <GVL Name="G_IO_Parameters" Id="{3fbab461-ab5e-4502-bee0-5ca00d0512b6}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL
+	// Joystick parameters
+	fMaxInputValue : REAL := 20509.0;
+	fMinInputValue : REAL := 11787.0;
+	fNeutralInputValue : REAL := 16175;
+	fNeutralDeadband : REAL := 50.0;
+	fMaxOutputValue  : REAL := 1.0;
+	fMinOutputValue : REAL := -1.0;
+	fNeutralOutputValue : REAL := 0.0;
+	
+	// Deadband
+	fPosMax : REAL := 29490.0;
+	fPosMin : REAL := 20950.0;
+	fNegMin : REAL := 18250.0;
+	fNegMax : REAL := 9830.0;
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

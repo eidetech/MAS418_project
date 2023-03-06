@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <GVL Name="G_Sim" Id="{f59a9577-8a2e-4c4a-9fa5-4d12d7bf928a}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL
+	nX : INT := 0;
+	nY : INT := 0;
+	
+	xMin : INT := -85;
+	xMax : INT := 85;
+	yMin : INT := -200;
+	yMax : INT := 0;
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

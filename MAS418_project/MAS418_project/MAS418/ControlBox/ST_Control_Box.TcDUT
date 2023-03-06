@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <DUT Name="ST_Control_Box" Id="{154550f9-9000-4f60-b8e1-99f9a99cd967}">
+    <Declaration><![CDATA[TYPE ST_Control_Box :
+STRUCT
+	// Control mode variables
+	eMode : E_Control_Mode; // Control mode for the control box
+	bAuto : BOOL := FALSE; // Auto control mode input
+	bManual : BOOL := FALSE; // Manual control mode input
+
+	// Start/stop variables
+	bStart : BOOL := FALSE; // Start button input
+	bStop : BOOL := FALSE; // Stop button input
+
+	// Joy variables
+	bJoyActive : BOOL; // Activate the joystick boolean (Top switch)
+	bJoyNotActive: BOOL; // Inverse logic of JoyActive
+	fJoyX : REAL := 0; // Variable for storing the joy value in x direction (Cylinder)
+	fJoyY : REAL := 0; // Variable for storing the joy value in y direction (Winch)
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

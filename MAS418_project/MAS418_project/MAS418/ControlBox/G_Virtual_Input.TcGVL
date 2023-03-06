@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <GVL Name="G_Virtual_Input" Id="{e0169a0a-f9aa-4821-b0c4-bc7713e9c1bf}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL
+bStart : BOOL := FALSE; // Start button input
+bStop : BOOL := FALSE; // Stop button input
+
+bAuto : BOOL := FALSE; // Auto control mode input
+bManual : BOOL := FALSE; // Manual control mode input
+bOff : BOOL := FALSE; // Off mode
+
+bStopping : BOOL := FALSE;
+
+bJoyActive : BOOL; // Activate the joystick boolean (Top switch)
+bJoyNotActive: BOOL; // Inverse logic of JoyActive
+fJoyX : REAL := G_IO_Parameters.fMaxInputValue/2 + G_IO_Parameters.fMinInputValue/2; // Variable for storing the joy value in x direction (Cylinder)
+fJoyY : REAL := G_IO_Parameters.fMaxInputValue/2 + G_IO_Parameters.fMinInputValue/2; // Variable for storing the joy value in y direction (Winch)
+
+// Normalized values between -1 and 1
+fJoyX_Normalized : LREAL;
+fJoyY_Normalized : LREAL;
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

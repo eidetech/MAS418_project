@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="P_ControlBox" Id="{d4f0e33f-2ee9-4ad3-b670-f117d817b486}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM P_ControlBox
+VAR
+	fbControlBox : FB_ControlBox;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[fbControlBox(bRealControlBox := FALSE, eMode => G_ControlBox.eMode, eStatus => G_ControlBox.eStatus); // Run controlbox FB with argument. If bRealControlBox is TRUE, then the FB_RealControlBox will be selected when running the program.
+]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>
