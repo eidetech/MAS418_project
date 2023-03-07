@@ -725,7 +725,7 @@
                     </o>
                     <o>
                       <v n="Id">2496894244L</v>
-                      <v n="Value">"G_Virtual_Input.bJoyNotActive"</v>
+                      <v n="Value">"G_ControlBox.bJoyNotActive"</v>
                     </o>
                   </l>
                 </o>
@@ -873,7 +873,7 @@
                     </o>
                     <o>
                       <v n="Id">2496894244L</v>
-                      <v n="Value">"G_Virtual_Input.bJoyNotActive"</v>
+                      <v n="Value">"G_ControlBox.bJoyNotActive"</v>
                     </o>
                   </l>
                 </o>
@@ -3724,7 +3724,7 @@
                     </o>
                     <o>
                       <v n="Id">743958181L</v>
-                      <v n="Value">"G_Virtual_Input.bRunning"</v>
+                      <v n="Value">"G_ControlBox.bRunning"</v>
                     </o>
                   </l>
                 </o>
@@ -3979,7 +3979,7 @@
                     </o>
                     <o>
                       <v n="Id">743958181L</v>
-                      <v n="Value">"G_Virtual_Input.bStopping"</v>
+                      <v n="Value">"G_ControlBox.bStopping"</v>
                     </o>
                   </l>
                 </o>
