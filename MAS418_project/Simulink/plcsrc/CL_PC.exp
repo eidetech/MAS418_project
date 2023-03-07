@@ -1,0 +1,53 @@
+(*
+ *
+ * File: CL_PC.exp
+ *
+ * IEC 61131-3 Structured Text (ST) code generated for subsystem "CL_PC/Subsystem"
+ *
+ * Model name                      : CL_PC
+ * Model version                   : 1.1
+ * Model creator                   : marcu
+ * Model last modified by          : marcu
+ * Model last modified on          : Tue Mar 07 19:03:48 2023
+ * Model sample time               : 0s
+ * Subsystem name                  : CL_PC/Subsystem
+ * Subsystem sample time           : 0.2s
+ * Simulink PLC Coder version      : 3.7 (R2022b) 13-May-2022
+ * ST code generated on            : Tue Mar 07 19:09:50 2023
+ *
+ * Target IDE selection            : 3S CoDeSys 2.3
+ * Test Bench included             : No
+ *
+ *)
+FUNCTION_BLOCK Subsystem
+VAR_INPUT
+    fProportionalGain: LREAL;
+    fPositionReference: LREAL;
+    fPositionFeedback: LREAL;
+    bEnable: LREAL;
+END_VAR
+VAR_OUTPUT
+    uPFB: LREAL;
+    fPositionError: LREAL;
+END_VAR
+(* Outputs for Atomic SubSystem: '<Root>/Subsystem' *)
+(* Sum: '<S1>/Sum' *)
+fPositionError := fPositionReference - fPositionFeedback;
+(* Product: '<S1>/Product' *)
+uPFB := fProportionalGain * fPositionError;
+(* Saturate: '<S1>/Saturation' *)
+IF uPFB > 0.5 THEN 
+    uPFB := 0.5;
+ELSIF uPFB < -0.5 THEN 
+    uPFB := -0.5;
+END_IF;
+(* End of Saturate: '<S1>/Saturation' *)
+(* Switch: '<S1>/Switch' *)
+IF bEnable <= 0.0 THEN 
+    (* Outport: '<Root>/uPFB' incorporates:
+     *  Constant: '<S1>/Constant' *)
+    uPFB := 0.0;
+END_IF;
+(* End of Switch: '<S1>/Switch' *)
+(* End of Outputs for SubSystem: '<Root>/Subsystem' *)
+END_FUNCTION_BLOCK

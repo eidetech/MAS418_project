@@ -1,20 +1,12 @@
 <?xml version="1.0"?>
 <TcSmItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4024.35" ClassName="CNestedPlcProjDef">
 	<Project GUID="{58FAF1E5-C67E-4660-9804-45C5CC22F08B}" Name="MAS418" PrjFilePath="..\..\MAS418\MAS418.plcproj" TmcFilePath="..\..\MAS418\MAS418.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
-		<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="MAS418\MAS418.tmc" TmcHash="{6CAC61EC-B624-030F-BB18-D4630A877D34}">
+		<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="MAS418\MAS418.tmc" TmcHash="{FFA3D68E-941A-7CE3-38BC-BFCEF7E187BE}">
 			<Name>MAS418 Instance</Name>
 			<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 			<Contexts>
 				<Context>
 					<Id NeedCalleeCall="true">0</Id>
-					<Name>PlcTask_1</Name>
-					<ManualConfig>
-						<OTCID>#x02010040</OTCID>
-					</ManualConfig>
-					<CycleTime>1000000</CycleTime>
-				</Context>
-				<Context>
-					<Id NeedCalleeCall="true">1</Id>
 					<Name>PlcTask</Name>
 					<ManualConfig>
 						<OTCID>#x02010030</OTCID>

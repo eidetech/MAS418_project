@@ -43,10 +43,7 @@ END_VAR]]></Declaration>
     </Method>
     <Method Name="Status" Id="{f166d6bc-82f7-4b5e-81f8-2aaa803d7c4e}">
       <Declaration><![CDATA[{warning 'add method implementation '}
-METHOD Status : E_Status
-VAR_OUTPUT
-	eStatus : E_Status := E_Status.NOTREADY;
-END_VAR]]></Declaration>
+METHOD Status : E_Status]]></Declaration>
       <Implementation>
         <ST><![CDATA[]]></ST>
       </Implementation>

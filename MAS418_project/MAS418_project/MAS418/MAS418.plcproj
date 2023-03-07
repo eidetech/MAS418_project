@@ -53,33 +53,11 @@
     <Compile Include="GlobalTextList.TcGTLO">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="GlobalTextList_1.TcGTLO">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="HMI\Visualization.TcVIS">
       <SubType>Code</SubType>
       <DependentUpon>Visualization Manager.TcVMO</DependentUpon>
     </Compile>
-    <Compile Include="Per\MAIN_1.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Per\POUs\Function Blocks\FB_ModeSelector.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Per\POUs\Function Blocks\FB_Status.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Per\P_Box_Controll.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Per\Visualization_1.TcVIS">
-      <SubType>Code</SubType>
-      <DependentUpon>Visualization Manager.TcVMO</DependentUpon>
-    </Compile>
     <Compile Include="PlcTask.TcTTO">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="PlcTask_1.TcTTO">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Programs\MAIN.TcPOU">
@@ -156,9 +134,6 @@
   <ItemGroup>
     <Folder Include="HMI" />
     <Folder Include="ControlBox" />
-    <Folder Include="Per" />
-    <Folder Include="Per\POUs" />
-    <Folder Include="Per\POUs\Function Blocks" />
     <Folder Include="Programs" />
   </ItemGroup>
   <ItemGroup>
