@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="P_Box_Controll" Id="{32505c9d-2ed4-4130-a1ae-c83e241a1c0c}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM P_Box_Controll
+VAR
+	fbModeSelector : FB_ModeSelector;
+	fbStatus : FB_Status;
+	fbJoystick : FB_Joystick;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[//STATUS
+fbStatus(bReady := GVL_HMI.st_box_param.bReady,
+bStarting := GVL_HMI.st_box_param.bStarting,
+bRunning := GVL_HMI.st_box_param.bRunning,
+bStopping := GVL_HMI.st_box_param.bStopping,
+bFault := GVL_HMI.st_box_param.bFault,
+bAuto := GVL_HMI.st_box_param.bAuto,
+eStatus => GVL_HMI.eStatus);
+
+
+//Mode selector
+fbModeSelector(bControlBox := FALSE); //True for control box
+
+// Normalize signals
+fbJoystick();
+	
+
+	
+]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

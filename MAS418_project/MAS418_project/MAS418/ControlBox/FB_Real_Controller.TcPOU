@@ -36,12 +36,7 @@ END_VAR]]></Declaration>
       </Implementation>
     </Method>
     <Method Name="Mode" Id="{965e37cc-5164-4d3d-9774-f4c477c754f7}">
-      <Declaration><![CDATA[{warning 'add method implementation '}
-METHOD Mode
-VAR_OUTPUT
-	eMode	: E_Control_Mode;
-END_VAR
-]]></Declaration>
+      <Declaration><![CDATA[METHOD Mode]]></Declaration>
       <Implementation>
         <ST><![CDATA[]]></ST>
       </Implementation>
@@ -50,7 +45,7 @@ END_VAR
       <Declaration><![CDATA[{warning 'add method implementation '}
 METHOD Status : E_Status
 VAR_OUTPUT
-	eStatus : E_Status;
+	eStatus : E_Status := E_Status.NOTREADY;
 END_VAR]]></Declaration>
       <Implementation>
         <ST><![CDATA[]]></ST>

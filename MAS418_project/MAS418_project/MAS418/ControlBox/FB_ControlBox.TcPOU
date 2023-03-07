@@ -6,8 +6,6 @@ VAR_INPUT
 	bRealControlBox : BOOL;
 END_VAR
 VAR_OUTPUT
-	eMode : E_Control_Mode;
-	eStatus : E_Status;
 END_VAR
 VAR
 	fbVirtualControlBox : FB_Virtual_Controller;
@@ -19,17 +17,17 @@ END_VAR
       <ST><![CDATA[IF bRealControlBox THEN
 	fbSelectedControlBox := fbRealControlBox;
 ELSE
-	fbVirtualControlBox.Lamps();
-	fbVirtualControlBox.Sim();
+	//fbVirtualControlBox.Lamps();
+	//fbVirtualControlBox.Sim();
 END_IF
 
-fbSelectedControlBox.Mode(eMode => eMode);
-fbSelectedControlBox.Status(eStatus => eStatus);
-fbSelectedControlBox.Joy_Normalized(fJoyX_raw := G_Virtual_Input.fJoyX, fJoyY_raw := G_Virtual_Input.fJoyY,
+fbSelectedControlBox.Mode();
+fbSelectedControlBox.Status();
+(*fbSelectedControlBox.Joy_Normalized(fJoyX_raw := G_Virtual_Input.fJoyX, fJoyY_raw := G_Virtual_Input.fJoyY,
 									fMin_in := G_IO_Parameters.fMinInputValue, fMax_in := G_IO_Parameters.fMaxInputValue,
 									fMin_out := G_IO_Parameters.fMinOutputValue, fMax_out := G_IO_Parameters.fMaxOutputValue,
 									fJoyX_normalized => G_Virtual_Input.fJoyX_Normalized, fJoyY_normalized => G_Virtual_Input.fJoyY_Normalized);
-									]]></ST>
+									*)]]></ST>
     </Implementation>
   </POU>
 </TcPlcObject>

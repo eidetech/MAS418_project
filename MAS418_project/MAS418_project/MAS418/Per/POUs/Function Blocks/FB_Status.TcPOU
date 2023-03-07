@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="FB_Status" Id="{20c1369e-1d83-42ac-a25d-ace511235aaf}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_Status
+VAR_INPUT
+	bReady : BOOL; 
+	bStarting : BOOL;
+	bRunning : BOOL;
+	bStopping : BOOL;
+	bFault : BOOL;
+	bAuto : BOOL;
+END_VAR
+VAR_OUTPUT
+	eStatus : E_Status := E_Status.NotReady;
+END_VAR
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[CASE eStatus OF
+	E_Status.NotReady:
+		IF bReady AND NOT(bFault) THEN 
+			eStatus := E_Status.Ready;
+		ELSE
+			eStatus := E_Status.NotReady;
+		END_IF
+	E_Status.Ready:
+		IF NOT(bReady) THEN
+			eStatus := E_Status.NotReady;
+		ELSE
+			eStatus := E_Status.Ready;
+		END_IF
+		IF	bStarting THEN
+			eStatus := E_Status.Starting;
+		END_IF
+	E_Status.Starting:
+		//TIMEr, FEEDBACK FROM MOTOR ETC:
+		eStatus := E_Status.Running;
+	E_Status.Running:
+		GVL_HMI.st_box_param.bRunning := TRUE;
+		IF bStopping OR NOT(bReady) THEN
+			eStatus := E_Status.Stopping;
+		END_IF
+		IF NOT(bStarting) AND bAuto AND bReady THEN
+			eStatus := E_Status.Stopping;
+		END_IF
+		IF bFault THEN // FAULT 
+			eStatus := E_Status.Fault;
+		END_IF
+	E_Status.Stopping:
+		GVL_HMI.st_box_param.bRunning := FALSE;
+		eStatus := E_Status.NotReady;
+	E_Status.Fault:
+		IF bFault THEN
+			eStatus := E_Status.Fault;
+			GVL_HMI.st_box_param.bRunning := FALSE;
+		ELSE
+			eStatus := E_Status.NotReady;	
+		END_IF
+		
+END_CASE
+
+
+
+]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

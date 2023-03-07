@@ -7,7 +7,7 @@ VAR
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[fbControlBox(bRealControlBox := FALSE, eMode => G_ControlBox.eMode, eStatus => G_ControlBox.eStatus); // Run controlbox FB with argument. If bRealControlBox is TRUE, then the FB_RealControlBox will be selected when running the program.
+      <ST><![CDATA[fbControlBox(bRealControlBox := FALSE); // Run controlbox FB with argument. If bRealControlBox is TRUE, then the FB_RealControlBox will be selected when running the program.
 ]]></ST>
     </Implementation>
   </POU>

@@ -22,17 +22,13 @@ VAR_OUTPUT
 END_VAR]]></Declaration>
     </Method>
     <Method Name="Mode" Id="{c5c82611-b5c0-4eb8-9171-b21927bf4a1d}">
-      <Declaration><![CDATA[METHOD Mode
-VAR_OUTPUT
-	eMode : E_Control_Mode;
-END_VAR]]></Declaration>
+      <Declaration><![CDATA[METHOD Mode]]></Declaration>
     </Method>
     <Method Name="Status" Id="{5107072e-e81b-4166-af85-2c0de74e031a}">
       <Declaration><![CDATA[METHOD Status : E_Status
 VAR_OUTPUT
-	eStatus : E_Status;
-END_VAR
-]]></Declaration>
+	eStatus : E_Status := E_Status.NOTREADY;
+END_VAR]]></Declaration>
     </Method>
   </Itf>
 </TcPlcObject>

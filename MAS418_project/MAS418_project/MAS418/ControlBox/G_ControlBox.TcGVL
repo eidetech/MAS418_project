@@ -4,7 +4,10 @@
     <Declaration><![CDATA[{attribute 'qualified_only'}
 VAR_GLOBAL
 	eMode : E_Control_Mode := E_Control_Mode.OFF;
-	eStatus : E_Status := E_Status.READY;
+	eStatus : E_Status := E_Status.NOTREADY;
+	fbTon : TON := ();
+	bStartTimer : BOOL := FALSE;
+	bTimerDone : BOOL;
 END_VAR]]></Declaration>
   </GVL>
 </TcPlcObject>

@@ -63,18 +63,36 @@ END_IF]]></ST>
     </Method>
     <Method Name="Mode" Id="{0348c339-14fd-4a74-9b6e-3dbe81445505}">
       <Declaration><![CDATA[METHOD Mode
-VAR_OUTPUT
-	eMode : E_Control_Mode;
-END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF NOT G_Virtual_Input.bAuto AND NOT G_Virtual_Input.bManual AND NOT G_Virtual_Input.bStart THEN
-	eMode := E_Control_Mode.OFF;
-ELSIF G_Virtual_Input.bAuto AND NOT G_Virtual_Input.bManual AND G_Virtual_Input.bStart THEN
-	eMode := E_Control_Mode.AUTO;
-ELSIF NOT G_Virtual_Input.bAuto AND G_Virtual_Input.bManual AND G_Virtual_Input.bJoyActive THEN
-	eMode := E_Control_Mode.MANUAL;
-END_IF]]></ST>
+        <ST><![CDATA[CASE G_ControlBox.eMode OF
+		E_Control_Mode.OFF:
+			IF G_Virtual_Input.bAuto THEN
+				G_ControlBox.eMode := E_Control_Mode.AUTO;
+			ELSIF G_Virtual_Input.bManual THEN
+				G_ControlBox.eMode := E_Control_Mode.MANUAL;
+			ELSE
+				G_ControlBox.eMode := E_Control_Mode.OFF;
+			END_IF
+		E_Control_Mode.AUTO:
+			G_Virtual_Input.bManual := FALSE;
+			IF G_Virtual_Input.bManual THEN
+				G_ControlBox.eMode := E_Control_Mode.MANUAL;
+			ELSIF NOT G_Virtual_Input.bAuto THEN
+				G_ControlBox.eMode := E_Control_Mode.OFF;
+			ELSE
+				G_ControlBox.eMode := E_Control_Mode.AUTO;
+			END_IF
+		E_Control_Mode.MANUAL:
+			G_Virtual_Input.bAuto := FALSE;
+			IF G_Virtual_Input.bAuto THEN
+				G_ControlBox.eMode := E_Control_Mode.AUTO;
+			ELSIF NOT G_Virtual_Input.bManual THEN
+				G_ControlBox.eMode := E_Control_Mode.OFF;
+			ELSE
+				G_ControlBox.eMode := E_Control_Mode.MANUAL;
+			END_IF
+END_CASE]]></ST>
       </Implementation>
     </Method>
     <Method Name="Sim" Id="{a8f5f6a0-4399-408c-a1da-dac58afdecaf}">
@@ -97,26 +115,61 @@ END_IF]]></ST>
     <Method Name="Status" Id="{a1ecf13f-901f-4e5c-9e12-ccc122ee8179}">
       <Declaration><![CDATA[METHOD Status : E_Status
 VAR_OUTPUT
-	eStatus : E_Status;
-END_VAR
-
-]]></Declaration>
+	eStatus : E_Status := E_Status.NOTREADY;
+END_VAR]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF G_ControlBox.eMode = E_Control_Mode.OFF THEN
-	eStatus := E_Status.NOTREADY;
-END_IF
-IF G_ControlBox.eMode = E_Control_Mode.MANUAL OR G_ControlBox.eMode = E_Control_Mode.AUTO THEN
-	eStatus := E_Status.READY;
-END_IF
-IF G_Virtual_Input.bStart THEN
-	eStatus := E_Status.STARTING;
-END_IF
-IF (G_ControlBox.eMode = E_Control_Mode.MANUAL AND G_Virtual_Input.bStart) OR (G_ControlBox.eMode = E_Control_Mode.AUTO AND G_Virtual_Input.bStart) THEN
-	eStatus := E_Status.RUNNING;
-END_IF
-IF G_Virtual_Input.bStop THEN
-	eStatus := E_Status.STOPPING;
-END_IF]]></ST>
+        <ST><![CDATA[CASE G_ControlBox.eStatus OF
+	E_Status.NOTREADY:
+		IF NOT(G_ControlBox.eMode = E_Control_Mode.OFF) THEN 
+			G_ControlBox.eStatus := E_Status.READY;
+		ELSE
+			G_ControlBox.eStatus := E_Status.NOTREADY;
+		END_IF
+	E_Status.READY:
+		IF NOT(G_Virtual_Input.bAuto OR G_Virtual_Input.bManual) THEN
+			G_ControlBox.eStatus := E_Status.NOTREADY;
+		ELSE
+			G_ControlBox.eStatus := E_Status.READY;
+		END_IF
+		IF	G_Virtual_Input.bStart THEN
+			G_ControlBox.eStatus := E_Status.STARTING;
+		END_IF
+	E_Status.STARTING:
+		G_ControlBox.bStartTimer := TRUE;
+		G_ControlBox.fbTon(IN:=G_ControlBox.bStartTimer, PT:=T#2S, Q => G_ControlBox.bTimerDone);
+		G_ControlBox.bStartTimer := FALSE;
+		IF G_ControlBox.bTimerDone THEN
+		G_ControlBox.eStatus := E_Status.RUNNING;
+		G_ControlBox.fbTon(IN:=G_ControlBox.bStartTimer, PT:=T#2S, Q => G_ControlBox.bTimerDone);
+		END_IF
+	E_Status.RUNNING:
+		IF G_Virtual_Input.bStop OR NOT(G_Virtual_Input.bAuto OR G_Virtual_Input.bManual) THEN
+			G_ControlBox.eStatus := E_Status.STOPPING;
+		END_IF
+		IF NOT(G_Virtual_Input.bStart) AND G_Virtual_Input.bAuto AND (G_Virtual_Input.bAuto OR G_Virtual_Input.bManual) THEN
+			G_ControlBox.eStatus := E_Status.STOPPING;
+		END_IF
+		IF G_Virtual_Input.bFault THEN // FAULT 
+			G_ControlBox.eStatus := E_Status.FAULT;
+		END_IF
+	E_Status.STOPPING:
+		G_ControlBox.bStartTimer := TRUE;
+		G_ControlBox.fbTon(IN:=G_ControlBox.bStartTimer, PT:=T#2S, Q => G_ControlBox.bTimerDone,);
+		G_ControlBox.bStartTimer := FALSE;
+		G_Virtual_Input.bRunning := FALSE;
+		IF G_ControlBox.bTimerDone THEN
+			G_ControlBox.eStatus := E_Status.NOTREADY;
+			G_ControlBox.fbTon(IN:=G_ControlBox.bStartTimer, PT:=T#2S, Q => G_ControlBox.bTimerDone);
+		END_IF
+	E_Status.FAULT:
+		IF G_Virtual_Input.bFault THEN
+			G_ControlBox.eStatus := E_Status.FAULT;
+			G_Virtual_Input.bRunning := FALSE;
+		ELSE
+			G_ControlBox.eStatus := E_Status.NOTREADY;	
+		END_IF
+END_CASE
+]]></ST>
       </Implementation>
     </Method>
   </POU>

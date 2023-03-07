@@ -301,7 +301,7 @@
                   <l n="VisualElemMemberList" t="VisualElemMemberCollection" cet="VisualElemMember">
                     <o>
                       <v n="Id">1931512087L</v>
-                      <v n="Value">"TOGGLE"</v>
+                      <v n="Value">"TAP"</v>
                     </o>
                     <o>
                       <v n="Id">300685745L</v>
@@ -403,7 +403,7 @@
                   <l n="VisualElemMemberList" t="VisualElemMemberCollection" cet="VisualElemMember">
                     <o>
                       <v n="Id">1931512087L</v>
-                      <v n="Value">"TOGGLE"</v>
+                      <v n="Value">"TAP"</v>
                     </o>
                     <o>
                       <v n="Id">300685745L</v>
@@ -1857,7 +1857,7 @@
                   <l n="VisualElemMemberList" t="VisualElemMemberCollection" cet="VisualElemMember">
                     <o>
                       <v n="Id">1931512087L</v>
-                      <v n="Value">"TOGGLE"</v>
+                      <v n="Value">"TAP"</v>
                     </o>
                     <o>
                       <v n="Id">300685745L</v>
@@ -3721,6 +3721,10 @@
                     <o>
                       <v n="Id">2597686782L</v>
                       <v n="Value">false</v>
+                    </o>
+                    <o>
+                      <v n="Id">743958181L</v>
+                      <v n="Value">"G_Virtual_Input.bRunning"</v>
                     </o>
                   </l>
                 </o>
@@ -6071,7 +6075,7 @@
             </o>
             <v n="DialogDut">{87414788-be11-4a93-bf7e-d1f6e7a1ffdf}</v>
           </o>
-          <v n="LastUsedIdForIdentifier">113</v>
+          <v n="LastUsedIdForIdentifier">115</v>
           <o n="TextDocument" t="TextDocument">
             <a n="TextLines" cet="TextLine">
               <o>

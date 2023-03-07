@@ -5,12 +5,12 @@
 {attribute 'strict'}
 TYPE E_Status :
 (
-	NOTREADY := 0,
-	READY := 1,
-	STARTING := 2,
-	RUNNING := 3,
-	STOPPING := 4,
-	FAULT := 5
+	NOTREADY,
+	READY,
+	STARTING,
+	RUNNING,
+	STOPPING,
+	FAULT
 );
 END_TYPE
 ]]></Declaration>

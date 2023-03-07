@@ -10,7 +10,11 @@ bAuto : BOOL := FALSE; // Auto control mode input
 bManual : BOOL := FALSE; // Manual control mode input
 bOff : BOOL := FALSE; // Off mode
 
+bReady : BOOL := FALSE;
+bStarting : BOOL := FALSE;
+bRunning : BOOL := FALSE;
 bStopping : BOOL := FALSE;
+bFault : BOOL := FALSE;
 
 bJoyActive : BOOL; // Activate the joystick boolean (Top switch)
 bJoyNotActive: BOOL; // Inverse logic of JoyActive
