@@ -275,7 +275,7 @@
                     </o>
                     <o>
                       <v n="Id">743958181L</v>
-                      <v n="Value">"G_Virtual_Input.bAuto"</v>
+                      <v n="Value">"G_ControlBox.bAuto"</v>
                     </o>
                   </l>
                 </o>
@@ -377,7 +377,7 @@
                     </o>
                     <o>
                       <v n="Id">743958181L</v>
-                      <v n="Value">"G_Virtual_Input.bStart"</v>
+                      <v n="Value">"G_ControlBox.bStart"</v>
                     </o>
                   </l>
                 </o>
@@ -479,7 +479,7 @@
                     </o>
                     <o>
                       <v n="Id">743958181L</v>
-                      <v n="Value">"G_Virtual_Input.bStop"</v>
+                      <v n="Value">"G_ControlBox.bStop"</v>
                     </o>
                   </l>
                 </o>
@@ -585,7 +585,7 @@
                     </o>
                     <o>
                       <v n="Id">743958181L</v>
-                      <v n="Value">"G_Virtual_Input.bManual"</v>
+                      <v n="Value">"G_ControlBox.bManual"</v>
                     </o>
                   </l>
                 </o>
@@ -721,7 +721,7 @@
                     </o>
                     <o>
                       <v n="Id">397264524L</v>
-                      <v n="Value">"G_Virtual_Input.fJoyY"</v>
+                      <v n="Value">"G_ControlBox.fJoyY"</v>
                     </o>
                     <o>
                       <v n="Id">2496894244L</v>
@@ -865,7 +865,7 @@
                     </o>
                     <o>
                       <v n="Id">397264524L</v>
-                      <v n="Value">"G_Virtual_Input.fJoyX"</v>
+                      <v n="Value">"G_ControlBox.fJoyX"</v>
                     </o>
                     <o>
                       <v n="Id">3352862552L</v>
@@ -1933,7 +1933,7 @@
                     </o>
                     <o>
                       <v n="Id">743958181L</v>
-                      <v n="Value">"G_Virtual_Input.bJoyActive"</v>
+                      <v n="Value">"G_ControlBox.bJoyActive"</v>
                     </o>
                   </l>
                 </o>
@@ -4073,7 +4073,7 @@
                     </o>
                     <o>
                       <v n="Id">743958181L</v>
-                      <v n="Value">"G_Virtual_Input.bAuto"</v>
+                      <v n="Value">"G_ControlBox.bAuto"</v>
                     </o>
                   </l>
                 </o>
@@ -4167,7 +4167,7 @@
                     </o>
                     <o>
                       <v n="Id">743958181L</v>
-                      <v n="Value">"G_Virtual_Input.bOff"</v>
+                      <v n="Value">"G_ControlBox.bFault"</v>
                     </o>
                   </l>
                 </o>
@@ -4261,7 +4261,7 @@
                     </o>
                     <o>
                       <v n="Id">743958181L</v>
-                      <v n="Value">"G_Virtual_Input.bManual"</v>
+                      <v n="Value">"G_ControlBox.bManual"</v>
                     </o>
                   </l>
                 </o>
@@ -4418,7 +4418,7 @@
                     </o>
                     <o>
                       <v n="Id">2477733581L</v>
-                      <v n="Value">"G_Virtual_Input.fJoyX_Normalized"</v>
+                      <v n="Value">"G_ControlBox.fJoyX_Normalized"</v>
                     </o>
                     <o>
                       <v n="Id">823443203L</v>
@@ -4579,7 +4579,7 @@
                     </o>
                     <o>
                       <v n="Id">2477733581L</v>
-                      <v n="Value">"G_Virtual_Input.fJoyY_Normalized"</v>
+                      <v n="Value">"G_ControlBox.fJoyY_Normalized"</v>
                     </o>
                     <o>
                       <v n="Id">823443203L</v>
@@ -4955,7 +4955,7 @@
                     </o>
                     <o>
                       <v n="Id">2422045748L</v>
-                      <v n="Value" t="Int16">500</v>
+                      <v n="Value" t="Int16">870</v>
                     </o>
                     <o>
                       <v n="Id">2134141914L</v>

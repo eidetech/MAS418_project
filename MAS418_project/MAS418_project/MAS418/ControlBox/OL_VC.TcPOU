@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="OL_VC" Id="{e2cadd8e-16b9-4b0b-9844-c444e6be7185}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK OL_VC
+VAR_INPUT
+    bEnable: BOOL; // Enable signal
+    fvRef: LREAL; // m/s
+    fQmax: LREAL; // L/min
+END_VAR
+VAR_OUTPUT
+    f_uVFF: LREAL; // Output control signal
+END_VAR
+VAR_TEMP
+    rtb_Q_refm3s: LREAL;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[// Open-loop velocity control
+IF fvRef > 0.0 THEN 
+    rtb_Q_refm3s := 0.0033183 * fvRef;
+ELSE 
+    rtb_Q_refm3s := fvRef * 0.0023562;
+END_IF;
+
+IF bEnable THEN 
+    f_uVFF := (60000.0 * rtb_Q_refm3s) / fQmax;
+ELSE 
+    f_uVFF := 0.0;
+END_IF;]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

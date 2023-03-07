@@ -7,7 +7,7 @@ VAR_GLOBAL
 	nY : INT := 0;
 	
 	xMin : INT := -85;
-	xMax : INT := 85;
+	xMax : INT := 500;
 	yMin : INT := -200;
 	yMax : INT := 0;
 END_VAR]]></Declaration>

@@ -3,11 +3,38 @@
   <GVL Name="G_ControlBox" Id="{58d0ea5b-1b17-4931-b151-b15e0c6b313c}">
     <Declaration><![CDATA[{attribute 'qualified_only'}
 VAR_GLOBAL
+	// Global variable for control mode
 	eMode : E_Control_Mode := E_Control_Mode.OFF;
+	
+	// GLobal variable for machine status
 	eStatus : E_Status := E_Status.NOTREADY;
+	
+	// Timer between STARTING -> RUNNING and STOPPING -> NOTREADY
 	fbTon : TON := ();
 	bStartTimer : BOOL := FALSE;
 	bTimerDone : BOOL;
+	
+	bStart : BOOL := FALSE; // Start button input
+	bStop : BOOL := FALSE; // Stop button input
+	
+	bAuto : BOOL := FALSE; // Auto control mode input
+	bManual : BOOL := FALSE; // Manual control mode input
+	bOff : BOOL := FALSE; // Off mode
+	
+	bReady : BOOL := FALSE;
+	bStarting : BOOL := FALSE;
+	bRunning : BOOL := FALSE;
+	bStopping : BOOL := FALSE;
+	bFault : BOOL := FALSE;
+	
+	bJoyActive : BOOL; // Activate the joystick boolean (Top switch)
+	bJoyNotActive: BOOL; // Inverse logic of JoyActive
+	fJoyX : REAL := G_IO_Parameters.fMaxInputValue/2 + G_IO_Parameters.fMinInputValue/2; // Variable for storing the joy value in x direction (Cylinder)
+	fJoyY : REAL := G_IO_Parameters.fMaxInputValue/2 + G_IO_Parameters.fMinInputValue/2; // Variable for storing the joy value in y direction (Winch)
+	
+	// Normalized values between -1 and 1
+	fJoyX_Normalized : LREAL;
+	fJoyY_Normalized : LREAL;
 END_VAR]]></Declaration>
   </GVL>
 </TcPlcObject>

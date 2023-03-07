@@ -1,0 +1,59 @@
+(*
+ *
+ * File: OL_VC.exp
+ *
+ * IEC 61131-3 Structured Text (ST) code generated for subsystem "OL_VC/Subsystem"
+ *
+ * Model name                      : OL_VC
+ * Model version                   : 1.4
+ * Model creator                   : marcu
+ * Model last modified by          : marcu
+ * Model last modified on          : Tue Mar 07 16:47:47 2023
+ * Model sample time               : 0s
+ * Subsystem name                  : OL_VC/Subsystem
+ * Subsystem sample time           : 0.2s
+ * Simulink PLC Coder version      : 3.7 (R2022b) 13-May-2022
+ * ST code generated on            : Tue Mar 07 16:50:47 2023
+ *
+ * Target IDE selection            : 3S CoDeSys 2.3
+ * Test Bench included             : No
+ *
+ *)
+FUNCTION_BLOCK Subsystem
+VAR_INPUT
+    Enable: LREAL;
+    vRefms: LREAL;
+    QmaxLmin: LREAL;
+END_VAR
+VAR_OUTPUT
+    uVFF: LREAL;
+END_VAR
+VAR_TEMP
+    rtb_Q_refm3s: LREAL;
+END_VAR
+(* Outputs for Atomic SubSystem: '<Root>/Subsystem' *)
+(* Switch: '<S1>/Switch' incorporates:
+ *  Constant: '<S1>/Annulus_Area'
+ *  Constant: '<S1>/Bore_Area'
+ *  Product: '<S1>/Product'
+ *  Product: '<S1>/Product1' *)
+IF vRefms > 0.0 THEN 
+    rtb_Q_refm3s := 0.0033183 * vRefms;
+ELSE 
+    rtb_Q_refm3s := vRefms * 0.0023562;
+END_IF;
+(* End of Switch: '<S1>/Switch' *)
+(* Switch: '<S1>/Switch1' *)
+IF Enable > 0.0 THEN 
+    (* Outport: '<Root>/uVFF [-]' incorporates:
+     *  Gain: '<S1>/Gain'
+     *  Product: '<S1>/Divide' *)
+    uVFF := (60000.0 * rtb_Q_refm3s) / QmaxLmin;
+ELSE 
+    (* Outport: '<Root>/uVFF [-]' incorporates:
+     *  Constant: '<S1>/Constant' *)
+    uVFF := 0.0;
+END_IF;
+(* End of Switch: '<S1>/Switch1' *)
+(* End of Outputs for SubSystem: '<Root>/Subsystem' *)
+END_FUNCTION_BLOCK

@@ -17,17 +17,16 @@ END_VAR
       <ST><![CDATA[IF bRealControlBox THEN
 	fbSelectedControlBox := fbRealControlBox;
 ELSE
-	//fbVirtualControlBox.Lamps();
-	//fbVirtualControlBox.Sim();
+	fbVirtualControlBox.Sim();
 END_IF
 
 fbSelectedControlBox.Mode();
 fbSelectedControlBox.Status();
-(*fbSelectedControlBox.Joy_Normalized(fJoyX_raw := G_Virtual_Input.fJoyX, fJoyY_raw := G_Virtual_Input.fJoyY,
+fbSelectedControlBox.Joy_Normalized(fJoyX_raw := G_ControlBox.fJoyX, fJoyY_raw := G_ControlBox.fJoyY,
 									fMin_in := G_IO_Parameters.fMinInputValue, fMax_in := G_IO_Parameters.fMaxInputValue,
 									fMin_out := G_IO_Parameters.fMinOutputValue, fMax_out := G_IO_Parameters.fMaxOutputValue,
-									fJoyX_normalized => G_Virtual_Input.fJoyX_Normalized, fJoyY_normalized => G_Virtual_Input.fJoyY_Normalized);
-									*)]]></ST>
+									fJoyX_normalized => G_ControlBox.fJoyX_Normalized, fJoyY_normalized => G_ControlBox.fJoyY_Normalized);
+									]]></ST>
     </Implementation>
   </POU>
 </TcPlcObject>

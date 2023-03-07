@@ -36,62 +36,37 @@ fJoyX_normalized := (fJoyX_raw - fMin_in) * (fMax_out - fMin_out) / (fMax_in - f
 fJoyY_normalized := (fJoyY_raw - fMin_in) * (fMax_out - fMin_out) / (fMax_in - fMin_in) + fMin_out;]]></ST>
       </Implementation>
     </Method>
-    <Method Name="Lamps" Id="{280bebe9-46ec-4fca-9d94-c7d7bf461e3a}">
-      <Declaration><![CDATA[METHOD Lamps : REAL
-]]></Declaration>
-      <Implementation>
-        <ST><![CDATA[IF G_Virtual_Input.bAuto AND NOT G_Virtual_Input.bManual THEN
-	G_Virtual_Input.bAuto := TRUE;
-	G_Virtual_Input.bManual := FALSE;
-	G_Virtual_Input.bOff := FALSE;
-ELSIF G_Virtual_Input.bManual AND NOT G_Virtual_Input.bAuto THEN
-	G_Virtual_Input.bAuto := FALSE;
-	G_Virtual_Input.bManual := TRUE;
-	G_Virtual_Input.bOff := FALSE;
-ELSE
-	G_Virtual_Input.bAuto := FALSE;
-	G_Virtual_Input.bManual := FALSE;
-	G_Virtual_Input.bOff := TRUE;
-END_IF
-
-IF G_ControlBox.eStatus = E_Status.STOPPING THEN
-	G_Virtual_Input.bStopping := TRUE;
-ELSE
-	G_Virtual_Input.bStopping := FALSE;
-END_IF]]></ST>
-      </Implementation>
-    </Method>
     <Method Name="Mode" Id="{0348c339-14fd-4a74-9b6e-3dbe81445505}">
       <Declaration><![CDATA[METHOD Mode
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[CASE G_ControlBox.eMode OF
 		E_Control_Mode.OFF:
-			IF G_Virtual_Input.bAuto THEN
+			IF G_ControlBox.bAuto THEN
 				G_ControlBox.eMode := E_Control_Mode.AUTO;
-			ELSIF G_Virtual_Input.bManual THEN
+			ELSIF G_ControlBox.bManual THEN
 				G_ControlBox.eMode := E_Control_Mode.MANUAL;
 			ELSE
 				G_ControlBox.eMode := E_Control_Mode.OFF;
 			END_IF
 		E_Control_Mode.AUTO:
-			G_Virtual_Input.bManual := FALSE;
-			IF G_Virtual_Input.bManual THEN
+			IF G_ControlBox.bManual THEN
 				G_ControlBox.eMode := E_Control_Mode.MANUAL;
-			ELSIF NOT G_Virtual_Input.bAuto THEN
+			ELSIF NOT G_ControlBox.bAuto THEN
 				G_ControlBox.eMode := E_Control_Mode.OFF;
 			ELSE
 				G_ControlBox.eMode := E_Control_Mode.AUTO;
 			END_IF
+			G_ControlBox.bManual := FALSE;
 		E_Control_Mode.MANUAL:
-			G_Virtual_Input.bAuto := FALSE;
-			IF G_Virtual_Input.bAuto THEN
+			IF G_ControlBox.bAuto THEN
 				G_ControlBox.eMode := E_Control_Mode.AUTO;
-			ELSIF NOT G_Virtual_Input.bManual THEN
+			ELSIF NOT G_ControlBox.bManual THEN
 				G_ControlBox.eMode := E_Control_Mode.OFF;
 			ELSE
 				G_ControlBox.eMode := E_Control_Mode.MANUAL;
 			END_IF
+			G_ControlBox.bAuto := FALSE;
 END_CASE]]></ST>
       </Implementation>
     </Method>
@@ -101,15 +76,24 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
       <Implementation>
-        <ST><![CDATA[IF G_Virtual_Input.fJoyX_Normalized > 0 AND G_Sim.nX < G_Sim.xMax THEN
-	G_Sim.nX := G_Sim.nX+1;
-ELSIF G_Virtual_Input.fJoyX_Normalized < 0 AND G_Sim.nX > G_Sim.xMin THEN
-	G_Sim.nX := G_Sim.nX-1;
-ELSIF G_Virtual_Input.fJoyY_Normalized > 0 AND G_Sim.nY < G_Sim.yMax THEN
-	G_Sim.nY := G_Sim.nY+1;
-ELSIF G_Virtual_Input.fJoyY_Normalized < 0 AND G_Sim.nY > G_Sim.yMin THEN
-	G_Sim.nY := G_Sim.nY-1;
-END_IF]]></ST>
+        <ST><![CDATA[IF G_ControlBox.eStatus = E_Status.RUNNING THEN
+	IF G_ControlBox.fJoyX_Normalized > 0 AND G_Sim.nX < G_Sim.xMax THEN
+		G_Sim.nX := G_Sim.nX+1;
+	END_IF
+	IF G_ControlBox.fJoyX_Normalized < 0 AND G_Sim.nX > G_Sim.xMin THEN
+		G_Sim.nX := G_Sim.nX-1;
+	END_IF
+	IF G_ControlBox.fJoyY_Normalized > 0 AND G_Sim.nY < G_Sim.yMax THEN
+		G_Sim.nY := G_Sim.nY+1;
+	END_IF
+	IF G_ControlBox.fJoyY_Normalized < 0 AND G_Sim.nY > G_Sim.yMin THEN
+		G_Sim.nY := G_Sim.nY-1;
+	END_IF	
+ELSE
+	G_ControlBox.fJoyX_Normalized := 0;
+	G_ControlBox.fJoyY_Normalized := 0;
+END_IF
+]]></ST>
       </Implementation>
     </Method>
     <Method Name="Status" Id="{a1ecf13f-901f-4e5c-9e12-ccc122ee8179}">
@@ -126,12 +110,12 @@ END_VAR]]></Declaration>
 			G_ControlBox.eStatus := E_Status.NOTREADY;
 		END_IF
 	E_Status.READY:
-		IF NOT(G_Virtual_Input.bAuto OR G_Virtual_Input.bManual) THEN
+		IF NOT(G_ControlBox.bAuto OR G_ControlBox.bManual) THEN
 			G_ControlBox.eStatus := E_Status.NOTREADY;
 		ELSE
 			G_ControlBox.eStatus := E_Status.READY;
 		END_IF
-		IF	G_Virtual_Input.bStart THEN
+		IF	G_ControlBox.bStart THEN
 			G_ControlBox.eStatus := E_Status.STARTING;
 		END_IF
 	E_Status.STARTING:
@@ -139,32 +123,41 @@ END_VAR]]></Declaration>
 		G_ControlBox.fbTon(IN:=G_ControlBox.bStartTimer, PT:=T#2S, Q => G_ControlBox.bTimerDone);
 		G_ControlBox.bStartTimer := FALSE;
 		IF G_ControlBox.bTimerDone THEN
-		G_ControlBox.eStatus := E_Status.RUNNING;
+			IF G_ControlBox.eMode = E_Control_Mode.MANUAL OR G_ControlBox.eMode = E_Control_Mode.AUTO THEN
+				G_ControlBox.eStatus := E_Status.RUNNING;
+			ELSE
+				G_ControlBox.eStatus := E_Status.STOPPING;
+			END_IF
 		G_ControlBox.fbTon(IN:=G_ControlBox.bStartTimer, PT:=T#2S, Q => G_ControlBox.bTimerDone);
 		END_IF
 	E_Status.RUNNING:
-		IF G_Virtual_Input.bStop OR NOT(G_Virtual_Input.bAuto OR G_Virtual_Input.bManual) THEN
+		G_ControlBox.bRunning := TRUE;
+		G_ControlBox.bStopping := FALSE;
+		IF G_ControlBox.bStop OR NOT(G_ControlBox.bAuto OR G_ControlBox.bManual) THEN
 			G_ControlBox.eStatus := E_Status.STOPPING;
 		END_IF
-		IF NOT(G_Virtual_Input.bStart) AND G_Virtual_Input.bAuto AND (G_Virtual_Input.bAuto OR G_Virtual_Input.bManual) THEN
+		IF NOT(G_ControlBox.bStart) AND G_ControlBox.bAuto AND (G_ControlBox.bAuto OR G_ControlBox.bManual) THEN
 			G_ControlBox.eStatus := E_Status.STOPPING;
 		END_IF
-		IF G_Virtual_Input.bFault THEN // FAULT 
+		IF G_ControlBox.bFault THEN // FAULT 
 			G_ControlBox.eStatus := E_Status.FAULT;
 		END_IF
 	E_Status.STOPPING:
+		G_ControlBox.bRunning := FALSE;
+		G_ControlBox.bStopping := TRUE;
+		
 		G_ControlBox.bStartTimer := TRUE;
 		G_ControlBox.fbTon(IN:=G_ControlBox.bStartTimer, PT:=T#2S, Q => G_ControlBox.bTimerDone,);
 		G_ControlBox.bStartTimer := FALSE;
-		G_Virtual_Input.bRunning := FALSE;
+		G_ControlBox.bRunning := FALSE;
 		IF G_ControlBox.bTimerDone THEN
 			G_ControlBox.eStatus := E_Status.NOTREADY;
 			G_ControlBox.fbTon(IN:=G_ControlBox.bStartTimer, PT:=T#2S, Q => G_ControlBox.bTimerDone);
 		END_IF
 	E_Status.FAULT:
-		IF G_Virtual_Input.bFault THEN
+		IF G_ControlBox.bFault THEN
 			G_ControlBox.eStatus := E_Status.FAULT;
-			G_Virtual_Input.bRunning := FALSE;
+			G_ControlBox.bRunning := FALSE;
 		ELSE
 			G_ControlBox.eStatus := E_Status.NOTREADY;	
 		END_IF

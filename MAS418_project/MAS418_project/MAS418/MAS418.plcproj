@@ -41,10 +41,10 @@
     <Compile Include="ControlBox\G_Sim.TcGVL">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ControlBox\G_Virtual_Input.TcGVL">
+    <Compile Include="ControlBox\I_ControlBox.TcIO">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ControlBox\I_ControlBox.TcIO">
+    <Compile Include="ControlBox\OL_VC.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ControlBox\ST_Control_Box.TcDUT">
