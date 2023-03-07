@@ -11,7 +11,7 @@ VAR_OUTPUT
     f_uVFF: LREAL; // Output control signal
 END_VAR
 VAR_TEMP
-    rtb_Q_refm3s: LREAL;
+    rtb_Q_refm3s: LREAL := 0;
 END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[// Open-loop velocity control

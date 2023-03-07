@@ -35,6 +35,10 @@ VAR_GLOBAL
 	// Normalized values between -1 and 1
 	fJoyX_Normalized : LREAL;
 	fJoyY_Normalized : LREAL;
+	
+	// Open-Loop Velocity Control Signal winch
+	f_uVFF_winch : LREAL;
+	f_uVFF_cyl : LREAL;
 END_VAR]]></Declaration>
   </GVL>
 </TcPlcObject>

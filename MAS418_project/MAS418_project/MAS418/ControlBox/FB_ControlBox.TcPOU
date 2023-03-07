@@ -11,6 +11,8 @@ VAR
 	fbVirtualControlBox : FB_Virtual_Controller;
 	fbRealControlBox : FB_Real_Controller;
 	fbSelectedControlBox : I_ControlBox := fbVirtualControlBox;
+	fb_OL_VC_winch : OL_VC;
+	fb_OL_VC_cyl : OL_VC;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -26,7 +28,9 @@ fbSelectedControlBox.Joy_Normalized(fJoyX_raw := G_ControlBox.fJoyX, fJoyY_raw :
 									fMin_in := G_IO_Parameters.fMinInputValue, fMax_in := G_IO_Parameters.fMaxInputValue,
 									fMin_out := G_IO_Parameters.fMinOutputValue, fMax_out := G_IO_Parameters.fMaxOutputValue,
 									fJoyX_normalized => G_ControlBox.fJoyX_Normalized, fJoyY_normalized => G_ControlBox.fJoyY_Normalized);
-									]]></ST>
+								
+fb_OL_VC_winch(bEnable:=(G_ControlBox.bRunning AND G_ControlBox.bJoyActive), fvRef:=G_IO_Parameters.fMaxVel*G_ControlBox.fJoyY_Normalized, fQmax:=150, f_uVFF => G_ControlBox.f_uVFF_winch);
+fb_OL_VC_cyl(bEnable:=(G_ControlBox.bRunning AND NOT G_ControlBox.bJoyActive), fvRef:=G_IO_Parameters.fMaxVel*G_ControlBox.fJoyX_Normalized, fQmax:=150, f_uVFF => G_ControlBox.f_uVFF_cyl);]]></ST>
     </Implementation>
   </POU>
 </TcPlcObject>
