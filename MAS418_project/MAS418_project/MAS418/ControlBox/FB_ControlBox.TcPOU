@@ -11,6 +11,7 @@ VAR
 	fbVirtualControlBox : FB_Virtual_Controller;
 	fbRealControlBox : FB_Real_Controller;
 	fbSelectedControlBox : I_ControlBox := fbVirtualControlBox;
+	
 	// Open Loop velocity control manual mode
 	fb_OL_VC_winch_manual : OL_VC;
 	fb_OL_VC_cyl_manual : OL_VC;
@@ -18,6 +19,9 @@ VAR
 	// Closed Loop position control auto mode
 	fb_OL_VC_winch_auto : OL_VC;
 	fb_OL_VC_cyl_auto : OL_VC;
+	
+	fb_CL_PC_winch_auto : CL_PC;
+	fb_CL_PC_cyl_auto : CL_PC;
 	
 	// Path generator
 	fbTon : TON;
@@ -43,11 +47,18 @@ fbSelectedControlBox.Joy_Normalized(fJoyX_raw := G_ControlBox.fJoyX, fJoyY_raw :
 			
 // Manual mode
 // Run Open-Loop control for either winch or cylinder based on input, saturated to -0.05,0.05 m/s					
-fb_OL_VC_winch_manual(bEnable:=(G_ControlBox.bRunning AND G_ControlBox.bJoyActive AND G_ControlBox.bManual), fvRef:=G_IO_Parameters.fMaxVel*G_ControlBox.fJoyY_Normalized, fQmax:=150, f_uVFF => G_ControlBox.f_uVFF_winch_manual);
-fb_OL_VC_cyl_manual(bEnable:=(G_ControlBox.bRunning AND NOT G_ControlBox.bJoyActive AND G_ControlBox.bManual), fvRef:=G_IO_Parameters.fMaxVel*G_ControlBox.fJoyX_Normalized, fQmax:=150, f_uVFF => G_ControlBox.f_uVFF_cyl_manual);
+fb_OL_VC_winch_manual(bEnable:=(G_ControlBox.bRunning AND G_ControlBox.bJoyActive AND G_ControlBox.bManual), 
+								fvRef:=G_IO_Parameters.fMaxVel*G_ControlBox.fJoyY_Normalized, 
+								fQmax:=G_IO_Parameters.fQmax_winch, 
+								f_uVFF => G_ControlBox.f_uVFF_winch_manual);
+								
+fb_OL_VC_cyl_manual(bEnable:=(G_ControlBox.bRunning AND NOT G_ControlBox.bJoyActive AND G_ControlBox.bManual), 
+							  fvRef:=G_IO_Parameters.fMaxVel*G_ControlBox.fJoyX_Normalized, 
+							  fQmax:=G_IO_Parameters.fQmax_cyl, 
+							  f_uVFF => G_ControlBox.f_uVFF_cyl_manual);
 
 // Auto mode
-//Timer
+//Timer for path generator
 fbTon(IN := G_PathGen.tStart,
 	PT := G_PathGen.tPT,
 	Q => G_PathGen.tQ,
@@ -55,6 +66,7 @@ fbTon(IN := G_PathGen.tStart,
 
 G_PathGen.fTime := TIME_TO_LREAL(G_PathGen.tVaiable)/1000;
 
+// Path generator function block
 fbPathGen(Enable := (G_ControlBox.bAuto AND G_ControlBox.bRunning),
 	x0m := G_PathGen.x0,
 	v0ms := G_PathGen.v0,
@@ -68,10 +80,45 @@ fbPathGen(Enable := (G_ControlBox.bAuto AND G_ControlBox.bRunning),
 	VelocityRefms => G_PathGen.fVelocityRef,
 	TimeTot => G_PathGen.fTimeTot,
 	Error => G_PathGen.fError);
-	
-fb_OL_VC_winch_auto(bEnable:=(G_ControlBox.bRunning AND G_ControlBox.bJoyActive AND G_ControlBox.bAuto), fvRef:=G_PathGen.fVelocityRef, fQmax:=150, f_uVFF => G_ControlBox.f_uVFF_winch_auto);
-fb_OL_VC_cyl_auto(bEnable:=(G_ControlBox.bRunning AND NOT G_ControlBox.bJoyActive AND G_ControlBox.bAuto), fvRef:=G_PathGen.fVelocityRef, fQmax:=150, f_uVFF => G_ControlBox.f_uVFF_cyl_auto);
-]]></ST>
+
+// Open-Loop function blocks for winch and cylinder in auto mode
+fb_OL_VC_winch_auto(bEnable:=(G_ControlBox.bRunning AND G_ControlBox.bJoyActive AND G_ControlBox.bAuto), 
+							  fvRef:=G_PathGen.fVelocityRef, 
+							  fQmax:=G_IO_Parameters.fQmax_winch, 
+							  f_uVFF => G_ControlBox.f_uVFF_winch_auto);
+							  
+fb_OL_VC_cyl_auto(bEnable:=(G_ControlBox.bRunning AND NOT G_ControlBox.bJoyActive AND G_ControlBox.bAuto), 
+							fvRef:=G_PathGen.fVelocityRef, 
+							fQmax:=G_IO_Parameters.fQmax_cyl, 
+							f_uVFF => G_ControlBox.f_uVFF_cyl_auto);
+
+// Closed-Loop function blocks for winch ander cylinder in auto mode
+fb_CL_PC_winch_auto(bEnable:=(G_ControlBox.bRunning AND G_ControlBox.bJoyActive AND G_ControlBox.bAuto), 
+							  fProportionalGain:=G_ControlBox.fPGain, 
+							  fPositionReference:=G_PathGen.fPositionRef, 
+							  fPositionFeedback:=G_ControlBox.fPositionFeedback_winch, 
+							  uPFB => G_ControlBox.f_uPFB_winch_auto);
+							  
+fb_CL_PC_cyl_auto(bEnable:=(G_ControlBox.bRunning AND NOT G_ControlBox.bJoyActive AND G_ControlBox.bAuto), 
+							fProportionalGain:=G_ControlBox.fPGain, 
+							fPositionReference:=G_PathGen.fPositionRef, 
+							fPositionFeedback:=G_ControlBox.fPositionFeedback_cyl, 
+							uPFB => G_ControlBox.f_uPFB_cyl_auto);
+
+// Calculate summed control signals for winch and cylinder
+IF G_ControlBox.f_uVFF_winch_auto + G_ControlBox.f_uPFB_winch_auto >= 1 THEN
+	G_ControlBox.f_u_winch := 1;
+ELSIF G_ControlBox.f_uVFF_winch_auto + G_ControlBox.f_uPFB_winch_auto <= -1 THEN
+	G_ControlBox.f_u_winch := -1;
+ELSE
+	G_ControlBox.f_u_winch := G_ControlBox.f_uVFF_winch_auto + G_ControlBox.f_uPFB_winch_auto;
+END_IF
+
+IF G_ControlBox.f_uVFF_cyl_auto + G_ControlBox.f_uPFB_cyl_auto >= 1 THEN
+	G_ControlBox.f_u_cyl := 1;
+ELSIF G_ControlBox.f_uVFF_cyl_auto + G_ControlBox.f_uPFB_cyl_auto <= -1 THEN
+	G_ControlBox.f_u_cyl := G_ControlBox.f_uVFF_cyl_auto + G_ControlBox.f_uPFB_cyl_auto;
+END_IF]]></ST>
     </Implementation>
   </POU>
 </TcPlcObject>

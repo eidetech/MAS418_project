@@ -42,6 +42,19 @@
 	// Closed-Loop auto mode
 	f_uVFF_winch_auto : LREAL;
 	f_uVFF_cyl_auto : LREAL;
+
+	f_uPFB_winch_auto : LREAL;
+	f_uPFB_cyl_auto : LREAL;
+	
+	f_u_winch : LREAL; // Summed winch control signal
+	f_u_cyl : LREAL; // Summed cylinder control signal
+	
+	// Proportional gain
+	fPGain : LREAL := 1;
+	
+	// Position feedback variable
+	fPositionFeedback_winch : LREAL := 0;
+	fPositionFeedback_cyl : LREAL := 0;
 END_VAR]]></Declaration>
   </GVL>
 </TcPlcObject>
