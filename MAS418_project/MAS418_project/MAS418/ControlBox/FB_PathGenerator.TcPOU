@@ -174,9 +174,9 @@ END_IF;
 (* '<S2>:1:64' T = t0+t1+t2+t3+t4+t5+t6+t7; *)
 IF NOT Enable THEN 
     (* Outport: '<Root>/PositionRef [m]' *)
-    PositionRefm := x0m;
+//    PositionRefm := 0;
     (* Outport: '<Root>/VelocityRef [m//s]' *)
-    VelocityRefms := v0ms;
+    VelocityRefms := 0;
 END_IF;
 (* End of Switch: '<S1>/Switch' *)
 (* Outport: '<Root>/TimeTot' incorporates:

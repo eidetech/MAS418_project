@@ -26,7 +26,16 @@
     <Compile Include="ControlBox\E_Status.TcDUT">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="ControlBox\FB_Connect.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="ControlBox\FB_ControlBox.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ControlBox\FB_Encoder.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ControlBox\FB_JoystickInputScaling.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ControlBox\FB_PathGenerator.TcPOU">

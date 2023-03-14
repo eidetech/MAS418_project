@@ -26,11 +26,16 @@ VAR
 	// Path generator
 	fbTon : TON;
 	fbPathGen : FB_PathGenerator;
+	
+	fbConnect : FB_Connect;
+	fbNormalizeJoyX : FB_JoystickInputScaling;
+	fbNormalizeJoyY : FB_JoystickInputScaling;
 END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[IF bRealControlBox THEN
 	fbSelectedControlBox := fbRealControlBox;
+	fbConnect();
 ELSE
 	fbVirtualControlBox.Sim();
 END_IF
@@ -40,11 +45,14 @@ fbSelectedControlBox.Mode();
 fbSelectedControlBox.Status();
 
 // Normalize joystick input to -1,1
-fbSelectedControlBox.Joy_Normalized(fJoyX_raw := G_ControlBox.fJoyX, fJoyY_raw := G_ControlBox.fJoyY,
+(*fbSelectedControlBox.Joy_Normalized(fJoyX_raw := G_ControlBox.fJoyX, fJoyY_raw := G_ControlBox.fJoyY,
 									fMin_in := G_IO_Parameters.fMinInputValue, fMax_in := G_IO_Parameters.fMaxInputValue,
 									fMin_out := G_IO_Parameters.fMinOutputValue, fMax_out := G_IO_Parameters.fMaxOutputValue,
 									fJoyX_normalized => G_ControlBox.fJoyX_Normalized, fJoyY_normalized => G_ControlBox.fJoyY_Normalized);
-			
+*)	
+fbNormalizeJoyX(bEnable:=TRUE, nRawInput:= G_Input.n_JoyX, fNormalizedOutput => G_ControlBox.fJoyX_Normalized);
+fbNormalizeJoyY(bEnable:=TRUE, nRawInput:= G_Input.n_JoyY, fNormalizedOutput => G_ControlBox.fJoyY_Normalized);
+
 // Manual mode
 // Run Open-Loop control for either winch or cylinder based on input, saturated to -0.05,0.05 m/s					
 fb_OL_VC_winch_manual(bEnable:=(G_ControlBox.bRunning AND G_ControlBox.bJoyActive AND G_ControlBox.bManual), 

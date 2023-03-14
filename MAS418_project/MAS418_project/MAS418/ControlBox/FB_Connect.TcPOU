@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="FB_Connect" Id="{4f49020f-e094-45ca-a457-e3d2161bb35b}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_Connect
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[
+// INPUTS
+
+// Connect bools
+G_ControlBox.bManual := G_Input.bManual;
+G_ControlBox.bAuto := G_Input.bAuto;
+G_ControlBox.bStart := G_Input.bStart;
+G_ControlBox.bStop := G_Input.bStop;
+G_ControlBox.bJoyActive := G_Input.bJoyActive;
+
+// Connect winch and cylinder encoders for position feedback
+G_ControlBox.fPositionFeedback_winch := G_Input.n_WinchEncoder; // Innom per
+G_ControlBox.fPositionFeedback_cyl := G_Input.n_Xc; // Innom per
+
+// OUTPUTS
+
+// Connect bools
+G_Output.bGreenLED := G_ControlBox.bRunning;
+G_Output.bRedLED := G_ControlBox.bStopping;
+G_Output.bEnableWinchValve := TRUE;
+G_Output.bEnableCylValve := TRUE;
+
+// Connect DINTs
+
+//	n_WinchValveOut AT %Q* : DINT;
+//	n_CylValveOut AT %Q* : DINT;
+
+]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

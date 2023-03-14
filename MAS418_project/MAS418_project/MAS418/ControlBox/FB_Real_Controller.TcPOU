@@ -32,19 +32,112 @@ VAR_OUTPUT
 	fJoyY_normalized : LREAL;
 END_VAR]]></Declaration>
       <Implementation>
-        <ST><![CDATA[]]></ST>
+        <ST><![CDATA[
+fJoyX_normalized := (fJoyX_raw - fMin_in) * (fMax_out - fMin_out) / (fMax_in - fMin_in) + fMin_out;
+fJoyY_normalized := (fJoyY_raw - fMin_in) * (fMax_out - fMin_out) / (fMax_in - fMin_in) + fMin_out;]]></ST>
       </Implementation>
     </Method>
     <Method Name="Mode" Id="{965e37cc-5164-4d3d-9774-f4c477c754f7}">
       <Declaration><![CDATA[METHOD Mode]]></Declaration>
       <Implementation>
-        <ST><![CDATA[]]></ST>
+        <ST><![CDATA[// Select control mode (OFF, MANUAL or AUTO) based on three position switch
+CASE G_ControlBox.eMode OF
+		E_Control_Mode.OFF: // Case OFF
+			IF G_ControlBox.bAuto THEN // If switch is in auto position, set control mode to auto
+				G_ControlBox.eMode := E_Control_Mode.AUTO;
+			ELSIF G_ControlBox.bManual THEN // Else if switch is in manual position, set control mode to manual
+				G_ControlBox.eMode := E_Control_Mode.MANUAL;
+			ELSE // If none of the conditions above are met, then stay in off mode
+				G_ControlBox.eMode := E_Control_Mode.OFF;
+			END_IF
+		E_Control_Mode.AUTO: // Case AUTO
+			IF G_ControlBox.bManual THEN // If switch is in manual mode, then set control mode to manual
+				G_ControlBox.eMode := E_Control_Mode.MANUAL;
+			ELSIF NOT G_ControlBox.bAuto THEN // If switch is not in auto position (or implicitly not in manual) then set control mode to off
+				G_ControlBox.eMode := E_Control_Mode.OFF;
+			ELSE // If none of the conditions above are met, then stay in auto mode
+				G_ControlBox.eMode := E_Control_Mode.AUTO;
+			END_IF
+			G_ControlBox.bManual := FALSE; // Reset bManual variable, since we are now in auto mode
+		E_Control_Mode.MANUAL: // Case MANUAL
+			IF G_ControlBox.bAuto THEN // If switch is in auto position, change the control mode to auto
+				G_ControlBox.eMode := E_Control_Mode.AUTO;
+			ELSIF NOT G_ControlBox.bManual THEN // If switch is not in manual position (and implicitly not in auto), then set control mode to off
+				G_ControlBox.eMode := E_Control_Mode.OFF;
+			ELSE // If none of the conditions above are met, then stay in manual mode
+				G_ControlBox.eMode := E_Control_Mode.MANUAL;
+			END_IF
+			G_ControlBox.bAuto := FALSE; // Reset bAuto variable, since we are now in manual mode
+END_CASE]]></ST>
       </Implementation>
     </Method>
     <Method Name="Status" Id="{f166d6bc-82f7-4b5e-81f8-2aaa803d7c4e}">
       <Declaration><![CDATA[METHOD Status]]></Declaration>
       <Implementation>
-        <ST><![CDATA[]]></ST>
+        <ST><![CDATA[// Determine machine status based on interaction
+CASE G_ControlBox.eStatus OF
+	E_Status.NOTREADY: // Case NOTREADY
+		IF NOT(G_ControlBox.eMode = E_Control_Mode.OFF) THEN // If either auto or manual mode is selected with the three way switch, then go to ready state
+			G_ControlBox.eStatus := E_Status.READY;
+		ELSE
+			G_ControlBox.eStatus := E_Status.NOTREADY; // If switch is in off mode, then stay in NOTREADY
+		END_IF
+	E_Status.READY: // Case READY
+		IF NOT(G_ControlBox.bAuto OR G_ControlBox.bManual) THEN // If switch is switched back to off, then go to NOTREADY
+			G_ControlBox.eStatus := E_Status.NOTREADY;
+		ELSE
+			G_ControlBox.eStatus := E_Status.READY; // Else stay in READY
+		END_IF
+		IF	G_ControlBox.bStart THEN // If start button is pressed, then go to STARTING
+			G_ControlBox.eStatus := E_Status.STARTING;
+		END_IF
+	E_Status.STARTING: // Case STARTING
+		G_ControlBox.bStartTimer := TRUE;
+		G_ControlBox.fbTon(IN:=G_ControlBox.bStartTimer, PT:=T#2S, Q => G_ControlBox.bTimerDone); // Stay in STARTING for 2s
+		G_ControlBox.bStartTimer := FALSE;
+		IF G_ControlBox.bTimerDone THEN // If timer is done, proceed
+			IF G_ControlBox.eMode = E_Control_Mode.MANUAL OR G_ControlBox.eMode = E_Control_Mode.AUTO THEN // If still in manual or auto mode, proceed
+				G_ControlBox.eStatus := E_Status.RUNNING;
+			ELSE
+				G_ControlBox.eStatus := E_Status.STOPPING; // If in off mode, then go to STOPPING
+			END_IF
+		G_ControlBox.fbTon(IN:=G_ControlBox.bStartTimer, PT:=T#2S, Q => G_ControlBox.bTimerDone); // Reset timer for next time
+		END_IF
+	E_Status.RUNNING: // Case RUNNING
+		G_PathGen.tStart := TRUE;
+		G_ControlBox.bRunning := TRUE; // Update variables, used to control lights in HMI
+		G_ControlBox.bStopping := FALSE; // Update variables, used to control lights in HMI
+		IF G_ControlBox.bStop OR NOT(G_ControlBox.bAuto OR G_ControlBox.bManual) THEN // If stop button is pressed, or switch is in off mode, then go to STOPPING
+			G_ControlBox.eStatus := E_Status.STOPPING;
+		END_IF
+		IF NOT(G_ControlBox.bStart) AND G_ControlBox.bAuto AND (G_ControlBox.bAuto OR G_ControlBox.bManual) THEN // If start button is not held, in auto mode, then go to STOPPING
+			G_ControlBox.eStatus := E_Status.STOPPING;
+		END_IF
+		IF G_ControlBox.bFault THEN // If fault variable is true while RUNNING, then set status to fault
+			G_ControlBox.eStatus := E_Status.FAULT;
+		END_IF
+	E_Status.STOPPING: // Case STOPPING
+		G_ControlBox.bRunning := FALSE; // Update variables
+		G_ControlBox.bStopping := TRUE; // Update variables
+		
+		G_ControlBox.bStartTimer := TRUE;
+		G_ControlBox.fbTon(IN:=G_ControlBox.bStartTimer, PT:=T#2S, Q => G_ControlBox.bTimerDone,); // Stay in STOPPING for 2s
+		G_ControlBox.bStartTimer := FALSE;
+		G_ControlBox.bRunning := FALSE;
+		IF G_ControlBox.bTimerDone THEN // If timer is done, then go to NOTREADY
+			G_ControlBox.eStatus := E_Status.NOTREADY;
+			G_ControlBox.fbTon(IN:=G_ControlBox.bStartTimer, PT:=T#2S, Q => G_ControlBox.bTimerDone); // Reset timer for next time
+		END_IF
+		G_PathGen.tStart := FALSE;
+	E_Status.FAULT: // Case FAULT, not used much time on yet.
+		IF G_ControlBox.bFault THEN
+			G_ControlBox.eStatus := E_Status.FAULT;
+			G_ControlBox.bRunning := FALSE;
+		ELSE
+			G_ControlBox.eStatus := E_Status.NOTREADY;	
+		END_IF
+END_CASE
+]]></ST>
       </Implementation>
     </Method>
   </POU>
