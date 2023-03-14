@@ -4,10 +4,12 @@
     <Declaration><![CDATA[PROGRAM P_ControlBox
 VAR
 	fbControlBox : FB_ControlBox;
+	fbScaling : FB_Scaling;
 END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[fbControlBox(bRealControlBox := FALSE); // Run controlbox FB with argument. If bRealControlBox is TRUE, then the FB_RealControlBox will be selected when running the program.
+fbScaling();
 ]]></ST>
     </Implementation>
   </POU>

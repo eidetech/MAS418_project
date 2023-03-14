@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <GVL Name="G_HMI" Id="{189070c1-188a-4360-bbe2-0d9f5ef44910}">
+    <Declaration><![CDATA[VAR_GLOBAL	
+	
+	// inputs
+	f_pS : REAL;
+	f_pR : REAL;
+	f_pCB : REAL;
+	f_pCA : REAL;
+	f_pWA1 : REAL;
+	f_pWB1 : REAL;
+	f_pWA: REAL;
+	f_pWB : REAL;
+	f_pWD : REAL;
+	f_QW : REAL;
+	f_Xc : REAL;
+	f_JoyX : REAL;
+	f_JoyY : REAL;
+	f_WinchEncoder : REAL;
+	
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

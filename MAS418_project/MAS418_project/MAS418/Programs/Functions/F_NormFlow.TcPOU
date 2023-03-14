@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="F_NormFlow" Id="{03c52685-24ea-430f-875e-ca490c400d15}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION F_NormFlow
+VAR_INPUT
+	nInput : DINT; // 0 to 32767, live data
+END_VAR
+VAR_OUTPUT
+	fNormalized: REAL; // -150 to 150. Scalable by multiplying 
+END_VAR
+VAR
+	fInput : REAL;
+	fMAXval : REAL := 32767; //the crayzy guys coming in from the analog input
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[// TESTE
+
+fInput := DINT_TO_REAL(nInput); 
+
+fNormalized :=  150*(finput-fMaxval/2)/fMaxval*2;]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="FB_Scaling" Id="{e20cb034-be36-4fe2-a7e9-d702b94e43a0}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_Scaling]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[
+//Test OK
+F_NormFlow(nInput:= G_Input.n_QW,
+	fNormalized => G_HMI.f_QW);
+
+//Preassures
+F_Scaling(nInput := G_Input.n_pS,
+fMaxValOutput := 400,
+fOutput => G_HMI.f_pS);
+
+F_Scaling(nInput := G_Input.n_pR,
+fMaxValOutput := 40,
+fOutput => G_HMI.f_pR);
+
+
+F_Scaling(nInput := G_Input.n_pCA,
+fMaxValOutput := 400,
+fOutput => G_HMI.f_pCA );
+
+F_Scaling(nInput := G_Input.n_pCB,
+fMaxValOutput := 400,
+fOutput => G_HMI.f_pCB);
+
+F_Scaling(nInput := G_Input.n_pWA1,
+fMaxValOutput := 400,
+fOutput => G_HMI.f_pWA1 );
+
+F_Scaling(nInput := G_Input.n_pWB1,
+fMaxValOutput := 400,
+fOutput => G_HMI.f_pWB1);
+
+F_Scaling(nInput := G_Input.n_pWA,
+fMaxValOutput := 400,
+fOutput => G_HMI.f_pWA);
+
+F_Scaling(nInput := G_Input.n_pWB,
+fMaxValOutput := 400,
+fOutput => G_HMI.f_pWB);
+
+F_Scaling(nInput := G_Input.n_pWD,
+fMaxValOutput := 40,
+fOutput => G_HMI.f_pWD);
+
+F_Scaling(nInput := G_Input.n_Xc,
+fMaxValOutput := 0.5,
+fOutput => G_HMI.f_Xc);
+
+]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

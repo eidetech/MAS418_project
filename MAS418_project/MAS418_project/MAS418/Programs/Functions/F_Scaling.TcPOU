@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="F_Scaling" Id="{c9e49dc1-2063-4b13-ab00-ac93844664cb}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION F_Scaling
+VAR_INPUT
+	nInput : DINT; // 0 to 32767, live data
+	fMaxValOutput : REAL; // End value for scaling spectrum. EKS: 40 if 0-40 Bar.
+END_VAR
+VAR_OUTPUT
+	fOutput : REAL; // 0 to fMaxValOutput.
+END_VAR
+VAR
+	fInput : REAL;
+	fMAXval : REAL := 32767; //the crayzy guys coming in from the analog input
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[fInput := DINT_TO_REAL(nInput); 
+
+fOutput := fInput/fMAXval*fMaxValOutput;
+
+
+]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

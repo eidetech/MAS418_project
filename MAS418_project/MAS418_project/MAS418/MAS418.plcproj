@@ -47,28 +47,28 @@
     <Compile Include="ControlBox\FB_Virtual_Controller.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ControlBox\G_HMI.TcGVL">
+    <Compile Include="ControlBox\GVL\G_ControlBox.TcGVL">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ControlBox\GVL\G_HMI.TcGVL">
       <SubType>Code</SubType>
       <LinkAlways>true</LinkAlways>
     </Compile>
-    <Compile Include="ControlBox\G_Input.TcGVL">
+    <Compile Include="ControlBox\GVL\G_Input.TcGVL">
       <SubType>Code</SubType>
       <LinkAlways>true</LinkAlways>
     </Compile>
-    <Compile Include="ControlBox\G_Output.TcGVL">
+    <Compile Include="ControlBox\GVL\G_IO_Parameters.TcGVL">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ControlBox\GVL\G_Output.TcGVL">
       <SubType>Code</SubType>
       <LinkAlways>true</LinkAlways>
     </Compile>
-    <Compile Include="ControlBox\G_PathGen.TcGVL">
+    <Compile Include="ControlBox\GVL\G_PathGen.TcGVL">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ControlBox\G_ControlBox.TcGVL">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="ControlBox\G_IO_Parameters.TcGVL">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="ControlBox\G_Sim.TcGVL">
+    <Compile Include="ControlBox\GVL\G_Sim.TcGVL">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ControlBox\I_ControlBox.TcIO">
@@ -88,6 +88,15 @@
       <DependentUpon>Visualization Manager.TcVMO</DependentUpon>
     </Compile>
     <Compile Include="PlcTask.TcTTO">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Programs\FunctionBlock\FB_Scaling.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Programs\Functions\F_NormFlow.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Programs\Functions\F_Scaling.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Programs\MAIN.TcPOU">
@@ -162,9 +171,12 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="HMI" />
     <Folder Include="ControlBox" />
+    <Folder Include="ControlBox\GVL" />
+    <Folder Include="HMI" />
     <Folder Include="Programs" />
+    <Folder Include="Programs\FunctionBlock" />
+    <Folder Include="Programs\Functions" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="ControlBox.plcproj">
