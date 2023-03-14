@@ -1,8 +1,24 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
-  <GVL Name="G_HMI" Id="{5b85e69d-2e8f-4231-8f8a-5269774553f3}">
-    <Declaration><![CDATA[{attribute 'qualified_only'}
-VAR_GLOBAL
+  <GVL Name="G_HMI" Id="{189070c1-188a-4360-bbe2-0d9f5ef44910}">
+    <Declaration><![CDATA[VAR_GLOBAL	
+	
+	// DINT inputs
+	n_pS : REAL;
+	n_pR : REAL;
+	n_pCB : REAL;
+	n_pCA : REAL;
+	n_pWA1 : REAL;
+	n_pWB1 : REAL;
+	n_pWA: REAL;
+	n_pWB : REAL;
+	n_pWD : REAL;
+	n_QW : REAL;
+	n_Xc : REAL;
+	n_JoyX : REAL;
+	n_JoyY : REAL;
+	n_WinchEncoder : REAL;
+	
 END_VAR]]></Declaration>
   </GVL>
 </TcPlcObject>
