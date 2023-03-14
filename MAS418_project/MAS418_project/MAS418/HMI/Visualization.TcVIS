@@ -6494,7 +6494,7 @@
                     </o>
                     <o>
                       <v n="Id">390574330L</v>
-                      <v n="Value">"%f3.1 bar"</v>
+                      <v n="Value">"%3.1f bar"</v>
                     </o>
                     <o>
                       <v n="Id">2597686782L</v>
@@ -6502,11 +6502,11 @@
                     </o>
                     <o>
                       <v n="Id">2477733581L</v>
-                      <v n="Value">"G_HMI.n_pS"</v>
+                      <v n="Value">"G_HMI.f_pS"</v>
                     </o>
                     <o>
                       <v n="Id">823443203L</v>
-                      <v n="Value">"147"</v>
+                      <v n="Value">"961"</v>
                     </o>
                   </l>
                 </o>
@@ -6655,7 +6655,7 @@
                     </o>
                     <o>
                       <v n="Id">390574330L</v>
-                      <v n="Value">"%f3.1 bar"</v>
+                      <v n="Value">"%3.1f bar"</v>
                     </o>
                     <o>
                       <v n="Id">2597686782L</v>
@@ -6663,11 +6663,11 @@
                     </o>
                     <o>
                       <v n="Id">2477733581L</v>
-                      <v n="Value">"G_HMI.n_pR"</v>
+                      <v n="Value">"G_HMI.f_pR"</v>
                     </o>
                     <o>
                       <v n="Id">823443203L</v>
-                      <v n="Value">"147"</v>
+                      <v n="Value">"961"</v>
                     </o>
                   </l>
                 </o>
@@ -6816,7 +6816,7 @@
                     </o>
                     <o>
                       <v n="Id">390574330L</v>
-                      <v n="Value">"%f3.1 bar"</v>
+                      <v n="Value">"%3.1f bar"</v>
                     </o>
                     <o>
                       <v n="Id">2597686782L</v>
@@ -6824,11 +6824,11 @@
                     </o>
                     <o>
                       <v n="Id">2477733581L</v>
-                      <v n="Value">"G_HMI.n_pCA"</v>
+                      <v n="Value">"G_HMI.f_pCA"</v>
                     </o>
                     <o>
                       <v n="Id">823443203L</v>
-                      <v n="Value">"147"</v>
+                      <v n="Value">"961"</v>
                     </o>
                   </l>
                 </o>
@@ -6977,7 +6977,7 @@
                     </o>
                     <o>
                       <v n="Id">390574330L</v>
-                      <v n="Value">"%f3.1 bar"</v>
+                      <v n="Value">"%3.1f bar"</v>
                     </o>
                     <o>
                       <v n="Id">2597686782L</v>
@@ -6985,11 +6985,11 @@
                     </o>
                     <o>
                       <v n="Id">2477733581L</v>
-                      <v n="Value">"G_HMI.n_pCB"</v>
+                      <v n="Value">"G_HMI.f_pCB"</v>
                     </o>
                     <o>
                       <v n="Id">823443203L</v>
-                      <v n="Value">"147"</v>
+                      <v n="Value">"961"</v>
                     </o>
                   </l>
                 </o>
@@ -7654,7 +7654,7 @@
                     </o>
                     <o>
                       <v n="Id">390574330L</v>
-                      <v n="Value">"%f3.1 bar"</v>
+                      <v n="Value">"%3.1f bar"</v>
                     </o>
                     <o>
                       <v n="Id">2597686782L</v>
@@ -7662,11 +7662,11 @@
                     </o>
                     <o>
                       <v n="Id">2477733581L</v>
-                      <v n="Value">"G_HMI.n_pWA"</v>
+                      <v n="Value">"G_HMI.f_pWA"</v>
                     </o>
                     <o>
                       <v n="Id">823443203L</v>
-                      <v n="Value">"147"</v>
+                      <v n="Value">"961"</v>
                     </o>
                   </l>
                 </o>
@@ -7815,7 +7815,7 @@
                     </o>
                     <o>
                       <v n="Id">390574330L</v>
-                      <v n="Value">"%f3.1 bar"</v>
+                      <v n="Value">"%3.1f bar"</v>
                     </o>
                     <o>
                       <v n="Id">2597686782L</v>
@@ -7823,11 +7823,11 @@
                     </o>
                     <o>
                       <v n="Id">2477733581L</v>
-                      <v n="Value">"G_HMI.n_pWA1"</v>
+                      <v n="Value">"G_HMI.f_pWA1"</v>
                     </o>
                     <o>
                       <v n="Id">823443203L</v>
-                      <v n="Value">"147"</v>
+                      <v n="Value">"961"</v>
                     </o>
                   </l>
                 </o>
@@ -7976,7 +7976,7 @@
                     </o>
                     <o>
                       <v n="Id">390574330L</v>
-                      <v n="Value">"%f3.1 bar"</v>
+                      <v n="Value">"%3.1f bar"</v>
                     </o>
                     <o>
                       <v n="Id">2597686782L</v>
@@ -7984,11 +7984,11 @@
                     </o>
                     <o>
                       <v n="Id">2477733581L</v>
-                      <v n="Value">"G_HMI.n_pWA1"</v>
+                      <v n="Value">"G_HMI.f_pWA1"</v>
                     </o>
                     <o>
                       <v n="Id">823443203L</v>
-                      <v n="Value">"147"</v>
+                      <v n="Value">"961"</v>
                     </o>
                   </l>
                 </o>
@@ -8137,7 +8137,7 @@
                     </o>
                     <o>
                       <v n="Id">390574330L</v>
-                      <v n="Value">"%f3.1 bar"</v>
+                      <v n="Value">"%3.1f bar"</v>
                     </o>
                     <o>
                       <v n="Id">2597686782L</v>
@@ -8145,11 +8145,11 @@
                     </o>
                     <o>
                       <v n="Id">2477733581L</v>
-                      <v n="Value">"G_HMI.n_pWB"</v>
+                      <v n="Value">"G_HMI.f_pWB"</v>
                     </o>
                     <o>
                       <v n="Id">823443203L</v>
-                      <v n="Value">"147"</v>
+                      <v n="Value">"961"</v>
                     </o>
                   </l>
                 </o>
@@ -8610,7 +8610,7 @@
                     </o>
                     <o>
                       <v n="Id">357335551L</v>
-                      <v n="Value">652</v>
+                      <v n="Value">704</v>
                     </o>
                     <o>
                       <v n="Id">2422045748L</v>
@@ -8814,7 +8814,7 @@
                     </o>
                     <o>
                       <v n="Id">390574330L</v>
-                      <v n="Value">"%f3.1 bar"</v>
+                      <v n="Value">"%3.1f bar"</v>
                     </o>
                     <o>
                       <v n="Id">2597686782L</v>
@@ -8822,11 +8822,11 @@
                     </o>
                     <o>
                       <v n="Id">2477733581L</v>
-                      <v n="Value">"G_HMI.n_pWD"</v>
+                      <v n="Value">"G_HMI.f_pWD"</v>
                     </o>
                     <o>
                       <v n="Id">823443203L</v>
-                      <v n="Value">"147"</v>
+                      <v n="Value">"961"</v>
                     </o>
                   </l>
                 </o>
@@ -8936,7 +8936,7 @@
                     </o>
                     <o>
                       <v n="Id">357335551L</v>
-                      <v n="Value">656</v>
+                      <v n="Value">708</v>
                     </o>
                     <o>
                       <v n="Id">2422045748L</v>
@@ -8975,7 +8975,7 @@
                     </o>
                     <o>
                       <v n="Id">390574330L</v>
-                      <v n="Value">"%f3.1 l/min"</v>
+                      <v n="Value">"%3.1f l/min"</v>
                     </o>
                     <o>
                       <v n="Id">2597686782L</v>
@@ -8983,11 +8983,11 @@
                     </o>
                     <o>
                       <v n="Id">2477733581L</v>
-                      <v n="Value">"G_HMI.n_QW"</v>
+                      <v n="Value">"G_HMI.f_QW"</v>
                     </o>
                     <o>
                       <v n="Id">823443203L</v>
-                      <v n="Value">"819"</v>
+                      <v n="Value">"821"</v>
                     </o>
                   </l>
                 </o>
@@ -9097,7 +9097,7 @@
                     </o>
                     <o>
                       <v n="Id">357335551L</v>
-                      <v n="Value">747</v>
+                      <v n="Value">799</v>
                     </o>
                     <o>
                       <v n="Id">2422045748L</v>
@@ -9136,7 +9136,7 @@
                     </o>
                     <o>
                       <v n="Id">390574330L</v>
-                      <v n="Value">"%f2.1 m"</v>
+                      <v n="Value">"%2.1f m"</v>
                     </o>
                     <o>
                       <v n="Id">2597686782L</v>
@@ -9144,11 +9144,11 @@
                     </o>
                     <o>
                       <v n="Id">2477733581L</v>
-                      <v n="Value">"G_HMI.n_Xc"</v>
+                      <v n="Value">"G_HMI.f_Xc"</v>
                     </o>
                     <o>
                       <v n="Id">823443203L</v>
-                      <v n="Value">"127"</v>
+                      <v n="Value">"175"</v>
                     </o>
                   </l>
                 </o>
@@ -9258,7 +9258,7 @@
                     </o>
                     <o>
                       <v n="Id">357335551L</v>
-                      <v n="Value">789</v>
+                      <v n="Value">841</v>
                     </o>
                     <o>
                       <v n="Id">2422045748L</v>
@@ -9297,7 +9297,7 @@
                     </o>
                     <o>
                       <v n="Id">390574330L</v>
-                      <v n="Value">"%f2.1 m"</v>
+                      <v n="Value">"%2.1f m"</v>
                     </o>
                     <o>
                       <v n="Id">2597686782L</v>
@@ -9305,11 +9305,11 @@
                     </o>
                     <o>
                       <v n="Id">2477733581L</v>
-                      <v n="Value">"G_HMI.n_WinchEncoder"</v>
+                      <v n="Value">"G_HMI.f_WinchEncoder"</v>
                     </o>
                     <o>
                       <v n="Id">823443203L</v>
-                      <v n="Value">"127"</v>
+                      <v n="Value">"175"</v>
                     </o>
                   </l>
                 </o>
@@ -9383,7 +9383,7 @@
                     </o>
                     <o>
                       <v n="Id">357335551L</v>
-                      <v n="Value">746</v>
+                      <v n="Value">798</v>
                     </o>
                     <o>
                       <v n="Id">2422045748L</v>
@@ -9508,15 +9508,15 @@
                     </o>
                     <o>
                       <v n="Id">1649127785L</v>
-                      <v n="Value">1160</v>
+                      <v n="Value">1155</v>
                     </o>
                     <o>
                       <v n="Id">357335551L</v>
-                      <v n="Value">785</v>
+                      <v n="Value">837</v>
                     </o>
                     <o>
                       <v n="Id">2422045748L</v>
-                      <v n="Value">136</v>
+                      <v n="Value">141</v>
                     </o>
                     <o>
                       <v n="Id">2134141914L</v>
@@ -9583,112 +9583,6 @@
                 <a n="LMGuids" et="Guid" />
                 <d n="SubElements" t="Hashtable" />
                 <v n="VisualElementId">170</v>
-                <l n="UserManagementAccessRights" t="ArrayList" />
-              </o>
-              <o>
-                <a n="ConfiguredComplexInputs" et="ComplexInput" />
-                <l n="Elements" t="ArrayList" />
-                <n n="VisualElementDescription" />
-                <o n="VisualElemMemberList" t="VisualElemMemberList">
-                  <l n="VisualElemMemberList" t="VisualElemMemberCollection" cet="VisualElemMember">
-                    <o>
-                      <v n="Id">1931512087L</v>
-                      <v n="Value">"TOGGLE"</v>
-                    </o>
-                    <o>
-                      <v n="Id">300685745L</v>
-                      <v n="Value">false</v>
-                    </o>
-                    <o>
-                      <v n="Id">2812299069L</v>
-                      <v n="Value">4294967295U</v>
-                    </o>
-                    <o>
-                      <v n="Id">494569607L</v>
-                      <v n="Value">4278190080U</v>
-                    </o>
-                    <o>
-                      <v n="Id">3719097617L</v>
-                      <v n="Value">0</v>
-                    </o>
-                    <o>
-                      <v n="Id">1649127785L</v>
-                      <v n="Value">952</v>
-                    </o>
-                    <o>
-                      <v n="Id">357335551L</v>
-                      <v n="Value">397</v>
-                    </o>
-                    <o>
-                      <v n="Id">2422045748L</v>
-                      <v n="Value">70</v>
-                    </o>
-                    <o>
-                      <v n="Id">2134141914L</v>
-                      <v n="Value">70</v>
-                    </o>
-                    <o>
-                      <v n="Id">1360784741L</v>
-                      <v n="Value">false</v>
-                    </o>
-                    <o>
-                      <v n="Id">4062784938L</v>
-                      <v n="Value">"Element-Switch-RotarySwitch-Blue"</v>
-                    </o>
-                    <o>
-                      <v n="Id">493260384L</v>
-                      <v n="Value">4294967295U</v>
-                    </o>
-                    <o>
-                      <v n="Id">135947015L</v>
-                      <v n="Value">4278190080U</v>
-                    </o>
-                    <o>
-                      <v n="Id">2678395525L</v>
-                      <v n="Value">1U</v>
-                    </o>
-                    <o>
-                      <v n="Id">2340015797L</v>
-                      <v n="Value">"HCENTER"</v>
-                    </o>
-                    <o>
-                      <v n="Id">2565699834L</v>
-                      <v n="Value">"VCENTER"</v>
-                    </o>
-                    <o>
-                      <v n="Id">296037572L</v>
-                      <v n="Value">""</v>
-                    </o>
-                    <o>
-                      <v n="Id">390574330L</v>
-                      <v n="Value">""</v>
-                    </o>
-                    <o>
-                      <v n="Id">571893170L</v>
-                      <v n="Value">""</v>
-                    </o>
-                    <o>
-                      <v n="Id">2597686782L</v>
-                      <v n="Value">false</v>
-                    </o>
-                    <o>
-                      <v n="Id">743958181L</v>
-                      <v n="Value">"G_ControlBox.bAuto"</v>
-                    </o>
-                  </l>
-                </o>
-                <v n="VisualElementName">"RotarySwitch"</v>
-                <v n="VisualElementTypeName">"VisuFbElemRotarySwitch"</v>
-                <v n="VisualElementIsRectangle">true</v>
-                <v n="VisualElementIdentifier">"GenElemInst_173"</v>
-                <n n="VisualElementOfflinePaintCommands" />
-                <n n="VisualElementFrameInformation" />
-                <d n="VisualElementInputActions" t="Hashtable" />
-                <v n="VisualElementIdentification">{3af978cd-37e6-4887-b623-418056321c98}</v>
-                <v n="VisualElementOwningObjectGuid">{81918428-894a-4d31-8869-aaee674000f5}</v>
-                <a n="LMGuids" et="Guid" />
-                <d n="SubElements" t="Hashtable" />
-                <v n="VisualElementId">172</v>
                 <l n="UserManagementAccessRights" t="ArrayList" />
               </o>
               <o>
@@ -9872,11 +9766,11 @@
                     </o>
                     <o>
                       <v n="Id">1649127785L</v>
-                      <v n="Value">1125</v>
+                      <v n="Value">1087</v>
                     </o>
                     <o>
                       <v n="Id">357335551L</v>
-                      <v n="Value">700</v>
+                      <v n="Value">750</v>
                     </o>
                     <o>
                       <v n="Id">2422045748L</v>
@@ -9947,6 +9841,135 @@
                 <a n="LMGuids" et="Guid" />
                 <d n="SubElements" t="Hashtable" />
                 <v n="VisualElementId">176</v>
+                <l n="UserManagementAccessRights" t="ArrayList" />
+              </o>
+              <o>
+                <a n="ConfiguredComplexInputs" et="ComplexInput" />
+                <l n="Elements" t="ArrayList" />
+                <n n="VisualElementDescription" />
+                <o n="VisualElemMemberList" t="VisualElemMemberList">
+                  <l n="VisualElemMemberList" t="VisualElemMemberCollection" cet="VisualElemMember">
+                    <o>
+                      <v n="Id">2340015797L</v>
+                      <v n="Value">"HCENTER"</v>
+                    </o>
+                    <o>
+                      <v n="Id">2565699834L</v>
+                      <v n="Value">"VCENTER"</v>
+                    </o>
+                    <o>
+                      <v n="Id">4134387352L</v>
+                      <v n="Value">"NONE"</v>
+                    </o>
+                    <o>
+                      <v n="Id">1603690730L</v>
+                      <v n="Value">"Arial"</v>
+                    </o>
+                    <o>
+                      <v n="Id">4253639993L</v>
+                      <v n="Value" t="Int16">12</v>
+                    </o>
+                    <o>
+                      <v n="Id">2729990903L</v>
+                      <v n="Value">0U</v>
+                    </o>
+                    <o>
+                      <v n="Id">1213979116L</v>
+                      <v n="Value">0U</v>
+                    </o>
+                    <o>
+                      <v n="Id">3488306084L</v>
+                      <v n="Value">4278190080U</v>
+                    </o>
+                    <o>
+                      <v n="Id">2812299069L</v>
+                      <v n="Value">4294967295U</v>
+                    </o>
+                    <o>
+                      <v n="Id">494569607L</v>
+                      <v n="Value">4278190080U</v>
+                    </o>
+                    <o>
+                      <v n="Id">3719097617L</v>
+                      <v n="Value">0</v>
+                    </o>
+                    <o>
+                      <v n="Id">1649127785L</v>
+                      <v n="Value">1065</v>
+                    </o>
+                    <o>
+                      <v n="Id">357335551L</v>
+                      <v n="Value">660</v>
+                    </o>
+                    <o>
+                      <v n="Id">2422045748L</v>
+                      <v n="Value">251</v>
+                    </o>
+                    <o>
+                      <v n="Id">2134141914L</v>
+                      <v n="Value">38</v>
+                    </o>
+                    <o>
+                      <v n="Id">390574330L</v>
+                      <v n="Value">"Flow:"</v>
+                    </o>
+                    <o>
+                      <v n="Id">3729828405L</v>
+                      <l n="Value" t="ArrayList" cet="NamedStyleFont">
+                        <o>
+                          <v n="FontStyle">1</v>
+                          <v n="AdditionalFontStyle" t="UInt16">0</v>
+                          <v n="ExplicitColor">-16777216</v>
+                          <v n="CanonicalName">"Font-HeadingLarge"</v>
+                          <v n="FontName">"Arial"</v>
+                          <v n="FontSize">28</v>
+                          <v n="ScriptIdentification">0</v>
+                          <v n="DoubleFontSize" t="Double">0</v>
+                          <o n="NamedColor" t="NamedStyleColor">
+                            <v n="Color">-1</v>
+                            <v n="CanonicalName">"Element-Potentiometer-ScaleColor"</v>
+                          </o>
+                        </o>
+                      </l>
+                    </o>
+                    <o>
+                      <v n="Id">493260384L</v>
+                      <v n="Value">4294967295U</v>
+                    </o>
+                    <o>
+                      <v n="Id">135947015L</v>
+                      <v n="Value">4278190080U</v>
+                    </o>
+                    <o>
+                      <v n="Id">2678395525L</v>
+                      <v n="Value">1U</v>
+                    </o>
+                    <o>
+                      <v n="Id">571893170L</v>
+                      <v n="Value">""</v>
+                    </o>
+                    <o>
+                      <v n="Id">2597686782L</v>
+                      <v n="Value">true</v>
+                    </o>
+                    <o>
+                      <v n="Id">823443203L</v>
+                      <v n="Value">"139"</v>
+                    </o>
+                  </l>
+                </o>
+                <v n="VisualElementName">"Label"</v>
+                <v n="VisualElementTypeName">"VisuFbLabel"</v>
+                <v n="VisualElementIsRectangle">true</v>
+                <v n="VisualElementIdentifier">"GenElemInst_179"</v>
+                <n n="VisualElementOfflinePaintCommands" />
+                <n n="VisualElementFrameInformation" />
+                <d n="VisualElementInputActions" t="Hashtable" />
+                <v n="VisualElementIdentification">{556258f5-7f2b-4752-aeab-1ddea568f746}</v>
+                <v n="VisualElementOwningObjectGuid">{81918428-894a-4d31-8869-aaee674000f5}</v>
+                <a n="LMGuids" et="Guid" />
+                <d n="SubElements" t="Hashtable" />
+                <v n="VisualElementId">178</v>
                 <l n="UserManagementAccessRights" t="ArrayList" />
               </o>
             </l>
@@ -10098,7 +10121,7 @@
             </o>
             <v n="DialogDut">{87414788-be11-4a93-bf7e-d1f6e7a1ffdf}</v>
           </o>
-          <v n="LastUsedIdForIdentifier">177</v>
+          <v n="LastUsedIdForIdentifier">179</v>
           <o n="TextDocument" t="TextDocument">
             <a n="TextLines" cet="TextLine">
               <o>

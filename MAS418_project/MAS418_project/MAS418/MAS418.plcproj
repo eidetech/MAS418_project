@@ -81,6 +81,15 @@
     <Compile Include="PlcTask.TcTTO">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Programs\FunctionBlock\FB_Scaling.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Programs\Functions\F_NormFlow.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Programs\Functions\F_Scaling.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Programs\MAIN.TcPOU">
       <SubType>Code</SubType>
     </Compile>
@@ -156,6 +165,8 @@
     <Folder Include="HMI" />
     <Folder Include="ControlBox" />
     <Folder Include="Programs" />
+    <Folder Include="Programs\FunctionBlock" />
+    <Folder Include="Programs\Functions" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="ControlBox.plcproj">

@@ -3,10 +3,13 @@
   <POU Name="MAIN" Id="{34467066-1969-4a23-bd22-a8eb1fd5af96}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM MAIN
 VAR
+	fbScaling : FB_Scaling;
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[P_ControlBox(); // Run selected control box mode (virtual or real)]]></ST>
+      <ST><![CDATA[P_ControlBox(); // Run selected control box mode (virtual or real)
+fbScaling();
+]]></ST>
     </Implementation>
   </POU>
 </TcPlcObject>
