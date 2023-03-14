@@ -11,8 +11,13 @@ VAR
 	fbVirtualControlBox : FB_Virtual_Controller;
 	fbRealControlBox : FB_Real_Controller;
 	fbSelectedControlBox : I_ControlBox := fbVirtualControlBox;
+	// Open Loop velocity control
 	fb_OL_VC_winch : OL_VC;
 	fb_OL_VC_cyl : OL_VC;
+	
+	// Path generator
+	fbTon : TON;
+	fbPathGen : FB_PathGenerator;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -32,10 +37,33 @@ fbSelectedControlBox.Joy_Normalized(fJoyX_raw := G_ControlBox.fJoyX, fJoyY_raw :
 									fMin_out := G_IO_Parameters.fMinOutputValue, fMax_out := G_IO_Parameters.fMaxOutputValue,
 									fJoyX_normalized => G_ControlBox.fJoyX_Normalized, fJoyY_normalized => G_ControlBox.fJoyY_Normalized);
 			
+// Manual mode
 // Run Open-Loop control for either winch or cylinder based on input, saturated to -0.05,0.05 m/s					
 fb_OL_VC_winch(bEnable:=(G_ControlBox.bRunning AND G_ControlBox.bJoyActive AND G_ControlBox.bManual), fvRef:=G_IO_Parameters.fMaxVel*G_ControlBox.fJoyY_Normalized, fQmax:=150, f_uVFF => G_ControlBox.f_uVFF_winch);
 fb_OL_VC_cyl(bEnable:=(G_ControlBox.bRunning AND NOT G_ControlBox.bJoyActive AND G_ControlBox.bManual), fvRef:=G_IO_Parameters.fMaxVel*G_ControlBox.fJoyX_Normalized, fQmax:=150, f_uVFF => G_ControlBox.f_uVFF_cyl);
-]]></ST>
+
+// Auto mode
+//Timer
+fbTon(IN := G_PathGen.tStart,
+	PT := G_PathGen.tPT,
+	Q => G_PathGen.tQ,
+	ET => G_PathGen.tVaiable);
+
+G_PathGen.fTime := TIME_TO_LREAL(G_PathGen.tVaiable)/1000;
+
+fbPathGen(Enable := 1,
+	x0m := G_PathGen.x0,
+	v0ms := G_PathGen.v0,
+	Position_SPm := G_PathGen.Position_SP,
+	Velocity_SPms := G_PathGen.Velocity_SP,
+	t0s := G_PathGen.t0,
+	tRamps := G_PathGen.tRamp,
+	tHoldPoss := G_PathGen.tHoldPos,
+	t := G_PathGen.fTime,
+	PositionRefm => G_PathGen.fPositionRef,
+	VelocityRefms => G_PathGen.fVelocityRef,
+	TimeTot => G_PathGen.fTimeTot,
+	Error => G_PathGen.fError);]]></ST>
     </Implementation>
   </POU>
 </TcPlcObject>

@@ -29,10 +29,16 @@
     <Compile Include="ControlBox\FB_ControlBox.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="ControlBox\FB_PathGenerator.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="ControlBox\FB_Real_Controller.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ControlBox\FB_Virtual_Controller.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ControlBox\G_PathGen.TcGVL">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ControlBox\G_ControlBox.TcGVL">

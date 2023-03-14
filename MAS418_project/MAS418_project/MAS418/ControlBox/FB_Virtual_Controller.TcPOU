@@ -131,6 +131,7 @@ CASE G_ControlBox.eStatus OF
 		G_ControlBox.fbTon(IN:=G_ControlBox.bStartTimer, PT:=T#2S, Q => G_ControlBox.bTimerDone); // Reset timer for next time
 		END_IF
 	E_Status.RUNNING: // Case RUNNING
+		G_PathGen.tStart := TRUE;
 		G_ControlBox.bRunning := TRUE; // Update variables, used to control lights in HMI
 		G_ControlBox.bStopping := FALSE; // Update variables, used to control lights in HMI
 		IF G_ControlBox.bStop OR NOT(G_ControlBox.bAuto OR G_ControlBox.bManual) THEN // If stop button is pressed, or switch is in off mode, then go to STOPPING
@@ -154,6 +155,7 @@ CASE G_ControlBox.eStatus OF
 			G_ControlBox.eStatus := E_Status.NOTREADY;
 			G_ControlBox.fbTon(IN:=G_ControlBox.bStartTimer, PT:=T#2S, Q => G_ControlBox.bTimerDone); // Reset timer for next time
 		END_IF
+		G_PathGen.tStart := FALSE;
 	E_Status.FAULT: // Case FAULT, not used much time on yet.
 		IF G_ControlBox.bFault THEN
 			G_ControlBox.eStatus := E_Status.FAULT;

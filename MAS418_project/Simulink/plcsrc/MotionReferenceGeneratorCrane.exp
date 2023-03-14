@@ -1,0 +1,184 @@
+(*
+ *
+ * File: MotionReferenceGeneratorCrane.exp
+ *
+ * IEC 61131-3 Structured Text (ST) code generated for subsystem "MotionReferenceGeneratorCrane/Subsystem"
+ *
+ * Model name                      : MotionReferenceGeneratorCrane
+ * Model version                   : 1.11
+ * Model creator                   : Bruker
+ * Model last modified by          : Bruker
+ * Model last modified on          : Tue Mar 07 16:29:46 2023
+ * Model sample time               : 0.01s
+ * Subsystem name                  : MotionReferenceGeneratorCrane/Subsystem
+ * Subsystem sample time           : 0.01s
+ * Simulink PLC Coder version      : 3.7 (R2022b) 13-May-2022
+ * ST code generated on            : Tue Mar 07 16:30:16 2023
+ *
+ * Target IDE selection            : 3S CoDeSys 2.3
+ * Test Bench included             : No
+ *
+ *)
+FUNCTION_BLOCK Subsystem
+VAR_INPUT
+    Enable: LREAL;
+    x0m: LREAL;
+    v0ms: LREAL;
+    Position_SPm: LREAL;
+    Velocity_SPms: LREAL;
+    t0s: LREAL;
+    tRamps: LREAL;
+    tHoldPoss: LREAL;
+    t: LREAL;
+END_VAR
+VAR_OUTPUT
+    PositionRefm: LREAL;
+    VelocityRefms: LREAL;
+    TimeTot: LREAL;
+    Error: LREAL;
+END_VAR
+VAR_TEMP
+    Error_0: DINT;
+    tHold: LREAL;
+    x1: LREAL;
+    x4: LREAL;
+    a_tmp: LREAL;
+    a_tmp_tmp: LREAL;
+    a_tmp_0: LREAL;
+    a_tmp_tmp_0: LREAL;
+    a_tmp_tmp_1: LREAL;
+    a_tmp_tmp_2: LREAL;
+    x1_tmp: LREAL;
+    x4_tmp: LREAL;
+END_VAR
+(* Outputs for Atomic SubSystem: '<Root>/Subsystem' *)
+(* MATLAB Function: '<S1>/MATLAB Function' *)
+(* MATLAB Function 'Subsystem/MATLAB Function': '<S2>:1' *)
+(* '<S2>:1:2' x_SP = x_ref-x0; *)
+(* '<S2>:1:3' vs=v_ref; *)
+(* '<S2>:1:4' slopeExt = v0-vs; *)
+(* '<S2>:1:5' slopeRetr = -vs-v0; *)
+(* '<S2>:1:7' as = vs/tRamp; *)
+(* '<S2>:1:8' s_acc = (vs^2-v0^2)/as; *)
+(* '<S2>:1:10' tHold =(x_SP-s_acc)/vs; *)
+tHold := ((Position_SPm - x0m) - (((Velocity_SPms * Velocity_SPms) - (v0ms * v0ms)) / (Velocity_SPms / tRamps))) / Velocity_SPms;
+(* '<S2>:1:13' if tHold < 0 *)
+IF tHold < 0.0 THEN 
+    (* '<S2>:1:14' Error = 1; *)
+    Error_0 := 1;
+ELSE 
+    (* '<S2>:1:15' else *)
+    (* '<S2>:1:16' Error = 0; *)
+    Error_0 := 0;
+END_IF;
+(* '<S2>:1:19' t1 = tRamp; *)
+(* '<S2>:1:20' t2 = tHold; *)
+(* '<S2>:1:21' t3 = tRamp; *)
+(* '<S2>:1:22' t4 = tWait; *)
+(* '<S2>:1:23' t5 = t1; *)
+(* '<S2>:1:24' t6 = t2; *)
+(* '<S2>:1:25' t7 = t3; *)
+(* '<S2>:1:27' x1 = x0 +v0*((t0+t1)-t0)-(slopeExt/t1)*((t0+t1)-t0)^2/2; *)
+a_tmp_tmp := t0s + tRamps;
+a_tmp := a_tmp_tmp - t0s;
+x1_tmp := (v0ms - Velocity_SPms) / tRamps;
+x1 := ((a_tmp * v0ms) + x0m) - ((x1_tmp * (a_tmp * a_tmp)) / 2.0);
+(* '<S2>:1:28' x2 = x1 + vs*((t0+t1+t2) -(t0+t1)); *)
+(* '<S2>:1:29' x4 = x_ref - v0*((t0+t1+t2+t3+t4+t5)-(t0+t1+t2+t3+t4)) + (slopeRetr/t5)*((t0+t1+t2+t3+t4+t5)-(t0+t1+t2+t3+t4))^2/2; *)
+a_tmp_tmp_0 := a_tmp_tmp + tHold;
+a_tmp_tmp_1 := a_tmp_tmp_0 + tRamps;
+a_tmp := a_tmp_tmp_1 + tHoldPoss;
+a_tmp_tmp_2 := a_tmp + tRamps;
+a_tmp_0 := a_tmp_tmp_2 - a_tmp;
+x4_tmp := (( -Velocity_SPms) - v0ms) / tRamps;
+x4 := (Position_SPm - (a_tmp_0 * v0ms)) + ((x4_tmp * (a_tmp_0 * a_tmp_0)) / 2.0);
+(* '<S2>:1:30' x5 = x4-vs*((t0+t1+t2+t3+t4+t5+t6) - (t0+t1+t2+t3+t4+t5)); *)
+(* '<S2>:1:32' if Error == 1 *)
+IF Error_0 = 1 THEN 
+    (* '<S2>:1:33' x = x0; *)
+    PositionRefm := x0m;
+    (* '<S2>:1:34' v = v0; *)
+    VelocityRefms := v0ms;
+ELSIF (t >= 0.0) AND (t < t0s) THEN 
+    (* '<S2>:1:35' elseif t>=0 && t<t0 *)
+    (* '<S2>:1:36' x = x0; *)
+    PositionRefm := x0m;
+    (* '<S2>:1:37' v = v0; *)
+    VelocityRefms := v0ms;
+ELSIF (t >= t0s) AND (t < a_tmp_tmp) THEN 
+    (* '<S2>:1:38' elseif t>=t0 && t<(t0+t1) *)
+    (* '<S2>:1:39' x = x0 + v0*(t-t0) - (slopeExt/t1)*(t-t0)^2/2; *)
+    a_tmp := t - t0s;
+    PositionRefm := ((a_tmp * v0ms) + x0m) - ((x1_tmp * (a_tmp * a_tmp)) / 2.0);
+    (* '<S2>:1:40' v = v0-(slopeExt/t1)*(t-t0); *)
+    VelocityRefms := v0ms - (x1_tmp * a_tmp);
+ELSIF (t >= a_tmp_tmp) AND (t < a_tmp_tmp_0) THEN 
+    (* '<S2>:1:41' elseif t>=(t0+t1) && t<(t0+t1+t2) *)
+    (* '<S2>:1:42' x = x1 + vs*(t-(t0+t1)); *)
+    PositionRefm := ((t - a_tmp_tmp) * Velocity_SPms) + x1;
+    (* '<S2>:1:43' v = vs; *)
+    VelocityRefms := Velocity_SPms;
+ELSIF (t >= a_tmp_tmp_0) AND (t < a_tmp_tmp_1) THEN 
+    (* '<S2>:1:44' elseif t>=(t0+t1+t2) && t<(t0+t1+t2+t3) *)
+    (* '<S2>:1:45' x = x2 + vs*(t-(t0+t1+t2)) + (slopeExt/t3)*(t-(t0+t1+t2))^2/2; *)
+    a_tmp := t - a_tmp_tmp_0;
+    PositionRefm := ((((a_tmp_tmp_0 - a_tmp_tmp) * Velocity_SPms) + x1) + (a_tmp * Velocity_SPms)) + ((x1_tmp * (a_tmp * a_tmp)) / 2.0);
+    (* IKKE OK *)
+    (* '<S2>:1:46' v = vs + (slopeExt/t3)*(t-(t0+t1+t2)); *)
+    VelocityRefms := (a_tmp * x1_tmp) + Velocity_SPms;
+    (* OK *)
+ELSIF (t >= a_tmp_tmp_1) AND (t < a_tmp) THEN 
+    (* '<S2>:1:47' elseif t>=(t0+t1+t2+t3) && t<(t0+t1+t2+t3+t4) *)
+    (* '<S2>:1:48' x = x_ref; *)
+    PositionRefm := Position_SPm;
+    (* Ser ok ut *)
+    (* '<S2>:1:49' v = v0; *)
+    VelocityRefms := v0ms;
+ELSIF (t >= a_tmp) AND (t < a_tmp_tmp_2) THEN 
+    (* '<S2>:1:50' elseif t>=(t0+t1+t2+t3+t4) && t<(t0+t1+t2+t3+t4+t5) *)
+    (* '<S2>:1:51' x = x_ref - v0*(t-(t0+t1+t2+t3+t4)) + (slopeRetr/t5)*(t-(t0+t1+t2+t3+t4))^2/2; *)
+    a_tmp := t - a_tmp;
+    PositionRefm := (Position_SPm - (a_tmp * v0ms)) + ((x4_tmp * (a_tmp * a_tmp)) / 2.0);
+    (* '<S2>:1:52' v = v0 + (slopeRetr/t5)*(t-(t0+t1+t2+t3+t4)); *)
+    VelocityRefms := (a_tmp * x4_tmp) + v0ms;
+ELSE 
+    x1_tmp := a_tmp_tmp_2 + tHold;
+    IF (t >= a_tmp_tmp_2) AND (t < x1_tmp) THEN 
+        (* '<S2>:1:53' elseif t>=(t0+t1+t2+t3+t4+t5) && t<(t0+t1+t2+t3+t4+t5+t6) *)
+        (* '<S2>:1:54' x = x4-vs*(t-(t0+t1+t2+t3+t4+t5)); *)
+        PositionRefm := x4 - ((t - a_tmp_tmp_2) * Velocity_SPms);
+        (* '<S2>:1:55' v = -vs; *)
+        VelocityRefms :=  -Velocity_SPms;
+    ELSIF (t >= x1_tmp) AND (t < (x1_tmp + tRamps)) THEN 
+        (* '<S2>:1:56' elseif t>=(t0+t1+t2+t3+t4+t5+t6) && t<(t0+t1+t2+t3+t4+t5+t6+t7) *)
+        (* '<S2>:1:57' x = x5 - vs*(t-(t0+t1+t2+t3+t4+t5+t6)) - (slopeRetr/t3)*(t-(t0+t1+t2+t3+t4+t5+t6))^2/2; *)
+        a_tmp := t - x1_tmp;
+        PositionRefm := ((x4 - ((x1_tmp - a_tmp_tmp_2) * Velocity_SPms)) - (a_tmp * Velocity_SPms)) - ((x4_tmp * (a_tmp * a_tmp)) / 2.0);
+        (* '<S2>:1:58' v = -vs - (slopeRetr/t3)*(t-(t0+t1+t2+t3+t4+t5+t6)); *)
+        VelocityRefms := ( -Velocity_SPms) - (a_tmp * x4_tmp);
+    ELSE 
+        (* '<S2>:1:59' else *)
+        (* '<S2>:1:60' x = x0; *)
+        PositionRefm := x0m;
+        (* '<S2>:1:61' v = v0; *)
+        VelocityRefms := v0ms;
+    END_IF;
+END_IF;
+(* Switch: '<S1>/Switch' incorporates:
+ *  Switch: '<S1>/Switch1' *)
+(* '<S2>:1:64' T = t0+t1+t2+t3+t4+t5+t6+t7; *)
+IF Enable <= 0.0 THEN 
+    (* Outport: '<Root>/PositionRef [m]' *)
+    PositionRefm := x0m;
+    (* Outport: '<Root>/VelocityRef [m//s]' *)
+    VelocityRefms := v0ms;
+END_IF;
+(* End of Switch: '<S1>/Switch' *)
+(* Outport: '<Root>/TimeTot' incorporates:
+ *  MATLAB Function: '<S1>/MATLAB Function' *)
+TimeTot := ((((((t0s + tRamps) + tHold) + tRamps) + tHoldPoss) + tRamps) + tHold) + tRamps;
+(* Outport: '<Root>/Error' incorporates:
+ *  MATLAB Function: '<S1>/MATLAB Function' *)
+Error := DINT_TO_LREAL(Error_0);
+(* End of Outputs for SubSystem: '<Root>/Subsystem' *)
+END_FUNCTION_BLOCK

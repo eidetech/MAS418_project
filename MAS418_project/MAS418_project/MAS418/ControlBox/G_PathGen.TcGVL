@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <GVL Name="G_PathGen" Id="{3ad88921-b488-41ce-b367-3ce8189e04fd}">
+    <Declaration><![CDATA[VAR_GLOBAL
+	Enable : LREAL;
+	x0 :LREAL := 0.5;  // [m], set at start
+	v0 :LREAL := 0; // [m/s], set at start
+	Position_SP : LREAL := 0.5+x0; // [m], destination point. needs to set with logic. x + x0
+	Velocity_SP : LREAL := 0.05*0.3; // [m/s], desired speed // NEEDS TO CHANGE TO =0.05 ms *30 prosent
+	t0 : LREAL := 5.5; //[s], time to start ramp
+	tRamp : LREAL := 1; // [s] ramp time (rise time)
+	tHoldPos : LREAL := 1; // [s], time to stay at position before returning
+	tVaiable : TIME := T#0S; // Time rising avfter timer is enabled
+	tPT : TIME := T#200S; // Stop time for timer. Nessesery to work
+	tQ : BOOL; // Gets true when stop time for timer is reached
+	tStart : BOOL := FALSE; // enable to start timer. Rising edge start, falling reset
+	fTime : LREAL;
+	
+	// OUTPUTS:
+	fPositionRef : LREAL;
+	fVelocityRef : LREAL;
+	fTimeTot : LREAL; //Time needed to to the complete path
+	fError : LREAL; // Should be changed to a BOOL
+// SimulationTime is 
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>
