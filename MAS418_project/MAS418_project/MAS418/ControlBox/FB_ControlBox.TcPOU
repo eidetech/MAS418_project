@@ -11,9 +11,13 @@ VAR
 	fbVirtualControlBox : FB_Virtual_Controller;
 	fbRealControlBox : FB_Real_Controller;
 	fbSelectedControlBox : I_ControlBox := fbVirtualControlBox;
-	// Open Loop velocity control
-	fb_OL_VC_winch : OL_VC;
-	fb_OL_VC_cyl : OL_VC;
+	// Open Loop velocity control manual mode
+	fb_OL_VC_winch_manual : OL_VC;
+	fb_OL_VC_cyl_manual : OL_VC;
+	
+	// Closed Loop position control auto mode
+	fb_OL_VC_winch_auto : OL_VC;
+	fb_OL_VC_cyl_auto : OL_VC;
 	
 	// Path generator
 	fbTon : TON;
@@ -39,8 +43,8 @@ fbSelectedControlBox.Joy_Normalized(fJoyX_raw := G_ControlBox.fJoyX, fJoyY_raw :
 			
 // Manual mode
 // Run Open-Loop control for either winch or cylinder based on input, saturated to -0.05,0.05 m/s					
-fb_OL_VC_winch(bEnable:=(G_ControlBox.bRunning AND G_ControlBox.bJoyActive AND G_ControlBox.bManual), fvRef:=G_IO_Parameters.fMaxVel*G_ControlBox.fJoyY_Normalized, fQmax:=150, f_uVFF => G_ControlBox.f_uVFF_winch);
-fb_OL_VC_cyl(bEnable:=(G_ControlBox.bRunning AND NOT G_ControlBox.bJoyActive AND G_ControlBox.bManual), fvRef:=G_IO_Parameters.fMaxVel*G_ControlBox.fJoyX_Normalized, fQmax:=150, f_uVFF => G_ControlBox.f_uVFF_cyl);
+fb_OL_VC_winch_manual(bEnable:=(G_ControlBox.bRunning AND G_ControlBox.bJoyActive AND G_ControlBox.bManual), fvRef:=G_IO_Parameters.fMaxVel*G_ControlBox.fJoyY_Normalized, fQmax:=150, f_uVFF => G_ControlBox.f_uVFF_winch_manual);
+fb_OL_VC_cyl_manual(bEnable:=(G_ControlBox.bRunning AND NOT G_ControlBox.bJoyActive AND G_ControlBox.bManual), fvRef:=G_IO_Parameters.fMaxVel*G_ControlBox.fJoyX_Normalized, fQmax:=150, f_uVFF => G_ControlBox.f_uVFF_cyl_manual);
 
 // Auto mode
 //Timer
@@ -51,7 +55,7 @@ fbTon(IN := G_PathGen.tStart,
 
 G_PathGen.fTime := TIME_TO_LREAL(G_PathGen.tVaiable)/1000;
 
-fbPathGen(Enable := 1,
+fbPathGen(Enable := (G_ControlBox.bAuto AND G_ControlBox.bRunning),
 	x0m := G_PathGen.x0,
 	v0ms := G_PathGen.v0,
 	Position_SPm := G_PathGen.Position_SP,
@@ -63,7 +67,11 @@ fbPathGen(Enable := 1,
 	PositionRefm => G_PathGen.fPositionRef,
 	VelocityRefms => G_PathGen.fVelocityRef,
 	TimeTot => G_PathGen.fTimeTot,
-	Error => G_PathGen.fError);]]></ST>
+	Error => G_PathGen.fError);
+	
+fb_OL_VC_winch_auto(bEnable:=(G_ControlBox.bRunning AND G_ControlBox.bJoyActive AND G_ControlBox.bAuto), fvRef:=G_PathGen.fVelocityRef, fQmax:=150, f_uVFF => G_ControlBox.f_uVFF_winch_auto);
+fb_OL_VC_cyl_auto(bEnable:=(G_ControlBox.bRunning AND NOT G_ControlBox.bJoyActive AND G_ControlBox.bAuto), fvRef:=G_PathGen.fVelocityRef, fQmax:=150, f_uVFF => G_ControlBox.f_uVFF_cyl_auto);
+]]></ST>
     </Implementation>
   </POU>
 </TcPlcObject>

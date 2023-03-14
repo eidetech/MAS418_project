@@ -35,9 +35,13 @@
 	fJoyX_Normalized : LREAL;
 	fJoyY_Normalized : LREAL;
 	
-	// Open-Loop Velocity Control Signal winch
-	f_uVFF_winch : LREAL;
-	f_uVFF_cyl : LREAL;
+	// Open-Loop Velocity manual mode
+	f_uVFF_winch_manual : LREAL;
+	f_uVFF_cyl_manual : LREAL;
+	
+	// Closed-Loop auto mode
+	f_uVFF_winch_auto : LREAL;
+	f_uVFF_cyl_auto : LREAL;
 END_VAR]]></Declaration>
   </GVL>
 </TcPlcObject>

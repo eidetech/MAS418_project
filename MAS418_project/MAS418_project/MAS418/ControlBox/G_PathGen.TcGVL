@@ -5,7 +5,7 @@
 	Enable : LREAL;
 	x0 :LREAL := 0.5;  // [m], set at start
 	v0 :LREAL := 0; // [m/s], set at start
-	Position_SP : LREAL := 0.5+x0; // [m], destination point. needs to set with logic. x + x0
+	Position_SP : LREAL := 0.1+x0; // [m], destination point. needs to set with logic. x + x0
 	Velocity_SP : LREAL := 0.05*0.3; // [m/s], desired speed // NEEDS TO CHANGE TO =0.05 ms *30 prosent
 	t0 : LREAL := 5.5; //[s], time to start ramp
 	tRamp : LREAL := 1; // [s] ramp time (rise time)

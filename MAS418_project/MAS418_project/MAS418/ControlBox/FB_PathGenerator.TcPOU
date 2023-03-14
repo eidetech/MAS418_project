@@ -3,7 +3,7 @@
   <POU Name="FB_PathGenerator" Id="{187316b5-b6b4-44bd-a18b-91131ad852f7}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK FB_PathGenerator
 VAR_INPUT
-    Enable: LREAL;
+    Enable: BOOL;
     x0m: LREAL;
     v0ms: LREAL;
     Position_SPm: LREAL;
@@ -172,7 +172,7 @@ END_IF;
 (* Switch: '<S1>/Switch' incorporates:
  *  Switch: '<S1>/Switch1' *)
 (* '<S2>:1:64' T = t0+t1+t2+t3+t4+t5+t6+t7; *)
-IF Enable <= 0.0 THEN 
+IF NOT Enable THEN 
     (* Outport: '<Root>/PositionRef [m]' *)
     PositionRefm := x0m;
     (* Outport: '<Root>/VelocityRef [m//s]' *)
