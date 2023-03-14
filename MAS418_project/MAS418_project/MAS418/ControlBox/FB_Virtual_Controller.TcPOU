@@ -78,22 +78,34 @@ END_VAR
 ]]></Declaration>
       <Implementation>
         <ST><![CDATA[// Run sim based on min max restrictions in G_Sim GVL
-IF G_ControlBox.eStatus = E_Status.RUNNING THEN
-	IF G_ControlBox.fJoyX_Normalized > 0 AND G_Sim.nX < G_Sim.xMax THEN
+IF G_ControlBox.eStatus = E_Status.RUNNING AND G_ControlBox.bManual THEN
+	IF G_ControlBox.f_uVFF_cyl_manual > 0 AND G_Sim.nX < G_Sim.xMax THEN
 		G_Sim.nX := G_Sim.nX+1;
 	END_IF
-	IF G_ControlBox.fJoyX_Normalized < 0 AND G_Sim.nX > G_Sim.xMin THEN
+	IF G_ControlBox.f_uVFF_cyl_manual < 0 AND G_Sim.nX > G_Sim.xMin THEN
 		G_Sim.nX := G_Sim.nX-1;
 	END_IF
-	IF G_ControlBox.fJoyY_Normalized > 0 AND G_Sim.nY < G_Sim.yMax THEN
+	IF G_ControlBox.f_uVFF_winch_manual > 0 AND G_Sim.nY < G_Sim.yMax THEN
 		G_Sim.nY := G_Sim.nY+1;
 	END_IF
-	IF G_ControlBox.fJoyY_Normalized < 0 AND G_Sim.nY > G_Sim.yMin THEN
+	IF G_ControlBox.f_uVFF_winch_manual < 0 AND G_Sim.nY > G_Sim.yMin THEN
 		G_Sim.nY := G_Sim.nY-1;
 	END_IF	
-ELSE
-	G_ControlBox.fJoyX_Normalized := 0;
-	G_ControlBox.fJoyY_Normalized := 0;
+END_IF
+
+IF G_ControlBox.eStatus = E_Status.RUNNING AND G_ControlBox.bAuto THEN
+	IF G_ControlBox.f_uVFF_cyl_auto > 0 AND G_Sim.nX < G_Sim.xMax THEN
+		G_Sim.nX := G_Sim.nX+1;
+	END_IF
+	IF G_ControlBox.f_uVFF_cyl_auto < 0 AND G_Sim.nX > G_Sim.xMin THEN
+		G_Sim.nX := G_Sim.nX-1;
+	END_IF
+	IF G_ControlBox.f_uVFF_winch_auto > 0 AND G_Sim.nY < G_Sim.yMax THEN
+		G_Sim.nY := G_Sim.nY+1;
+	END_IF
+	IF G_ControlBox.f_uVFF_winch_auto < 0 AND G_Sim.nY > G_Sim.yMin THEN
+		G_Sim.nY := G_Sim.nY-1;
+	END_IF	
 END_IF
 ]]></ST>
       </Implementation>

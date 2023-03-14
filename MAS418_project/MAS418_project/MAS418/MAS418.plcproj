@@ -38,7 +38,11 @@
     <Compile Include="ControlBox\FB_Virtual_Controller.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+<<<<<<< HEAD
     <Compile Include="ControlBox\G_Hmi.TcGVL">
+=======
+    <Compile Include="ControlBox\G_HMI.TcGVL">
+>>>>>>> 14c257e763f8e5992996f36216194c194f3cdf5f
       <SubType>Code</SubType>
       <LinkAlways>true</LinkAlways>
     </Compile>
@@ -46,6 +50,13 @@
       <SubType>Code</SubType>
       <LinkAlways>true</LinkAlways>
     </Compile>
+<<<<<<< HEAD
+=======
+    <Compile Include="ControlBox\G_Output.TcGVL">
+      <SubType>Code</SubType>
+      <LinkAlways>true</LinkAlways>
+    </Compile>
+>>>>>>> 14c257e763f8e5992996f36216194c194f3cdf5f
     <Compile Include="ControlBox\G_PathGen.TcGVL">
       <SubType>Code</SubType>
     </Compile>
