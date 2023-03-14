@@ -25,7 +25,7 @@ END_VAR]]></Declaration>
       <Declaration><![CDATA[METHOD Mode]]></Declaration>
     </Method>
     <Method Name="Status" Id="{5107072e-e81b-4166-af85-2c0de74e031a}">
-      <Declaration><![CDATA[METHOD Status : E_Status]]></Declaration>
+      <Declaration><![CDATA[METHOD Status]]></Declaration>
     </Method>
   </Itf>
 </TcPlcObject>

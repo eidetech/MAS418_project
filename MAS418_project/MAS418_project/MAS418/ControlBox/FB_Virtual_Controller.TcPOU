@@ -99,7 +99,7 @@ END_IF
       </Implementation>
     </Method>
     <Method Name="Status" Id="{a1ecf13f-901f-4e5c-9e12-ccc122ee8179}">
-      <Declaration><![CDATA[METHOD Status : E_Status]]></Declaration>
+      <Declaration><![CDATA[METHOD Status]]></Declaration>
       <Implementation>
         <ST><![CDATA[// Determine machine status based on interaction
 CASE G_ControlBox.eStatus OF

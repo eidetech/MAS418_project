@@ -33,8 +33,8 @@ fbSelectedControlBox.Joy_Normalized(fJoyX_raw := G_ControlBox.fJoyX, fJoyY_raw :
 									fJoyX_normalized => G_ControlBox.fJoyX_Normalized, fJoyY_normalized => G_ControlBox.fJoyY_Normalized);
 			
 // Run Open-Loop control for either winch or cylinder based on input, saturated to -0.05,0.05 m/s					
-fb_OL_VC_winch(bEnable:=(G_ControlBox.bRunning AND G_ControlBox.bJoyActive), fvRef:=G_IO_Parameters.fMaxVel*G_ControlBox.fJoyY_Normalized, fQmax:=150, f_uVFF => G_ControlBox.f_uVFF_winch);
-fb_OL_VC_cyl(bEnable:=(G_ControlBox.bRunning AND NOT G_ControlBox.bJoyActive), fvRef:=G_IO_Parameters.fMaxVel*G_ControlBox.fJoyX_Normalized, fQmax:=150, f_uVFF => G_ControlBox.f_uVFF_cyl);
+fb_OL_VC_winch(bEnable:=(G_ControlBox.bRunning AND G_ControlBox.bJoyActive AND G_ControlBox.bManual), fvRef:=G_IO_Parameters.fMaxVel*G_ControlBox.fJoyY_Normalized, fQmax:=150, f_uVFF => G_ControlBox.f_uVFF_winch);
+fb_OL_VC_cyl(bEnable:=(G_ControlBox.bRunning AND NOT G_ControlBox.bJoyActive AND G_ControlBox.bManual), fvRef:=G_IO_Parameters.fMaxVel*G_ControlBox.fJoyX_Normalized, fQmax:=150, f_uVFF => G_ControlBox.f_uVFF_cyl);
 ]]></ST>
     </Implementation>
   </POU>

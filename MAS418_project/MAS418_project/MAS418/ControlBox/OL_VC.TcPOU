@@ -8,7 +8,7 @@ VAR_INPUT
     fQmax: LREAL; // L/min
 END_VAR
 VAR_OUTPUT
-    f_uVFF: LREAL; // Output control signal
+    f_uVFF: LREAL; // Output control signal velocity feedforward
 END_VAR
 VAR_TEMP
     rtb_Q_refm3s: LREAL := 0;

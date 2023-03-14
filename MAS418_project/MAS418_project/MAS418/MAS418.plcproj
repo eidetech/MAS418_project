@@ -17,6 +17,9 @@
     <LibraryReferences>{e1ad57c1-7702-4110-8f17-342658fa0269}</LibraryReferences>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="ControlBox\CL_PC.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="ControlBox\E_Control_Mode.TcDUT">
       <SubType>Code</SubType>
     </Compile>

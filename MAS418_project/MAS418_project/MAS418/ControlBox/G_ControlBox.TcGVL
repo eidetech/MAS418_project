@@ -1,8 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
   <GVL Name="G_ControlBox" Id="{58d0ea5b-1b17-4931-b151-b15e0c6b313c}">
-    <Declaration><![CDATA[{attribute 'qualified_only'}
-VAR_GLOBAL
+    <Declaration><![CDATA[VAR_GLOBAL
 	// Global variable for control mode
 	eMode : E_Control_Mode := E_Control_Mode.OFF;
 	

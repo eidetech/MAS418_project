@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="CL_PC" Id="{a23b422f-bd43-4cb3-bc26-93a0e38e0538}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK CL_PC
+VAR_INPUT
+    fProportionalGain: LREAL; // P gain
+    fPositionReference: LREAL; // Position ref
+    fPositionFeedback: LREAL; // Position feedback
+    bEnable: LREAL; // Enable signal
+END_VAR
+VAR_OUTPUT
+    uPFB: LREAL; // Control signal from position feedback loop
+    fPositionError: LREAL; // Position error
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[
+fPositionError := fPositionReference - fPositionFeedback;
+uPFB := fProportionalGain * fPositionError;
+
+IF uPFB > 0.5 THEN 
+    uPFB := 0.5;
+ELSIF uPFB < -0.5 THEN 
+    uPFB := -0.5;
+END_IF;
+
+IF bEnable <= 0.0 THEN 
+    uPFB := 0.0;
+END_IF;]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>
