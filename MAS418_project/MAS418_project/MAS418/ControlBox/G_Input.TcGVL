@@ -1,8 +1,29 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
   <GVL Name="G_Input" Id="{7bb65c8b-cba4-48b1-8daa-c9b33c78d82e}">
-    <Declaration><![CDATA[{attribute 'qualified_only'}
-VAR_GLOBAL
+    <Declaration><![CDATA[VAR_GLOBAL
+	// Boolean inputs
+	bManual AT %I* : BOOL;
+	bAuto AT %I* : BOOL;
+	bStart AT %I* : BOOL;
+	bStop AT %I* : BOOL;
+	bJoyActive AT %I* : BOOL;
+	
+	// DINT inputs
+	n_pS AT %I* : DINT;
+	n_pR AT %I* : DINT;
+	n_pCB AT %I* : DINT;
+	n_pCA AT %I* : DINT;
+	n_pWA1 AT %I* : DINT;
+	n_pWB1 AT %I* : DINT;
+	n_pWA AT %I* : DINT;
+	n_pWB AT %I* : DINT;
+	n_pWD AT %I* : DINT;
+	n_QW AT %I* : DINT;
+	n_Xc AT %I* : DINT;
+	n_JoyX AT %I* : DINT;
+	n_JoyY AT %I* : DINT;
+	n_WinchEncoder AT %I* : DINT;
 END_VAR]]></Declaration>
   </GVL>
 </TcPlcObject>

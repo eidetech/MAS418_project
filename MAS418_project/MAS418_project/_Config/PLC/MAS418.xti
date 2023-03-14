@@ -1,9 +1,119 @@
 <?xml version="1.0"?>
 <TcSmItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4024.35" ClassName="CNestedPlcProjDef">
 	<Project GUID="{58FAF1E5-C67E-4660-9804-45C5CC22F08B}" Name="MAS418" PrjFilePath="..\..\MAS418\MAS418.plcproj" TmcFilePath="..\..\MAS418\MAS418.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
-		<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="MAS418\MAS418.tmc" TmcHash="{45674C9B-4C53-F7A7-858C-0FE46CA19BB0}">
+		<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="MAS418\MAS418.tmc" TmcHash="{83082CD7-81E9-7896-81EC-701082BFE74F}">
 			<Name>MAS418 Instance</Name>
 			<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
+			<Vars VarGrpType="1">
+				<Name>PlcTask Inputs</Name>
+				<Var>
+					<Name>G_Input.bManual</Name>
+					<Comment><![CDATA[ Boolean inputs]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>G_Input.bAuto</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>G_Input.bStart</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>G_Input.bStop</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>G_Input.bJoyActive</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>G_Input.n_pS</Name>
+					<Comment><![CDATA[ DINT inputs]]></Comment>
+					<Type>DINT</Type>
+				</Var>
+				<Var>
+					<Name>G_Input.n_pR</Name>
+					<Type>DINT</Type>
+				</Var>
+				<Var>
+					<Name>G_Input.n_pCB</Name>
+					<Type>DINT</Type>
+				</Var>
+				<Var>
+					<Name>G_Input.n_pCA</Name>
+					<Type>DINT</Type>
+				</Var>
+				<Var>
+					<Name>G_Input.n_pWA1</Name>
+					<Type>DINT</Type>
+				</Var>
+				<Var>
+					<Name>G_Input.n_pWB1</Name>
+					<Type>DINT</Type>
+				</Var>
+				<Var>
+					<Name>G_Input.n_pWA</Name>
+					<Type>DINT</Type>
+				</Var>
+				<Var>
+					<Name>G_Input.n_pWB</Name>
+					<Type>DINT</Type>
+				</Var>
+				<Var>
+					<Name>G_Input.n_pWD</Name>
+					<Type>DINT</Type>
+				</Var>
+				<Var>
+					<Name>G_Input.n_QW</Name>
+					<Type>DINT</Type>
+				</Var>
+				<Var>
+					<Name>G_Input.n_Xc</Name>
+					<Type>DINT</Type>
+				</Var>
+				<Var>
+					<Name>G_Input.n_JoyX</Name>
+					<Type>DINT</Type>
+				</Var>
+				<Var>
+					<Name>G_Input.n_JoyY</Name>
+					<Type>DINT</Type>
+				</Var>
+				<Var>
+					<Name>G_Input.n_WinchEncoder</Name>
+					<Type>DINT</Type>
+				</Var>
+			</Vars>
+			<Vars VarGrpType="2" AreaNo="1">
+				<Name>PlcTask Outputs</Name>
+				<Var>
+					<Name>G_Output.bGreenLED</Name>
+					<Comment><![CDATA[ Boolean outputs]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>G_Output.bRedLED</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>G_Output.bEnableWinchValve</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>G_Output.bEnableCylValve</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>G_Output.n_WinchValveOut</Name>
+					<Comment><![CDATA[ DINT outputs]]></Comment>
+					<Type>DINT</Type>
+				</Var>
+				<Var>
+					<Name>G_Output.n_CylValveOut</Name>
+					<Type>DINT</Type>
+				</Var>
+			</Vars>
 			<Contexts>
 				<Context>
 					<Id NeedCalleeCall="true">0</Id>
@@ -20,4 +130,34 @@
 			</TaskPouOids>
 		</Instance>
 	</Project>
+	<Mappings>
+		<OwnerA Name="MAS418 Instance">
+			<OwnerB Name="TIID^Device 4 (EtherCAT)^Term 4 (EK1100)^AI1">
+				<Link VarA="PlcTask Inputs^G_Input.n_pCA" VarB="AI Standard Channel 4^Value" Size="16"/>
+				<Link VarA="PlcTask Inputs^G_Input.n_pCB" VarB="AI Standard Channel 3^Value" Size="16"/>
+				<Link VarA="PlcTask Inputs^G_Input.n_pR" VarB="AI Standard Channel 2^Value" Size="16"/>
+				<Link VarA="PlcTask Inputs^G_Input.n_pS" VarB="AI Standard Channel 1^Value" Size="16"/>
+				<Link VarA="PlcTask Inputs^G_Input.n_pWA" VarB="AI Standard Channel 7^Value" Size="16"/>
+				<Link VarA="PlcTask Inputs^G_Input.n_pWA1" VarB="AI Standard Channel 5^Value" Size="16"/>
+				<Link VarA="PlcTask Inputs^G_Input.n_pWB" VarB="AI Standard Channel 8^Value" Size="16"/>
+				<Link VarA="PlcTask Inputs^G_Input.n_pWB1" VarB="AI Standard Channel 6^Value" Size="16"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 4 (EtherCAT)^Term 4 (EK1100)^AI2">
+				<Link VarA="PlcTask Inputs^G_Input.n_pWD" VarB="AI Standard Channel 1^Value" Size="16"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 4 (EtherCAT)^Term 4 (EK1100)^DI1">
+				<Link VarA="PlcTask Inputs^G_Input.bAuto" VarB="Channel 2^Input" Size="1"/>
+				<Link VarA="PlcTask Inputs^G_Input.bJoyActive" VarB="Channel 5^Input" Size="1"/>
+				<Link VarA="PlcTask Inputs^G_Input.bManual" VarB="Channel 1^Input" Size="1"/>
+				<Link VarA="PlcTask Inputs^G_Input.bStart" VarB="Channel 3^Input" Size="1"/>
+				<Link VarA="PlcTask Inputs^G_Input.bStop" VarB="Channel 4^Input" Size="1"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 4 (EtherCAT)^Term 4 (EK1100)^DO1">
+				<Link VarA="PlcTask Outputs^G_Output.bEnableCylValve" VarB="Channel 4^Output" Size="1"/>
+				<Link VarA="PlcTask Outputs^G_Output.bEnableWinchValve" VarB="Channel 3^Output" Size="1"/>
+				<Link VarA="PlcTask Outputs^G_Output.bGreenLED" VarB="Channel 1^Output" Size="1"/>
+				<Link VarA="PlcTask Outputs^G_Output.bRedLED" VarB="Channel 2^Output" Size="1"/>
+			</OwnerB>
+		</OwnerA>
+	</Mappings>
 </TcSmItem>
