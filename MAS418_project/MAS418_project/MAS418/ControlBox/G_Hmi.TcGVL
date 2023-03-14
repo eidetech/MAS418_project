@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <GVL Name="G_Hmi" Id="{7d29b1d0-c103-42cc-a728-94c361d8d032}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL
+	n_pS : DINT
+	n_pR : DINT
+	n_pCB : DINT
+	n_pCA : DINT
+	n_pWA1 : DINT
+	n_pWB1 : DINT
+	n_pWA : DINT
+	n_pWB : DINT
+	n_pWD : DINT
+	n_QW : DINT
+	n_Xc : DINT
+	n_JoyX : DINT
+	n_JoyY : DINT
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

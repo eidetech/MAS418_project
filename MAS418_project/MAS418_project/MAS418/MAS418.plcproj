@@ -38,6 +38,14 @@
     <Compile Include="ControlBox\FB_Virtual_Controller.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="ControlBox\G_Hmi.TcGVL">
+      <SubType>Code</SubType>
+      <LinkAlways>true</LinkAlways>
+    </Compile>
+    <Compile Include="ControlBox\G_Input.TcGVL">
+      <SubType>Code</SubType>
+      <LinkAlways>true</LinkAlways>
+    </Compile>
     <Compile Include="ControlBox\G_PathGen.TcGVL">
       <SubType>Code</SubType>
     </Compile>
