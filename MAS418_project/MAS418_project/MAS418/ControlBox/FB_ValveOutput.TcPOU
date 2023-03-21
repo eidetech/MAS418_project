@@ -5,7 +5,6 @@
 VAR_INPUT
 	bEnable 			: BOOL;
 	bDeadBandCompOn 	: BOOL;
-	stValveDeadBand 	: ST_ValveDeadBand;
 	fNormalizedInput 	: LREAL;
 END_VAR
 VAR_OUTPUT
@@ -22,9 +21,9 @@ END_VAR
     <Implementation>
       <ST><![CDATA[IF	bDeadBandCompOn THEN
 	IF fNormalizedInput > 0.0 THEN
-		nTempOutput := LREAL_TO_INT(ABS(fNormalizedInput*(stValveDeadBand.fPosMax - stValveDeadBand.fPosMin) + stValveDeadBand.fPosMin));
+		nTempOutput := LREAL_TO_INT(ABS(fNormalizedInput*(29490.0 - 20950.0) + 20950.0));
 	ELSIF fNormalizedInput < 0.0 THEN
-		nTempOutput := LREAL_TO_INT(ABS(fNormalizedInput*(stValveDeadBand.fNegMax - stValveDeadBand.fNegMin) - stValveDeadBand.fNegMin));
+		nTempOutput := LREAL_TO_INT(ABS(fNormalizedInput*(9830.0 - 18250.0) - 18250.0));
 	ELSE
 		nTempOutput := nOffset;
 	END_IF

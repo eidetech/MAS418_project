@@ -18,7 +18,7 @@ END_VAR
 
 fInput := DINT_TO_REAL(nInput); 
 
-fNormalized :=  150*(finput-fMaxval/2)/fMaxval*2;]]></ST>
+fNormalized :=  150*(finput-fMaxval/2)/fMaxval*2 + 8.5; // Calibrated by Pers Mekaniske 21.03.23, ISO 301495682 12095 13556478]]></ST>
     </Implementation>
   </POU>
 </TcPlcObject>

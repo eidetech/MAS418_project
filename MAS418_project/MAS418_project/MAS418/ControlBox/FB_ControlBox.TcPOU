@@ -135,7 +135,7 @@ IF G_ControlBox.f_uVFF_winch_auto + G_ControlBox.f_uPFB_winch_auto >= 1 THEN
 ELSIF G_ControlBox.f_uVFF_winch_auto + G_ControlBox.f_uPFB_winch_auto <= -1 THEN
 	G_ControlBox.f_u_winch := -1;
 ELSE
-	G_ControlBox.f_u_winch := G_ControlBox.f_uVFF_winch_auto + G_ControlBox.f_uPFB_winch_auto + G_ControlBox.f_uVFF_winch_manual + G_ControlBox.f_uVFF_cyl_manual;
+	G_ControlBox.f_u_winch := G_ControlBox.f_uVFF_winch_auto + G_ControlBox.f_uPFB_winch_auto + G_ControlBox.f_uVFF_winch_manual;
 END_IF
 
 IF G_ControlBox.f_uVFF_cyl_auto + G_ControlBox.f_uPFB_cyl_auto >= 1 THEN
@@ -143,7 +143,7 @@ IF G_ControlBox.f_uVFF_cyl_auto + G_ControlBox.f_uPFB_cyl_auto >= 1 THEN
 ELSIF G_ControlBox.f_uVFF_cyl_auto + G_ControlBox.f_uPFB_cyl_auto <= -1 THEN
 	G_ControlBox.f_u_cyl := -1;
 ELSE
-	G_ControlBox.f_u_cyl := G_ControlBox.f_uVFF_cyl_auto + G_ControlBox.f_uPFB_cyl_auto;
+	G_ControlBox.f_u_cyl := G_ControlBox.f_uVFF_cyl_auto + G_ControlBox.f_uPFB_cyl_auto + G_ControlBox.f_uVFF_cyl_manual;
 END_IF]]></ST>
     </Implementation>
   </POU>

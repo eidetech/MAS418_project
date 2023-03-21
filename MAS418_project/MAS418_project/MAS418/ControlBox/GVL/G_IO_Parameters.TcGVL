@@ -18,7 +18,7 @@ VAR_GLOBAL
 	fNegMin : REAL := 18250.0;
 	fNegMax : REAL := 9830.0;
 	
-	fMaxVel : LREAL := 0.05;
+	fMaxVel : LREAL := 1;
 	
 	fQmax_winch : LREAL := 60; // L/min
 	fQmax_cyl : LREAL := 75; // L/min

@@ -63,8 +63,11 @@ fPosition => G_PathGen.x0_winch);
 //fbValveOutput(bEnable:=TRUE, bDeadBandCompOn:=TRUE,
 //	stValveDeadBand:= st_ValveDeadBand, fNormalizedInput:=G_ControlBox.f_u_cyl, nOutput => G_Output.n_CylValveOut);
 
-F_Hestunger(fInput:=G_ControlBox.f_u_winch, nOut => G_Output.n_WinchValveOut);
-F_Hestunger(fInput:=G_ControlBox.f_u_cyl, nOut => G_Output.n_CylValveOut);]]></ST>
+//F_Hestunger(fInput:=G_ControlBox.f_u_winch, nOut => G_Output.n_WinchValveOut);
+//F_Hestunger(fInput:=G_ControlBox.f_u_cyl, nOut => G_Output.n_CylValveOut);
+
+fbValveOutput(bEnable:=TRUE, bDeadBandCompOn:=TRUE, fNormalizedInput:=G_ControlBox.f_u_winch, nOutput => G_Output.n_WinchValveOut);
+fbValveOutput(bEnable:=TRUE, bDeadBandCompOn:=TRUE, fNormalizedInput:=G_ControlBox.f_u_cyl, nOutput => G_Output.n_CylValveOut);]]></ST>
     </Implementation>
   </POU>
 </TcPlcObject>
