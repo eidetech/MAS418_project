@@ -4,7 +4,7 @@
     <Declaration><![CDATA[FUNCTION_BLOCK FB_PathGenerator
 VAR_INPUT
     Enable: BOOL;
-    x0m: LREAL;
+    x0m: REAL;
     v0ms: LREAL;
     Position_SPm: LREAL;
     Velocity_SPms: LREAL;

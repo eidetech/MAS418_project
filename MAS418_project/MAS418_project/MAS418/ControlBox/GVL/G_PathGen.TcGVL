@@ -3,7 +3,7 @@
   <GVL Name="G_PathGen" Id="{3ad88921-b488-41ce-b367-3ce8189e04fd}">
     <Declaration><![CDATA[VAR_GLOBAL
 	Enable : LREAL;
-	x0 :LREAL := 0.5;  // [m], set at start
+	x0 :LREAL := 0;  // [m], set at start
 	v0 :LREAL := 0; // [m/s], set at start
 	Position_SP : LREAL := 0.1+x0; // [m], destination point. needs to set with logic. x + x0
 	Velocity_SP : LREAL := 0.05*0.3; // [m/s], desired speed

@@ -8,7 +8,7 @@ VAR
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[fbControlBox(bRealControlBox := FALSE); // Run controlbox FB with argument. If bRealControlBox is TRUE, then the FB_RealControlBox will be selected when running the program.
+      <ST><![CDATA[fbControlBox(bRealControlBox := TRUE); // Run controlbox FB with argument. If bRealControlBox is TRUE, then the FB_RealControlBox will be selected when running the program.
 fbScaling();
 ]]></ST>
     </Implementation>

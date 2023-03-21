@@ -92,6 +92,8 @@ CASE G_ControlBox.eStatus OF
 			G_ControlBox.eStatus := E_Status.STARTING;
 		END_IF
 	E_Status.STARTING: // Case STARTING
+		G_PathGen.x0 := G_HMI.f_Xc;
+		G_PathGen.Position_SP := 0.1+G_PathGen.x0;
 		G_ControlBox.bStartTimer := TRUE;
 		G_ControlBox.fbTon(IN:=G_ControlBox.bStartTimer, PT:=T#2S, Q => G_ControlBox.bTimerDone); // Stay in STARTING for 2s
 		G_ControlBox.bStartTimer := FALSE;

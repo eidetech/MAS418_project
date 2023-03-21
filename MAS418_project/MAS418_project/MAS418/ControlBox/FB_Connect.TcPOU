@@ -21,8 +21,8 @@ G_ControlBox.bStop := G_Input.bStop;
 G_ControlBox.bJoyActive := G_Input.bJoyActive;
 
 // Connect winch and cylinder encoders for position feedback
-G_ControlBox.fPositionFeedback_winch := G_Input.n_WinchEncoder; // Innom per
-G_ControlBox.fPositionFeedback_cyl := G_Input.n_Xc; // Innom per
+G_ControlBox.fPositionFeedback_winch := G_HMI.f_WinchEncoder;
+G_ControlBox.fPositionFeedback_cyl := G_HMI.f_Xc;
 
 // OUTPUTS
 
@@ -34,8 +34,6 @@ G_Output.bEnableCylValve := TRUE;
 
 // Connect DINTs
 
-//	n_WinchValveOut AT %Q* : DINT;
-//	n_CylValveOut AT %Q* : DINT;
 
 ]]></ST>
     </Implementation>

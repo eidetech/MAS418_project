@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <DUT Name="ST_Parameters" Id="{2181cba9-465d-4eb9-9268-5dd160c4a037}">
+    <Declaration><![CDATA[TYPE ST_Parameters :
+STRUCT
+	fCyclicTime 					: LREAL := 0.001; // [s]
+	fMaxCylVelocityLimit 			: LREAL := 0.005; // [m/s]
+	fMaxWinchVelocityLimit 			: LREAL := 0.005; // [rad/s]
+	bDeadBandCompOn 				: BOOL := TRUE;
+	stWinchValveDeadBand 			: ST_ValveDeadBand := (fPosMax := 29490.0, fPosMin := 20950.0, fNegMin := 18250.0, fNegMax := 9830.0);
+	stCylValveDeadBand 				: ST_ValveDeadBand := (fPosMax := 29490.0, fPosMin := 20950.0, fNegMin := 18250.0, fNegMax := 9830.0);
+	stPressureSensorScaling400bar 	: ST_AnalogInputScaling := (fMaxInputValue := 32767.0, fMinInputValue := 0.0, fMaxOutputValue := 400.0, fMinOutputValue := 0.0);
+	stPressureSensorScaling40bar 	: ST_AnalogInputScaling := (fMaxInputValue := 32767.0, fMinInputValue := 0.0, fMaxOutputValue := 40.0, fMinOutputValue := 0.0);
+	stJoystickInputScalingX 		: ST_JoystickInputScaling := (fMaxInputValue := 20509.0, fMinInputValue := 11787.0, fNeutralInputValue := 16175, fNeutralDeadband := 50.0, fMaxOutputValue := 1.0, fMinOutputValue := -1.0, fNeutralOutputValue := 0.0);
+	stCylPistonPositionScaling 		: ST_AnalogInputScaling := (fMaxInputValue := 32295.0, fMinInputValue := 229.0, fMaxOutputValue := 0.5, fMinOutputValue := 0.0);
+	stFlowMeterInputScaling 		: ST_FlowMeterInputScaling := (fMaxInputValue := 32295.0, fMinInputValue := 0.0, fNeutralInputValue := 15450, fNeutralDeadband := 50.0, fMaxOutputValue := 150.0, fMinOutputValue := -150.0, fNeutralOutputValue := 0.0);
+	stJoystickInputScalingY 		: ST_JoystickInputScaling := (fMaxInputValue := 20504.0, fMinInputValue := 12160.0, fNeutralInputValue := 16640, fNeutralDeadband := 50.0, fMaxOutputValue := 1.0, fMinOutputValue := -1.0, fNeutralOutputValue := 0.0);
+	fEncoderOffset 					: LREAL := 17574.8; // Encoder value at zero (Cylinder out / second layaer)
+	fWinchDrumScaling				: LREAL := 0.000744309; //  (empirical value - combined drum diameter and gearing)
+	fWinchSpeedReducerGain 			: LREAL := 0.2;
+	fCylSpeedReducerGain 			: LREAL := 0.2;
+	fDisplacment_cc 				: LREAL := 32;
+	stWinchValveOutputGeneratorSettings  	: ST_ValveOutputGeneratorSettings := (fInitialValveOpening := 0.0, fValveOpeningSetPoint := 0.2, fTimeBeforeStarting_s := 3.0, fRampTime_s := 1.0, fHoldTime_s := 1.0, fWaitTime_s := 5.0);
+	stCylValveOutputGeneratorSettings  		: ST_ValveOutputGeneratorSettings := (fInitialValveOpening := 0.0, fValveOpeningSetPoint := 0.2, fTimeBeforeStarting_s := 3.0, fRampTime_s := 1.0, fHoldTime_s := 1.0, fWaitTime_s := 5.0);
+	stOpenLoopControlSettingsWinch 			: ST_OpenLoopControlSettings := (fBoreArea := 0.0, fAnnulusArea := 0.0, fMaxFlowCapacity := 60.0);
+	stClosedLoopControlSettingsWinch 		: ST_ClosedLoopControlSettings := (fMaxPositionError := 2E-3, fProportionalGain := 9.7, fIntegralGain := 6.5);
+	stOpenLoopControlSettingsCylinder 		: ST_OpenLoopControlSettings := (fBoreArea := 0.0033183, fAnnulusArea := 0.0023562, fMaxFlowCapacity := 75.0);
+	stClosedLoopControlSettingsCylinder 	: ST_ClosedLoopControlSettings := (fMaxPositionError := 2E-3, fProportionalGain := 14.6, fIntegralGain := 9.75);	
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

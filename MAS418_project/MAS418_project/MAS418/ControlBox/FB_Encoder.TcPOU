@@ -4,6 +4,7 @@
     <Declaration><![CDATA[FUNCTION_BLOCK FB_Encoder
 VAR_INPUT
 	nRawInput : UDINT;
+	stParam 		: ST_Parameters; 
 END_VAR
 VAR_OUTPUT
 	fPosition 		: LREAL;
@@ -40,7 +41,7 @@ END_IF
 nCount := nInput + nRounds*nMaxValue30bit;
 
 //Position Output
-fPosition := DINT_TO_LREAL(nCount)*fScale16bit - stParam.fEncoderOffset; // [deg]]]></ST>
+fPosition := (DINT_TO_LREAL(nCount)*fScale16bit - stParam.fEncoderOffset)*PI/180 * 0.475; // [m]]]></ST>
     </Implementation>
   </POU>
 </TcPlcObject>

@@ -75,6 +75,21 @@ fbTon(IN := G_PathGen.tStart,
 G_PathGen.fTime := TIME_TO_LREAL(G_PathGen.tVaiable)/1000;
 
 // Path generator function block
+IF G_ControlBox.bJoyActive THEN
+fbPathGen(Enable := (G_ControlBox.bAuto AND G_ControlBox.bRunning),
+	x0m := G_HMI.f_WinchEncoder,
+	v0ms := G_PathGen.v0,
+	Position_SPm := G_PathGen.Position_SP,
+	Velocity_SPms := G_PathGen.Velocity_SP,
+	t0s := G_PathGen.t0,
+	tRamps := G_PathGen.tRamp,
+	tHoldPoss := G_PathGen.tHoldPos,
+	t := G_PathGen.fTime,
+	PositionRefm => G_PathGen.fPositionRef,
+	VelocityRefms => G_PathGen.fVelocityRef,
+	TimeTot => G_PathGen.fTimeTot,
+	Error => G_PathGen.fError);
+ELSE
 fbPathGen(Enable := (G_ControlBox.bAuto AND G_ControlBox.bRunning),
 	x0m := G_PathGen.x0,
 	v0ms := G_PathGen.v0,
@@ -88,6 +103,7 @@ fbPathGen(Enable := (G_ControlBox.bAuto AND G_ControlBox.bRunning),
 	VelocityRefms => G_PathGen.fVelocityRef,
 	TimeTot => G_PathGen.fTimeTot,
 	Error => G_PathGen.fError);
+END_IF
 
 // Open-Loop function blocks for winch and cylinder in auto mode
 fb_OL_VC_winch_auto(bEnable:=(G_ControlBox.bRunning AND G_ControlBox.bJoyActive AND G_ControlBox.bAuto), 
