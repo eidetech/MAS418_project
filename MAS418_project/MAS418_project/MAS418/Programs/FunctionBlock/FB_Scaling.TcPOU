@@ -4,6 +4,7 @@
     <Declaration><![CDATA[FUNCTION_BLOCK FB_Scaling
 VAR
 	fbEncoder : FB_Encoder();
+	fbValveOutput : FB_ValveOutput();
 END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[
@@ -54,7 +55,16 @@ fMaxValOutput := 0.5,
 fOutput => G_HMI.f_Xc);
 
 fbEncoder(nRawInput:= G_Input.n_WinchEncoder,
-fPosition => G_HMI.f_WinchEncoder)]]></ST>
+fPosition => G_PathGen.x0_winch);
+
+//fbValveOutput(bEnable:=TRUE, bDeadBandCompOn:=TRUE,
+//	stValveDeadBand:= st_ValveDeadBand, fNormalizedInput:=G_ControlBox.f_u_winch, nOutput => G_Output.n_WinchValveOut);
+
+//fbValveOutput(bEnable:=TRUE, bDeadBandCompOn:=TRUE,
+//	stValveDeadBand:= st_ValveDeadBand, fNormalizedInput:=G_ControlBox.f_u_cyl, nOutput => G_Output.n_CylValveOut);
+
+F_Hestunger(fInput:=G_ControlBox.f_u_winch, nOut => G_Output.n_WinchValveOut);
+F_Hestunger(fInput:=G_ControlBox.f_u_cyl, nOut => G_Output.n_CylValveOut);]]></ST>
     </Implementation>
   </POU>
 </TcPlcObject>

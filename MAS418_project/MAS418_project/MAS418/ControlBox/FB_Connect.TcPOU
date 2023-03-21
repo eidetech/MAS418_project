@@ -34,7 +34,6 @@ G_Output.bEnableCylValve := TRUE;
 
 // Connect DINTs
 
-
 ]]></ST>
     </Implementation>
   </POU>

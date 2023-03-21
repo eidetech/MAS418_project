@@ -17,7 +17,7 @@
 	f_Xc : REAL;
 	f_JoyX : REAL;
 	f_JoyY : REAL;
-	f_WinchEncoder : REAL;
+	f_WinchEncoder : LREAL;
 	
 END_VAR]]></Declaration>
   </GVL>

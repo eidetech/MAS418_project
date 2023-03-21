@@ -4,6 +4,8 @@
     <Declaration><![CDATA[VAR_GLOBAL
 	Enable : LREAL;
 	x0 :LREAL := 0;  // [m], set at start
+	x0_winch : LREAL := 0;
+	x0_cyl : LREAL := 0;
 	v0 :LREAL := 0; // [m/s], set at start
 	Position_SP : LREAL := 0.1+x0; // [m], destination point. needs to set with logic. x + x0
 	Velocity_SP : LREAL := 0.05*0.3; // [m/s], desired speed

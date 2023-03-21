@@ -44,6 +44,9 @@
     <Compile Include="ControlBox\FB_Real_Controller.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="ControlBox\FB_ValveOutput.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="ControlBox\FB_Virtual_Controller.TcPOU">
       <SubType>Code</SubType>
     </Compile>
@@ -80,6 +83,9 @@
     <Compile Include="ControlBox\ST_Control_Box.TcDUT">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="ControlBox\ST_ValveDeadBand.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="GlobalTextList.TcGTLO">
       <SubType>Code</SubType>
     </Compile>
@@ -97,6 +103,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Programs\Functions\F_Scaling.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Programs\Functions\F_Hestunger.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Programs\MAIN.TcPOU">

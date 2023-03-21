@@ -77,7 +77,7 @@ G_PathGen.fTime := TIME_TO_LREAL(G_PathGen.tVaiable)/1000;
 // Path generator function block
 IF G_ControlBox.bJoyActive THEN
 fbPathGen(Enable := (G_ControlBox.bAuto AND G_ControlBox.bRunning),
-	x0m := G_HMI.f_WinchEncoder,
+	x0m := G_PathGen.x0_winch,
 	v0ms := G_PathGen.v0,
 	Position_SPm := G_PathGen.Position_SP,
 	Velocity_SPms := G_PathGen.Velocity_SP,
@@ -135,12 +135,14 @@ IF G_ControlBox.f_uVFF_winch_auto + G_ControlBox.f_uPFB_winch_auto >= 1 THEN
 ELSIF G_ControlBox.f_uVFF_winch_auto + G_ControlBox.f_uPFB_winch_auto <= -1 THEN
 	G_ControlBox.f_u_winch := -1;
 ELSE
-	G_ControlBox.f_u_winch := G_ControlBox.f_uVFF_winch_auto + G_ControlBox.f_uPFB_winch_auto;
+	G_ControlBox.f_u_winch := G_ControlBox.f_uVFF_winch_auto + G_ControlBox.f_uPFB_winch_auto + G_ControlBox.f_uVFF_winch_manual + G_ControlBox.f_uVFF_cyl_manual;
 END_IF
 
 IF G_ControlBox.f_uVFF_cyl_auto + G_ControlBox.f_uPFB_cyl_auto >= 1 THEN
 	G_ControlBox.f_u_cyl := 1;
 ELSIF G_ControlBox.f_uVFF_cyl_auto + G_ControlBox.f_uPFB_cyl_auto <= -1 THEN
+	G_ControlBox.f_u_cyl := -1;
+ELSE
 	G_ControlBox.f_u_cyl := G_ControlBox.f_uVFF_cyl_auto + G_ControlBox.f_uPFB_cyl_auto;
 END_IF]]></ST>
     </Implementation>

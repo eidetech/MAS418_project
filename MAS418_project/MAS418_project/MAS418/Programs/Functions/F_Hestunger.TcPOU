@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="F_Hestunger" Id="{01412a0f-1fa8-4d01-a75e-eeae41aa40dd}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION F_Hestunger
+VAR_INPUT
+	fInput : REAL; // -1 to 1
+END_VAR
+VAR_OUTPUT
+	nOut : DINT;
+END_VAR
+VAR
+	fOutput : REAL; // 0 - 32767 hestunger
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[fOutput := (fInput+1)/2 * 32767;
+nOut := REAL_TO_DINT(fOutput);]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>
