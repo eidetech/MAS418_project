@@ -47,7 +47,9 @@ namespace craneads {
             , route_{remoteIpV4_, remoteNetId_, AMSPORT_R0_PLC_TC3}
             , ads_(route_), Node("AdsHandler"){ }
 
-        AdsHandler(): AdsHandler({127, 0, 0, 1,  1, 1}, "127.0.0.1") {
+        AdsHandler(): AdsHandler({169, 254, 90, 1, 1, 1}, "169.254.90.1") {
+
+              std::cout << "Example ROS2 ADS node starting up.." << std::endl;
         
         subscription_joy_ = this->create_subscription<sensor_msgs::msg::Joy>(
 		"joy", 10, std::bind(&AdsHandler::joy_callback, this, _1));
@@ -58,6 +60,7 @@ namespace craneads {
 
         void joy_callback(const sensor_msgs::msg::Joy::SharedPtr input)
 		{
+                std::cout << input->buttons[0] << std::endl;
         }
 
 
@@ -111,38 +114,40 @@ namespace craneads {
 
 
 
-int main(int /* argc */, char** /*argv*/)
+int main(int argc, char * argv[])
 {
+  rclcpp::init(argc, argv);
+//   // Real lab PLC IP.
+//   const AmsNetId remoteNetId { 169, 254, 90, 1, 1, 1 };
+//   const std::string remoteIpV4 = "169.254.90.1";
 
-  std::cout << "Example ROS2 ADS node starting up.." << std::endl;
+//   // Connecting to testbed computer.
+//   //const AmsNetId remoteNetId { 192, 168, 56, 1, 1, 1 };
+//   //const std::string remoteIpV4 = "192.168.56.1";
 
-  // Real lab PLC IP.
-  const AmsNetId remoteNetId { 169, 254, 90, 1, 1, 1 };
-  const std::string remoteIpV4 = "169.254.90.1";
+//   std::cout << "  Create AdsHandler.. ";
+//   craneads::AdsHandler adsHandler(remoteNetId, remoteIpV4);
+//   std::cout << "  OK" << std::endl;
+rclcpp::spin(std::make_shared<craneads::AdsHandler>());
+rclcpp::shutdown();
 
-  // Connecting to testbed computer.
-  //const AmsNetId remoteNetId { 192, 168, 56, 1, 1, 1 };
-  //const std::string remoteIpV4 = "192.168.56.1";
 
-  std::cout << "  Create AdsHandler.. ";
-  craneads::AdsHandler adsHandler(remoteNetId, remoteIpV4);
-  std::cout << "  OK" << std::endl;
 
-  adsHandler.deactivateMotion();
+//   adsHandler.deactivateMotion();
 
-  adsHandler.printState();
+//   adsHandler.printState();
 
-  adsHandler.setVelocityReference(3.2);
-  std::this_thread::sleep_for (std::chrono::seconds(5));
-  adsHandler.setPositionReference(3.14);
+//   adsHandler.setVelocityReference(3.2);
+//   std::this_thread::sleep_for (std::chrono::seconds(5));
+//   adsHandler.setPositionReference(3.14);
 
-  adsHandler.activateMotion();
-  for(uint8_t n = 0; ; ++n)
-  {
-    adsHandler.setPositionReference(static_cast<double>(n) / 255.0);
-    std::cout << "Position measurement from ADS: " << adsHandler.getPositionMeasurement() << std::endl;
-    std::this_thread::sleep_for (std::chrono::milliseconds(1));
-  }
+//   adsHandler.activateMotion();
+//   for(uint8_t n = 0; ; ++n)
+//   {
+//     adsHandler.setPositionReference(static_cast<double>(n) / 255.0);
+//     // std::cout << "Position measurement from ADS: " << adsHandler.getPositionMeasurement() << std::endl;
+//     std::this_thread::sleep_for (std::chrono::milliseconds(1));
+//   }
 
 
   return 0;

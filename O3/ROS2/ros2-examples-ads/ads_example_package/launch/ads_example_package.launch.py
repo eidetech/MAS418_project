@@ -10,5 +10,11 @@ def generate_launch_description():
         Node(
             package='ads_example_package',
             executable='ads_node',
-        ),
+	    output="screen",
+	   arguments= [
+	      "--ros-args",
+	      "--log-level",
+	      "node_test:=debug",
+	]
+	),
     ])
