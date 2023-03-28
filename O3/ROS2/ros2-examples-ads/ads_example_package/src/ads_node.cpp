@@ -60,7 +60,8 @@ namespace craneads {
 
         void joy_callback(const sensor_msgs::msg::Joy::SharedPtr input)
 		{
-                std::cout << input->buttons[0] << std::endl;
+                std::cout << input->axes[0] << std::endl;
+                ads_.velocityReference = input->axes[0];
         }
 
 
