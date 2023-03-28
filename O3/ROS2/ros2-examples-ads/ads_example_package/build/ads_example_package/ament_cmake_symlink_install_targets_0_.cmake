@@ -1,0 +1,1 @@
+ament_cmake_symlink_install_targets("TARGET_FILES" "/home/marcus/git/MAS418_project/O3/ROS2/ros2-examples-ads/ads_example_package/build/ads_example_package/ads_node" "TARGETS" "ads_node" "DESTINATION" "lib/ads_example_package")

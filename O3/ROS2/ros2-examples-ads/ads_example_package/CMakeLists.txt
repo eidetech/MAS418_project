@@ -7,6 +7,10 @@ endif()
 
 # find dependencies
 find_package(ament_cmake REQUIRED)
+find_package(rclcpp REQUIRED)
+find_package(rclpy REQUIRED)
+find_package(std_msgs REQUIRED)
+find_package(sensor_msgs REQUIRED)
 
 # Posix threads
 set(THREADS_PREFER_PTHREAD_FLAG ON)
@@ -31,8 +35,9 @@ target_include_directories(ads_node PUBLIC
   $<INSTALL_INTERFACE:include>)
 target_include_directories(ads_node PRIVATE "../ADS/AdsLib")
 
-target_link_libraries(ads_node PUBLIC ${LIBADS_LIBRARY} Threads::Threads)
+target_link_libraries(ads_node ${LIBADS_LIBRARY} Threads::Threads)
 
+ament_target_dependencies(ads_node rclcpp std_msgs sensor_msgs)
 
 install(TARGETS ads_node
   DESTINATION lib/${PROJECT_NAME})

@@ -1,0 +1,26 @@
+Source setup script:
+. ~/ros2_humble/install/local_setup.bash
+
+
+Source overlay:
+. install/setup.bash
+
+ros2 run ads_example_package ads_node
+
+
+sudo apt-get install ros-humble-diagnostic-updater
+
+sudo apt-get install libspnav-dev
+
+sudo apt-get install libbluetooth-dev
+
+sudo apt install libcwiid-dev
+
+sudo apt install -y ros-humble-joy
+
+
+
+
+
+To launch example pkg:
+marcus@jelly:~/git/MAS418_project/O3/ROS2/ros2-examples-ads/ads_example_package/launch$ ros2 launch ads_example_package.launch.py

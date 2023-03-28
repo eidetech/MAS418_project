@@ -5,6 +5,17 @@
 
 #include <thread>
 #include <chrono>
+#include "sensor_msgs/msg/joy.hpp"
+#include "rclcpp/rclcpp.hpp"
+
+#include <functional>
+#include <memory>
+#include <string>
+#include <unistd.h>
+#include "std_msgs/msg/string.hpp"
+
+using namespace std::chrono_literals;
+using std::placeholders::_1;
 
 namespace craneads {
 
@@ -27,16 +38,27 @@ namespace craneads {
         AdsVariable<double> positionMeasurement;
     };
 
-    class AdsHandler
+    class AdsHandler : public rclcpp::Node
     {
     public:
         explicit AdsHandler(const AmsNetId remoteNetId, const std::string remoteIpV4)
             : remoteNetId_(remoteNetId)
             , remoteIpV4_(remoteIpV4)
             , route_{remoteIpV4_, remoteNetId_, AMSPORT_R0_PLC_TC3}
-            , ads_(route_) { }
+            , ads_(route_), Node("AdsHandler"){ }
 
-        AdsHandler() : AdsHandler({127, 0, 0, 1,  1, 1}, "127.0.0.1") { }
+        AdsHandler(): AdsHandler({127, 0, 0, 1,  1, 1}, "127.0.0.1") {
+        
+        subscription_joy_ = this->create_subscription<sensor_msgs::msg::Joy>(
+		"joy", 10, std::bind(&AdsHandler::joy_callback, this, _1));
+
+		RCLCPP_INFO(this->get_logger(), "Subscribed to joy topic");
+
+        }
+
+        void joy_callback(const sensor_msgs::msg::Joy::SharedPtr input)
+		{
+        }
 
 
         void activateMotion()
@@ -75,6 +97,8 @@ namespace craneads {
         }
 
         ~AdsHandler() { }
+
+        rclcpp::Subscription<sensor_msgs::msg::Joy>::SharedPtr subscription_joy_;
 
     private:
         const AmsNetId remoteNetId_;
