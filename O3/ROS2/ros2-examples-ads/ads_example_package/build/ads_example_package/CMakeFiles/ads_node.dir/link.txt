@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/ads_node.dir/src/ads_node.cpp.o -o ads_node  /home/marcus/projects/ros2-examples-ads/ADS/build/libAdsLib.a 
