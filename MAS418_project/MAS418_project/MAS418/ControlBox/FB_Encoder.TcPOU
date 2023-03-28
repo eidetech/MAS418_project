@@ -40,7 +40,8 @@ END_IF
 nCount := nInput + nRounds*nMaxValue30bit;
 
 //Position Output
-fPosition := (DINT_TO_LREAL(nCount)*fScale16bit - 17574.8)*PI/180 * 0.475 -2; // [m] -2 FORDI PATHGEN VIRKER IKKE MED STORE TALL FOR SOME REASON]]></ST>
+fPosition := (DINT_TO_LREAL(nCount)*fScale16bit - 17574.8)*PI/180 * 0.475 -2; // [m] -2 FORDI PATHGEN VIRKER IKKE MED STORE TALL FOR SOME REASON
+fPosition := fPosition/20;]]></ST>
     </Implementation>
   </POU>
 </TcPlcObject>

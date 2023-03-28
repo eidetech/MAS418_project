@@ -9297,7 +9297,7 @@
                     </o>
                     <o>
                       <v n="Id">390574330L</v>
-                      <v n="Value">"%2.1f m"</v>
+                      <v n="Value">"%2.3f m"</v>
                     </o>
                     <o>
                       <v n="Id">2597686782L</v>
@@ -9305,11 +9305,11 @@
                     </o>
                     <o>
                       <v n="Id">2477733581L</v>
-                      <v n="Value">"G_HMI.f_WinchEncoder"</v>
+                      <v n="Value">"G_PathGen.x0_winch"</v>
                     </o>
                     <o>
                       <v n="Id">823443203L</v>
-                      <v n="Value">"175"</v>
+                      <v n="Value">"887"</v>
                     </o>
                   </l>
                 </o>

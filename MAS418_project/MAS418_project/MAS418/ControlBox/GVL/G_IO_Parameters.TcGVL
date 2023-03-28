@@ -18,10 +18,10 @@ VAR_GLOBAL
 	fNegMin : REAL := 18250.0;
 	fNegMax : REAL := 9830.0;
 	
-	fMaxVel : LREAL := 1;
+	fMaxVel : LREAL := 0.05;
 	
-	fQmax_winch : LREAL := 60; // L/min
-	fQmax_cyl : LREAL := 75; // L/min
+	fQmax_winch : LREAL := 60/60000; // L/min
+	fQmax_cyl : LREAL := 75/60000; // L/min
 END_VAR]]></Declaration>
   </GVL>
 </TcPlcObject>

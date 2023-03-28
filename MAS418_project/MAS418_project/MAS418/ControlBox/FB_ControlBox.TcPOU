@@ -123,25 +123,25 @@ fb_CL_PC_winch_auto(bEnable:=(G_ControlBox.bRunning AND G_ControlBox.bJoyActive 
 							  fPositionFeedback:=G_ControlBox.fPositionFeedback_winch, 
 							  uPFB => G_ControlBox.f_uPFB_winch_auto);
 							  
-fb_CL_PC_cyl_auto(bEnable:=(G_ControlBox.bRunning AND NOT G_ControlBox.bJoyActive AND G_ControlBox.bAuto), 
+fb_CL_PC_cyl_auto(bEnable:=(G_ControlBox.bRunning AND G_ControlBox.bJoyActive AND G_ControlBox.bAuto), 
 							fProportionalGain:=G_ControlBox.fPGain, 
 							fPositionReference:=G_PathGen.fPositionRef, 
 							fPositionFeedback:=G_ControlBox.fPositionFeedback_cyl, 
 							uPFB => G_ControlBox.f_uPFB_cyl_auto);
 
 // Calculate summed control signals for winch and cylinder
-IF G_ControlBox.f_uVFF_winch_auto + G_ControlBox.f_uPFB_winch_auto >= 1 THEN
-	G_ControlBox.f_u_winch := 1;
-ELSIF G_ControlBox.f_uVFF_winch_auto + G_ControlBox.f_uPFB_winch_auto <= -1 THEN
-	G_ControlBox.f_u_winch := -1;
+IF G_ControlBox.f_uVFF_winch_auto + G_ControlBox.f_uPFB_winch_auto >= G_ControlBox.fLimitVal THEN
+	G_ControlBox.f_u_winch := G_ControlBox.fLimitVal;
+ELSIF G_ControlBox.f_uVFF_winch_auto + G_ControlBox.f_uPFB_winch_auto <= -G_ControlBox.fLimitVal THEN
+	G_ControlBox.f_u_winch := -G_ControlBox.fLimitVal;
 ELSE
 	G_ControlBox.f_u_winch := G_ControlBox.f_uVFF_winch_auto + G_ControlBox.f_uPFB_winch_auto + G_ControlBox.f_uVFF_winch_manual;
 END_IF
 
-IF G_ControlBox.f_uVFF_cyl_auto + G_ControlBox.f_uPFB_cyl_auto >= 1 THEN
-	G_ControlBox.f_u_cyl := 1;
-ELSIF G_ControlBox.f_uVFF_cyl_auto + G_ControlBox.f_uPFB_cyl_auto <= -1 THEN
-	G_ControlBox.f_u_cyl := -1;
+IF G_ControlBox.f_uVFF_cyl_auto + G_ControlBox.f_uPFB_cyl_auto >= G_ControlBox.fLimitVal THEN
+	G_ControlBox.f_u_cyl := G_ControlBox.fLimitVal;
+ELSIF G_ControlBox.f_uVFF_cyl_auto + G_ControlBox.f_uPFB_cyl_auto <= -G_ControlBox.fLimitVal THEN
+	G_ControlBox.f_u_cyl := -G_ControlBox.fLimitVal;
 ELSE
 	G_ControlBox.f_u_cyl := G_ControlBox.f_uVFF_cyl_auto + G_ControlBox.f_uPFB_cyl_auto + G_ControlBox.f_uVFF_cyl_manual;
 END_IF]]></ST>

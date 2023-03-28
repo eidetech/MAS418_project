@@ -55,6 +55,8 @@
 	// Position feedback variable
 	fPositionFeedback_winch : LREAL := 0;
 	fPositionFeedback_cyl : LREAL := 0;
+	
+	fLimitVal : LREAL := 0.05;
 END_VAR]]></Declaration>
   </GVL>
 </TcPlcObject>
