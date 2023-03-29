@@ -1,0 +1,12 @@
+/home/marcus/git/MAS418_project/O3/ROS2/joystick_drivers/build/joy/CMakeFiles/uninstall.dir
+/home/marcus/git/MAS418_project/O3/ROS2/joystick_drivers/build/joy/CMakeFiles/joy_uninstall.dir
+/home/marcus/git/MAS418_project/O3/ROS2/joystick_drivers/build/joy/CMakeFiles/joy.dir
+/home/marcus/git/MAS418_project/O3/ROS2/joystick_drivers/build/joy/CMakeFiles/joy_node.dir
+/home/marcus/git/MAS418_project/O3/ROS2/joystick_drivers/build/joy/CMakeFiles/joy_enumerate_devices.dir
+/home/marcus/git/MAS418_project/O3/ROS2/joystick_drivers/build/joy/CMakeFiles/test.dir
+/home/marcus/git/MAS418_project/O3/ROS2/joystick_drivers/build/joy/CMakeFiles/edit_cache.dir
+/home/marcus/git/MAS418_project/O3/ROS2/joystick_drivers/build/joy/CMakeFiles/rebuild_cache.dir
+/home/marcus/git/MAS418_project/O3/ROS2/joystick_drivers/build/joy/CMakeFiles/list_install_components.dir
+/home/marcus/git/MAS418_project/O3/ROS2/joystick_drivers/build/joy/CMakeFiles/install.dir
+/home/marcus/git/MAS418_project/O3/ROS2/joystick_drivers/build/joy/CMakeFiles/install/local.dir
+/home/marcus/git/MAS418_project/O3/ROS2/joystick_drivers/build/joy/CMakeFiles/install/strip.dir

@@ -12,6 +12,11 @@ find_package(rclpy REQUIRED)
 find_package(std_msgs REQUIRED)
 find_package(sensor_msgs REQUIRED)
 
+install(
+  DIRECTORY ../urdf_tutorial/images ../urdf_tutorial/launch ../urdf_tutorial/meshes ../urdf_tutorial/rviz ../urdf_tutorial/urdf
+  DESTINATION share/${PROJECT_NAME}
+)
+
 # Posix threads
 set(THREADS_PREFER_PTHREAD_FLAG ON)
 find_package(Threads REQUIRED)
@@ -42,6 +47,10 @@ ament_target_dependencies(ads_node rclcpp std_msgs sensor_msgs)
 install(TARGETS ads_node
   DESTINATION lib/${PROJECT_NAME})
 
+install(PROGRAMS
+  ../urdf_tutorial/scripts/crane_controller.py
+  DESTINATION lib/${PROJECT_NAME}
+)
 
 
 if(BUILD_TESTING)

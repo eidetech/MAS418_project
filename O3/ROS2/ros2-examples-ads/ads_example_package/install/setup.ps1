@@ -28,7 +28,9 @@ _colcon_prefix_chain_powershell_source_script "/home/marcus/turtlesim_ws/teleop_
 _colcon_prefix_chain_powershell_source_script "/home/marcus/git/MAS418_project/O3/ROS2/joystick_drivers/joy/install\local_setup.ps1"
 _colcon_prefix_chain_powershell_source_script "/home/marcus/second_ros2_ws/install\local_setup.ps1"
 _colcon_prefix_chain_powershell_source_script "/home/marcus/ros2_ws/install\local_setup.ps1"
+_colcon_prefix_chain_powershell_source_script "/home/marcus/git/MAS418_project/O3/ROS2/ros2-examples-ads/ads_example_package/launch/install\local_setup.ps1"
 _colcon_prefix_chain_powershell_source_script "/home/marcus/ros2_humble/install\local_setup.ps1"
+_colcon_prefix_chain_powershell_source_script "/home/marcus/git/MAS418_project/O3/ROS2/ros2-examples-ads/urdf_tutorial/install\local_setup.ps1"
 
 # source this prefix
 $env:COLCON_CURRENT_PREFIX=(Split-Path $PSCommandPath -Parent)

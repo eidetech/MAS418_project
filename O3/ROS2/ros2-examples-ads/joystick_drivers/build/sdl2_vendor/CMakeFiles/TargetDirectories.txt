@@ -1,0 +1,10 @@
+/home/marcus/git/MAS418_project/O3/ROS2/joystick_drivers/build/sdl2_vendor/CMakeFiles/uninstall.dir
+/home/marcus/git/MAS418_project/O3/ROS2/joystick_drivers/build/sdl2_vendor/CMakeFiles/sdl2_vendor_uninstall.dir
+/home/marcus/git/MAS418_project/O3/ROS2/joystick_drivers/build/sdl2_vendor/CMakeFiles/SDL2-2.0.14.dir
+/home/marcus/git/MAS418_project/O3/ROS2/joystick_drivers/build/sdl2_vendor/CMakeFiles/test.dir
+/home/marcus/git/MAS418_project/O3/ROS2/joystick_drivers/build/sdl2_vendor/CMakeFiles/edit_cache.dir
+/home/marcus/git/MAS418_project/O3/ROS2/joystick_drivers/build/sdl2_vendor/CMakeFiles/rebuild_cache.dir
+/home/marcus/git/MAS418_project/O3/ROS2/joystick_drivers/build/sdl2_vendor/CMakeFiles/list_install_components.dir
+/home/marcus/git/MAS418_project/O3/ROS2/joystick_drivers/build/sdl2_vendor/CMakeFiles/install.dir
+/home/marcus/git/MAS418_project/O3/ROS2/joystick_drivers/build/sdl2_vendor/CMakeFiles/install/local.dir
+/home/marcus/git/MAS418_project/O3/ROS2/joystick_drivers/build/sdl2_vendor/CMakeFiles/install/strip.dir

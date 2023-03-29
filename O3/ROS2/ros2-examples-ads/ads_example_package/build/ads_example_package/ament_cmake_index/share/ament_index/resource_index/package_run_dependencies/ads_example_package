@@ -1,1 +1,1 @@
-rclcpp;rclpy;ament_lint_auto;ament_lint_common
+rclcpp;rclpy;rviz2;xacro;robot_state_publisher;joint_state_publisher;urdf_tutorial;ament_lint_auto;ament_lint_common
