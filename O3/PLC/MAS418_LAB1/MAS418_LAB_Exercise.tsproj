@@ -17,7 +17,7 @@
 		</System>
 		<Plc>
 			<Project GUID="{E0934695-7C3D-4F8B-B148-FD256502155A}" Name="LabExercise" PrjFilePath="LabExercise\LabExercise.plcproj" TmcFilePath="LabExercise\LabExercise.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
-				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="LabExercise\LabExercise.tmc" TmcHash="{82F1A7C7-CC95-B7B8-6E9F-3E559612D0EF}">
+				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="LabExercise\LabExercise.tmc" TmcHash="{30C4CD75-2310-85C6-3594-C7A5234E0AC9}">
 					<Name>LabExercise Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 					<Contexts>

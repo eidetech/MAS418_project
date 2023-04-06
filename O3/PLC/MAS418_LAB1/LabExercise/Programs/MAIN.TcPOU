@@ -12,7 +12,12 @@ END_VAR
     <Implementation>
       <ST><![CDATA[P_Commissioning();
 P_ControlBox();
-P_CraneControl();]]></ST>
+P_CraneControl();
+
+
+fPosRef := G_Simulator.fPistonPosition;
+
+fPosMeas := G_Simulator.fBoomAngle;]]></ST>
     </Implementation>
   </POU>
 </TcPlcObject>
