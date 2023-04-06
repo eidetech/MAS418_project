@@ -8,7 +8,7 @@ from rclpy.qos import QoSProfile
 from std_msgs.msg import String
 from tf2_ros import TransformBroadcaster, TransformStamped
 from sensor_msgs.msg import Joy
-
+from std_msgs.msg import Float32MultiArray
 
 
 class CraneController(Node):
@@ -19,6 +19,11 @@ class CraneController(Node):
             Joy,
             'joy',
             self.listener_callback, 10)
+        
+        self.subscription = self.create_subscription(
+			Float32MultiArray,
+			'setpoint',
+			self.sp_callback, 10)
 
         qos_profile = QoSProfile(depth=10)
 
@@ -30,6 +35,8 @@ class CraneController(Node):
         self.get_logger().info("{0} started".format(self.nodeName))
         timer_period = 0.01  # seconds
         self.timer = self.create_timer(timer_period, self.timer_callback)
+
+
 
         # robot state
         self.theta_boom = 0.
@@ -43,7 +50,6 @@ class CraneController(Node):
         self.t = 0
         self.lower=0.35
         self.upper=-0.6
-
 
     def timer_callback(self):
                 # Create new robot state
@@ -77,6 +83,8 @@ class CraneController(Node):
             elif(self.theta_boom > self.lower):
                 self.theta_boom = self.lower 
             
+    def sp_callback(self, input):
+        self.theta_boom = input.data[0] * -1
             
                 
 

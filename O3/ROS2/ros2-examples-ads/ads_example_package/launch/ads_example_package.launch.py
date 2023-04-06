@@ -43,10 +43,10 @@ def generate_launch_description():
     arguments=[('__log_level:=debug')]
     )
     
-    joy_node = Node(
-    package='joy',
-    executable='joy_node',
-    )
+  #  joy_node = Node(
+  #  package='joy',
+  #  executable='joy_node',
+  #  )
     
     ads_node = Node(
     package='ads_example_package',
@@ -65,6 +65,6 @@ def generate_launch_description():
         robot_state_publisher_node,
         rviz_node,
         crane_controller_node,
-        joy_node,
+        #joy_node,
         ads_node
     ])
