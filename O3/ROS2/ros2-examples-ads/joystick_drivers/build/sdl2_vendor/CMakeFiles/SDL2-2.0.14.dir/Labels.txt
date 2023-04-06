@@ -1,0 +1,13 @@
+# Target labels
+ SDL2-2.0.14
+# Source files and their labels
+/home/marcus/git/MAS418_project/O3/ROS2/joystick_drivers/build/sdl2_vendor/CMakeFiles/SDL2-2.0.14
+/home/marcus/git/MAS418_project/O3/ROS2/joystick_drivers/build/sdl2_vendor/CMakeFiles/SDL2-2.0.14.rule
+/home/marcus/git/MAS418_project/O3/ROS2/joystick_drivers/build/sdl2_vendor/CMakeFiles/SDL2-2.0.14-complete.rule
+/home/marcus/git/MAS418_project/O3/ROS2/joystick_drivers/build/sdl2_vendor/SDL2-2.0.12/src/SDL2-2.0.14-stamp/SDL2-2.0.14-build.rule
+/home/marcus/git/MAS418_project/O3/ROS2/joystick_drivers/build/sdl2_vendor/SDL2-2.0.12/src/SDL2-2.0.14-stamp/SDL2-2.0.14-configure.rule
+/home/marcus/git/MAS418_project/O3/ROS2/joystick_drivers/build/sdl2_vendor/SDL2-2.0.12/src/SDL2-2.0.14-stamp/SDL2-2.0.14-download.rule
+/home/marcus/git/MAS418_project/O3/ROS2/joystick_drivers/build/sdl2_vendor/SDL2-2.0.12/src/SDL2-2.0.14-stamp/SDL2-2.0.14-install.rule
+/home/marcus/git/MAS418_project/O3/ROS2/joystick_drivers/build/sdl2_vendor/SDL2-2.0.12/src/SDL2-2.0.14-stamp/SDL2-2.0.14-mkdir.rule
+/home/marcus/git/MAS418_project/O3/ROS2/joystick_drivers/build/sdl2_vendor/SDL2-2.0.12/src/SDL2-2.0.14-stamp/SDL2-2.0.14-patch.rule
+/home/marcus/git/MAS418_project/O3/ROS2/joystick_drivers/build/sdl2_vendor/SDL2-2.0.12/src/SDL2-2.0.14-stamp/SDL2-2.0.14-update.rule

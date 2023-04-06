@@ -7,6 +7,7 @@
 #include <chrono>
 #include "sensor_msgs/msg/joy.hpp"
 #include "rclcpp/rclcpp.hpp"
+#include "std_msgs/msg/float32_multi_array.hpp"
 
 #include <functional>
 #include <memory>
@@ -56,6 +57,13 @@ namespace craneads {
 
 		RCLCPP_INFO(this->get_logger(), "Subscribed to joy topic");
 
+        // Publisher
+		publisher_ = this->create_publisher<std_msgs::msg::Float32MultiArray>("setpoint", 10);
+		timer_ = this->create_wall_timer(
+		10ms, std::bind(&AdsHandler::timer_callback, this));
+
+        RCLCPP_INFO(this->get_logger(), "Publishing to setpoint topic");
+
         }
 
         void joy_callback(const sensor_msgs::msg::Joy::SharedPtr input)
@@ -90,6 +98,23 @@ namespace craneads {
             return ads_.positionMeasurement;
         }
 
+        void publish_sp()
+        {
+            sp.data[0] = (float)(getPositionMeasurement());
+            publisher_->publish(sp);
+        }
+
+        void timer_callback()
+		{
+            // publish_sp();
+            sp.data.resize(1);
+            sp.data[0] = getPositionMeasurement();
+            publisher_->publish(sp);
+        }
+
+        // ROS message to send motor velocities
+		std_msgs::msg::Float32MultiArray sp;
+
 
         void printState()
         {
@@ -102,7 +127,9 @@ namespace craneads {
 
         ~AdsHandler() { }
 
+        rclcpp::TimerBase::SharedPtr timer_;
         rclcpp::Subscription<sensor_msgs::msg::Joy>::SharedPtr subscription_joy_;
+        rclcpp::Publisher<std_msgs::msg::Float32MultiArray>::SharedPtr publisher_;
 
     private:
         const AmsNetId remoteNetId_;

@@ -310,8 +310,14 @@ message(STATUS "Execute custom install script")
 
 # begin of custom install code
 
+# install(DIRECTORY "../urdf_tutorial/images" "../urdf_tutorial/launch" "../urdf_tutorial/meshes" "../urdf_tutorial/rviz" "../urdf_tutorial/urdf" "DESTINATION" "share/ads_example_package")
+ament_cmake_symlink_install_directory("/home/marcus/git/MAS418_project/O3/ROS2/ros2-examples-ads/ads_example_package" DIRECTORY "../urdf_tutorial/images" "../urdf_tutorial/launch" "../urdf_tutorial/meshes" "../urdf_tutorial/rviz" "../urdf_tutorial/urdf" "DESTINATION" "share/ads_example_package")
+
 # install("TARGETS" "ads_node" "DESTINATION" "lib/ads_example_package")
 include("/home/marcus/git/MAS418_project/O3/ROS2/ros2-examples-ads/ads_example_package/build/ads_example_package/ament_cmake_symlink_install_targets_0_${CMAKE_INSTALL_CONFIG_NAME}.cmake")
+
+# install(PROGRAMS "../urdf_tutorial/scripts/crane_controller.py" "DESTINATION" "lib/ads_example_package")
+ament_cmake_symlink_install_programs("/home/marcus/git/MAS418_project/O3/ROS2/ros2-examples-ads/ads_example_package" PROGRAMS "../urdf_tutorial/scripts/crane_controller.py" "DESTINATION" "lib/ads_example_package")
 
 # install(FILES "/home/marcus/git/MAS418_project/O3/ROS2/ros2-examples-ads/ads_example_package/build/ads_example_package/ament_cmake_index/share/ament_index/resource_index/package_run_dependencies/ads_example_package" "DESTINATION" "share/ament_index/resource_index/package_run_dependencies")
 ament_cmake_symlink_install_files("/home/marcus/git/MAS418_project/O3/ROS2/ros2-examples-ads/ads_example_package" FILES "/home/marcus/git/MAS418_project/O3/ROS2/ros2-examples-ads/ads_example_package/build/ads_example_package/ament_cmake_index/share/ament_index/resource_index/package_run_dependencies/ads_example_package" "DESTINATION" "share/ament_index/resource_index/package_run_dependencies")

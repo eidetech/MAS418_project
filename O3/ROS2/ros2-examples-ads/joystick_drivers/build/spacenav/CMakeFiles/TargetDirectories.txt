@@ -1,0 +1,11 @@
+/home/marcus/git/MAS418_project/O3/ROS2/joystick_drivers/build/spacenav/CMakeFiles/uninstall.dir
+/home/marcus/git/MAS418_project/O3/ROS2/joystick_drivers/build/spacenav/CMakeFiles/spacenav_uninstall.dir
+/home/marcus/git/MAS418_project/O3/ROS2/joystick_drivers/build/spacenav/CMakeFiles/spacenav.dir
+/home/marcus/git/MAS418_project/O3/ROS2/joystick_drivers/build/spacenav/CMakeFiles/spacenav_node.dir
+/home/marcus/git/MAS418_project/O3/ROS2/joystick_drivers/build/spacenav/CMakeFiles/test.dir
+/home/marcus/git/MAS418_project/O3/ROS2/joystick_drivers/build/spacenav/CMakeFiles/edit_cache.dir
+/home/marcus/git/MAS418_project/O3/ROS2/joystick_drivers/build/spacenav/CMakeFiles/rebuild_cache.dir
+/home/marcus/git/MAS418_project/O3/ROS2/joystick_drivers/build/spacenav/CMakeFiles/list_install_components.dir
+/home/marcus/git/MAS418_project/O3/ROS2/joystick_drivers/build/spacenav/CMakeFiles/install.dir
+/home/marcus/git/MAS418_project/O3/ROS2/joystick_drivers/build/spacenav/CMakeFiles/install/local.dir
+/home/marcus/git/MAS418_project/O3/ROS2/joystick_drivers/build/spacenav/CMakeFiles/install/strip.dir
