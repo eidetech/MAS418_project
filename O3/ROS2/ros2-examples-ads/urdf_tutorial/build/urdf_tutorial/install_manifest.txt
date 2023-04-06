@@ -25,9 +25,7 @@
 /home/marcus/git/MAS418_project/O3/ROS2/ros2-examples-ads/urdf_tutorial/install/urdf_tutorial/lib/urdf_tutorial/crane_controller.py
 /home/marcus/git/MAS418_project/O3/ROS2/ros2-examples-ads/urdf_tutorial/install/urdf_tutorial/share/ament_index/resource_index/package_run_dependencies/urdf_tutorial
 /home/marcus/git/MAS418_project/O3/ROS2/ros2-examples-ads/urdf_tutorial/install/urdf_tutorial/share/ament_index/resource_index/parent_prefix_path/urdf_tutorial
-/home/marcus/git/MAS418_project/O3/ROS2/ros2-examples-ads/urdf_tutorial/install/urdf_tutorial/share/urdf_tutorial/environment/ament_prefix_path.sh
 /home/marcus/git/MAS418_project/O3/ROS2/ros2-examples-ads/urdf_tutorial/install/urdf_tutorial/share/urdf_tutorial/environment/ament_prefix_path.dsv
-/home/marcus/git/MAS418_project/O3/ROS2/ros2-examples-ads/urdf_tutorial/install/urdf_tutorial/share/urdf_tutorial/environment/path.sh
 /home/marcus/git/MAS418_project/O3/ROS2/ros2-examples-ads/urdf_tutorial/install/urdf_tutorial/share/urdf_tutorial/environment/path.dsv
 /home/marcus/git/MAS418_project/O3/ROS2/ros2-examples-ads/urdf_tutorial/install/urdf_tutorial/share/urdf_tutorial/local_setup.bash
 /home/marcus/git/MAS418_project/O3/ROS2/ros2-examples-ads/urdf_tutorial/install/urdf_tutorial/share/urdf_tutorial/local_setup.sh
