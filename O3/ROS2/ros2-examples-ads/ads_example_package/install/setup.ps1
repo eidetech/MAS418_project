@@ -23,13 +23,13 @@ function _colcon_prefix_chain_powershell_source_script {
 
 # source chained prefixes
 _colcon_prefix_chain_powershell_source_script "/opt/ros/humble\local_setup.ps1"
+_colcon_prefix_chain_powershell_source_script "/home/marcus/git/MAS418_project/O3/ROS2/ros2-examples-ads/urdf_tutorial/install\local_setup.ps1"
 _colcon_prefix_chain_powershell_source_script "/home/marcus/projects/ros2-examples-ads/ads_example_package/install\local_setup.ps1"
 _colcon_prefix_chain_powershell_source_script "/home/marcus/turtlesim_ws/teleop_twist_keyboard/install\local_setup.ps1"
 _colcon_prefix_chain_powershell_source_script "/home/marcus/second_ros2_ws/install\local_setup.ps1"
 _colcon_prefix_chain_powershell_source_script "/home/marcus/ros2_ws/install\local_setup.ps1"
-_colcon_prefix_chain_powershell_source_script "/home/marcus/git/MAS418_project/O3/ROS2/ros2-examples-ads/ads_example_package/launch/install\local_setup.ps1"
 _colcon_prefix_chain_powershell_source_script "/home/marcus/ros2_humble/install\local_setup.ps1"
-_colcon_prefix_chain_powershell_source_script "/home/marcus/git/MAS418_project/O3/ROS2/ros2-examples-ads/urdf_tutorial/install\local_setup.ps1"
+_colcon_prefix_chain_powershell_source_script "/home/marcus/git/MAS418_project/O3/ROS2/ros2-examples-ads/ads_example_package/launch/install\local_setup.ps1"
 
 # source this prefix
 $env:COLCON_CURRENT_PREFIX=(Split-Path $PSCommandPath -Parent)

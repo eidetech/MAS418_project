@@ -29,6 +29,10 @@ namespace craneads {
             , velocityReference{route, "MAIN.fVelRef"}
             , positionReference{route, "MAIN.fPosRef"}
             , positionMeasurement{route, "MAIN.fPosMeas"}
+            , stopCmd{route, "MAIN.bStop"}
+            , startCmd{route, "MAIN.bStart"}
+            , pistonSidePressure{route, "MAIN.fPistonSidePressure"}
+            , rodSidePressure{route, "MAIN.fRodSidePressure"}
         {
             // Do nothing.
         }
@@ -37,6 +41,10 @@ namespace craneads {
         AdsVariable<double> velocityReference;
         AdsVariable<double> positionReference;
         AdsVariable<double> positionMeasurement;
+        AdsVariable<bool> stopCmd;
+        AdsVariable<bool> startCmd;
+        AdsVariable<double> pistonSidePressure;
+        AdsVariable<double> rodSidePressure;
     };
 
     class AdsHandler : public rclcpp::Node
@@ -48,7 +56,7 @@ namespace craneads {
             , route_{remoteIpV4_, remoteNetId_, AMSPORT_R0_PLC_TC3}
             , ads_(route_), Node("AdsHandler"){ }
 
-        AdsHandler(): AdsHandler({169, 254, 90, 1, 1, 1}, "169.254.90.1") {
+        AdsHandler(): AdsHandler({192, 168, 0, 10, 1, 1}, "192.168.0.10") {
 
               std::cout << "Example ROS2 ADS node starting up.." << std::endl;
         
@@ -62,20 +70,57 @@ namespace craneads {
 		timer_ = this->create_wall_timer(
 		10ms, std::bind(&AdsHandler::timer_callback, this));
 
+		pressure_publisher_ = this->create_publisher<std_msgs::msg::Float32MultiArray>("pressures", 10);
+		pressure_timer_ = this->create_wall_timer(
+		10ms, std::bind(&AdsHandler::pressure_pub_cb, this));
+
         RCLCPP_INFO(this->get_logger(), "Publishing to setpoint topic");
 
         }
 
         void joy_callback(const sensor_msgs::msg::Joy::SharedPtr input)
 		{
-                std::cout << input->axes[0] << std::endl;
-                ads_.velocityReference = input->axes[0];
+                // std::cout << input->axes[0] << std::endl;
+                // ads_.velocityReference = input->axes[0];
+        
+            if(input->buttons[0])
+            {
+                activate_start();
+                deactivate_stop();
+            }
+            else if(input->buttons[1])
+            {
+                activate_stop();
+                deactivate_start();
+            }
+
+
         }
 
 
         void activateMotion()
         {
             ads_.activateMotion = true;
+        }
+
+        void activate_start()
+        {
+            ads_.startCmd = true;
+        }
+
+        void activate_stop()
+        {
+            ads_.stopCmd = true;
+        }
+
+        void deactivate_start()
+        {
+            ads_.startCmd = false;
+        }
+
+        void deactivate_stop()
+        {
+            ads_.stopCmd = false;
         }
 
         void deactivateMotion()
@@ -112,8 +157,17 @@ namespace craneads {
             publisher_->publish(sp);
         }
 
-        // ROS message to send motor velocities
+        void pressure_pub_cb()
+		{
+            // publish_sp();
+            pressures.data.resize(2);
+            pressures.data[0] = ads_.pistonSidePressure;
+            pressures.data[1] = ads_.rodSidePressure;
+            pressure_publisher_->publish(pressures);
+        }
+
 		std_msgs::msg::Float32MultiArray sp;
+        std_msgs::msg::Float32MultiArray pressures;
 
 
         void printState()
@@ -128,8 +182,10 @@ namespace craneads {
         ~AdsHandler() { }
 
         rclcpp::TimerBase::SharedPtr timer_;
+        rclcpp::TimerBase::SharedPtr pressure_timer_;
         rclcpp::Subscription<sensor_msgs::msg::Joy>::SharedPtr subscription_joy_;
         rclcpp::Publisher<std_msgs::msg::Float32MultiArray>::SharedPtr publisher_;
+        rclcpp::Publisher<std_msgs::msg::Float32MultiArray>::SharedPtr pressure_publisher_;
 
     private:
         const AmsNetId remoteNetId_;
