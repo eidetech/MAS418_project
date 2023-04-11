@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <TcSmProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4024.35">
-	<Project ProjectGUID="{F5EA4D54-25E4-451F-9EDD-AB0E02AC024C}" Target64Bit="true" ShowHideConfigurations="#x3c7">
+	<Project ProjectGUID="{F5EA4D54-25E4-451F-9EDD-AB0E02AC024C}" TargetNetId="192.168.0.10.1.1" Target64Bit="true" ShowHideConfigurations="#x3c7">
 		<System>
 			<Settings MaxCpus="12">
 				<Cpu BaseTime="1000"/>
@@ -17,7 +17,7 @@
 		</System>
 		<Plc>
 			<Project GUID="{E0934695-7C3D-4F8B-B148-FD256502155A}" Name="LabExercise" PrjFilePath="LabExercise\LabExercise.plcproj" TmcFilePath="LabExercise\LabExercise.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
-				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="LabExercise\LabExercise.tmc" TmcHash="{30C4CD75-2310-85C6-3594-C7A5234E0AC9}">
+				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="LabExercise\LabExercise.tmc" TmcHash="{5AFCB45D-ADB5-DDE5-D522-20B26193EA20}">
 					<Name>LabExercise Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 					<Contexts>

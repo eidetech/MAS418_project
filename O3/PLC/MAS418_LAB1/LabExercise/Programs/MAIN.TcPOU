@@ -7,6 +7,10 @@ VAR
 	fVelRef : LREAL;
 	fPosRef: LREAL;
 	fPosMeas :LREAL;
+	fPistonSidePressure : LREAL;
+	fRodSidePressure : LREAL;
+	bStop : BOOL;
+	bStart : BOOL;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -17,7 +21,25 @@ P_CraneControl();
 
 fPosRef := G_Simulator.fPistonPosition;
 
-fPosMeas := G_Simulator.fBoomAngle;]]></ST>
+fPosMeas := G_Simulator.fBoomAngle;
+
+fPistonSidePressure := G_Simulator.fPistonSidePressure;
+fRodSidePressure := G_Simulator.fRodSidePressure;
+
+G_VirtualControlBox.bStopButton := bStop;
+G_VirtualControlBox.bStartButton := bStart;
+G_Simulator.bSimulatorOn := TRUE;
+G_VirtualControlBox.bOnSelector := TRUE;
+G_VirtualControlBox.bAutoSelector := TRUE;
+G_Commissioning.stAutomaticControlSettings.bEnableVelocityFeedForwardControl := TRUE;
+G_Commissioning.stAutomaticControlSettings.bEnableClosedLoopPositionControl := TRUE;
+
+
+
+
+
+
+]]></ST>
     </Implementation>
   </POU>
 </TcPlcObject>
